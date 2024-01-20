@@ -1,7 +1,7 @@
 {
-  "name": "kachabazar-admin",
+  "name": "diamdus-admin",
   "version": "0.1.0",
-  "description": "this is Kachabazar-admin built with react.js and tailwindcss",
+  "description": "the Diamdus",
   "private": true,
   "type": "module",
   "dependencies": {
