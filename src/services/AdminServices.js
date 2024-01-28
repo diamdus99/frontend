@@ -1,31 +1,32 @@
-import requests from "./httpService";
+import requests from './httpService';
 
 const AdminServices = {
   registerAdmin: async (body) => {
-    return requests.post("/admin/register", body);
+    return requests.post('/admin/register', body);
   },
 
   loginAdmin: async (body) => {
+    alert(body);
     return requests.post(`/admin/login`, body);
   },
 
   forgetPassword: async (body) => {
-    return requests.put("/admin/forget-password", body);
+    return requests.put('/admin/forget-password', body);
   },
 
   resetPassword: async (body) => {
-    return requests.put("/admin/reset-password", body);
+    return requests.put('/admin/reset-password', body);
   },
 
   signUpWithProvider: async (body) => {
-    return requests.post("/admin/signup", body);
+    return requests.post('/admin/signup', body);
   },
 
   addStaff: async (body) => {
-    return requests.post("/admin/add", body);
+    return requests.post('/admin/add', body);
   },
   getAllStaff: async (body) => {
-    return requests.get("/admin", body);
+    return requests.get('/admin', body);
   },
   getStaffById: async (id, body) => {
     return requests.post(`/admin/${id}`, body);
