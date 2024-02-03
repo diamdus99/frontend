@@ -6,7 +6,6 @@ const AdminServices = {
   },
 
   loginAdmin: async (body) => {
-    alert(body);
     return requests.post(`/admin/login`, body);
   },
 

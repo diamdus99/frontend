@@ -8,7 +8,6 @@ import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import useRazorpay from 'react-razorpay';
 import CheckoutForm from './CheckoutForm';
-import CheckoutCart from './CheckoutCart';
 
 const stripePromise = loadStripe(
   'pk_test_51OKwUNAPllPw9NOLoxslegfFfAtL0RkaTKFW9calo1bMECfdiHF0ZTp6SL4F3rGXDlDctoqcPwAKEBULj4UGNaf600nBgHO2Nf'
@@ -119,9 +118,9 @@ const Cart = () => {
           <div className="flex flex-col lg:flex-row gap-x-6">
             <div className="">
               {/* {JSON.stringify(cart.map((i) => i?.productId))} */}
-              {cart.map((cartItem) => (
+              {/* {cart.map((cartItem) => (
                 <CartCard key={cartItem?.productId} item={cartItem} />
-              ))}
+              ))} */}
             </div>
 
             {cart.length === 0 ? (

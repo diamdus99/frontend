@@ -1,6 +1,6 @@
 /* for hiding process is not defined bug from console */
 body
-  > iframe[style*="2147483647"]:not([id="webpack-dev-server-client-overlay"]) {
+  > iframe[style*='2147483647']:not([id='webpack-dev-server-client-overlay']) {
   display: none;
 }
 .chart {
@@ -68,7 +68,7 @@ body
 }
 .drawer-handle-icon:before,
 .drawer-handle-icon:after {
-  content: "";
+  content: '';
   display: block;
   position: absolute;
   background: #333;
@@ -350,7 +350,7 @@ body
   position: absolute;
   top: 50%;
   left: 50%;
-  content: " ";
+  content: ' ';
   height: 0.9em;
   width: 0.15em;
   background-color: #333;
@@ -370,7 +370,7 @@ body
 
 .react-tag-input__tag-readonly:before,
 .react-tag-input__tag-readonly:after {
-  content: "";
+  content: '';
   width: 0;
 }
 .react-tag-input__tag {
@@ -439,7 +439,7 @@ body
 .flag {
   width: 25px;
   height: 20px;
-  background-image: url("https://raw.githubusercontent.com/bl00mber/react-phone-input-2/master/src/style/common/high-res.png");
+  background-image: url('https://raw.githubusercontent.com/bl00mber/react-phone-input-2/master/src/style/common/high-res.png');
   background-repeat: no-repeat;
 }
 .ad {
@@ -1261,7 +1261,7 @@ body
   }
 } */
 
-input[type="file"] {
+input[type='file'] {
   display: none;
 }
 
@@ -1279,8 +1279,8 @@ input[type="file"] {
 /* input field spin button */
 /* Add CSS to hide the spinners */
 /* Add CSS to hide the spinners for all number inputs */
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
   -webkit-appearance: none;
   appearance: none;
   margin: 0;

@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import CartReducer, { setCartFromLocalStorage } from './slices/CartSlice';
+import increaseDecreaseReducer from './slices/increaseDecreaseSlice';
 import { useEffect } from 'react';
 
 export const store = configureStore({
   reducer: {
     cart: CartReducer,
+    increaseDecrease: increaseDecreaseReducer,
   },
 });
 

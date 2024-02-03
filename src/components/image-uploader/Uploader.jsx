@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { t } from "i18next";
-import axios from "axios";
-import { useDropzone } from "react-dropzone";
+import React, { useEffect, useState } from 'react';
+import { t } from 'i18next';
+import axios from 'axios';
+import { useDropzone } from 'react-dropzone';
 // import cloudinary from "cloudinary/lib/cloudinary";
-import { DndProvider } from "react-dnd";
-import { HTML5Backend } from "react-dnd-html5-backend";
-import { FiUploadCloud, FiXCircle } from "react-icons/fi";
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
+import { FiUploadCloud, FiXCircle } from 'react-icons/fi';
 
 //internal import
-import useAsync from "@/hooks/useAsync";
-import SettingServices from "@/services/SettingServices";
-import { notifyError, notifySuccess } from "@/utils/toast";
-import Container from "@/components/image-uploader/Container";
+import useAsync from '@/hooks/useAsync';
+import SettingServices from '@/services/SettingServices';
+import { notifyError, notifySuccess } from '@/utils/toast';
+import Container from '@/components/image-uploader/Container';
 
 // cloudinary?.config({
 //   cloud_name: import.meta.env.VITE_APP_CLOUD_NAME,
@@ -22,7 +22,7 @@ import Container from "@/components/image-uploader/Container";
 const Uploader = ({ setImageUrl, imageUrl, product, folder }) => {
   const [files, setFiles] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [err, setError] = useState("");
+  const [err, setError] = useState('');
 
   const { data: globalSetting } = useAsync(SettingServices.getGlobalSetting);
 
@@ -30,7 +30,7 @@ const Uploader = ({ setImageUrl, imageUrl, product, folder }) => {
 
   const { getRootProps, getInputProps, fileRejections } = useDropzone({
     accept: {
-      "image/*": [".jpeg", ".jpg", ".png", ".webp"],
+      'image/*': ['.jpeg', '.jpg', '.png', '.webp'],
     },
     multiple: product ? true : false,
     maxSize: 500000,
@@ -54,7 +54,7 @@ const Uploader = ({ setImageUrl, imageUrl, product, folder }) => {
           <ul>
             {errors.map((e) => (
               <li key={e.code}>
-                {e.code === "too-many-files"
+                {e.code === 'too-many-files'
                   ? notifyError(
                       `Maximum ${globalSetting?.number_of_image_per_product} Image Can be Upload!`
                     )
@@ -79,7 +79,7 @@ const Uploader = ({ setImageUrl, imageUrl, product, folder }) => {
         }
 
         setLoading(true);
-        setError("Uploading....");
+        setError('Uploading....');
 
         if (product) {
           const result = imageUrl?.find(
@@ -89,29 +89,39 @@ const Uploader = ({ setImageUrl, imageUrl, product, folder }) => {
           if (result) return setLoading(false);
         }
 
-        const name = file.name.replaceAll(/\s/g, "");
-        const public_id = name?.substring(0, name.lastIndexOf("."));
+        const name = file.name.replaceAll(/\s/g, '');
+        const public_id = name?.substring(0, name.lastIndexOf('.'));
 
         const formData = new FormData();
-        formData.append("file", file);
+        formData.append('file', file);
         formData.append(
-          "upload_preset",
+          'upload_preset',
           import.meta.env.VITE_APP_CLOUDINARY_UPLOAD_PRESET
         );
-        formData.append("cloud_name", import.meta.env.VITE_APP_CLOUD_NAME);
-        formData.append("folder", folder);
-        formData.append("public_id", public_id);
+        formData.append('cloud_name', import.meta.env.VITE_APP_CLOUD_NAME);
+        formData.append('folder', folder);
+        formData.append('public_id', public_id);
+        console.log(
+          'public_id',
+          public_id,
+          'folder',
+          folder,
+          'cloud_name',
+          import.meta.env.VITE_APP_CLOUD_NAME,
+          'upload_preset',
+          import.meta.env.VITE_APP_CLOUDINARY_UPLOAD_PRESET
+        );
 
         axios({
           url: import.meta.env.VITE_APP_CLOUDINARY_URL,
-          method: "POST",
+          method: 'POST',
           headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
+            'Content-Type': 'application/x-www-form-urlencoded',
           },
           data: formData,
         })
           .then((res) => {
-            notifySuccess("Image Uploaded successfully!");
+            notifySuccess('Image Uploaded successfully!');
             setLoading(false);
             if (product) {
               setImageUrl((imgUrl) => [...imgUrl, res.data.secure_url]);
@@ -120,7 +130,8 @@ const Uploader = ({ setImageUrl, imageUrl, product, folder }) => {
             }
           })
           .catch((err) => {
-            console.error("err", err);
+            console.error('err', err);
+            alert('err', err);
             notifyError(err.Message);
             setLoading(false);
           });
@@ -161,15 +172,15 @@ const Uploader = ({ setImageUrl, imageUrl, product, folder }) => {
       // notifyError(
       //   res.result === "ok" ? "Image delete successfully!" : res.result
       // );
-      notifyError("Image delete successfully!");
+      notifyError('Image delete successfully!');
       if (product) {
         const result = imageUrl?.filter((i) => i !== img);
         setImageUrl(result);
       } else {
-        setImageUrl("");
+        setImageUrl('');
       }
     } catch (err) {
-      console.error("err", err);
+      console.error('err', err);
       notifyError(err.Message);
       setLoading(false);
     }
@@ -185,8 +196,8 @@ const Uploader = ({ setImageUrl, imageUrl, product, folder }) => {
         <span className="mx-auto flex justify-center">
           <FiUploadCloud className="text-3xl text-emerald-500" />
         </span>
-        <p className="text-sm mt-2">{t("DragYourImage")}</p>
-        <em className="text-xs text-gray-400">{t("imageFormat")}</em>
+        <p className="text-sm mt-2">{t('DragYourImage')}</p>
+        <em className="text-xs text-gray-400">{t('imageFormat')}</em>
       </div>
 
       <div className="text-emerald-500">{loading && err}</div>
@@ -201,7 +212,7 @@ const Uploader = ({ setImageUrl, imageUrl, product, folder }) => {
           </DndProvider>
         ) : !product && imageUrl ? (
           <div className="relative">
-            {" "}
+            {' '}
             <img
               className="inline-flex border rounded-md border-gray-100 dark:border-gray-600 w-24 max-h-24 p-2"
               src={imageUrl}

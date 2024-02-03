@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState } from 'react';
 import {
   Table,
   TableHeader,
@@ -11,29 +11,29 @@ import {
   Card,
   CardBody,
   Pagination,
-} from "@windmill/react-ui";
-import { useTranslation } from "react-i18next";
-import { FiPlus } from "react-icons/fi";
-import { FiEdit, FiTrash2 } from "react-icons/fi";
+} from '@windmill/react-ui';
+import { useTranslation } from 'react-i18next';
+import { FiPlus } from 'react-icons/fi';
+import { FiEdit, FiTrash2 } from 'react-icons/fi';
 
 //internal import
 
-import useAsync from "@/hooks/useAsync";
-import useToggleDrawer from "@/hooks/useToggleDrawer";
-import UploadManyTwo from "@/components/common/UploadManyTwo";
-import NotFound from "@/components/table/NotFound";
-import ProductServices from "@/services/ProductServices";
-import PageTitle from "@/components/Typography/PageTitle";
-import { SidebarContext } from "@/context/SidebarContext";
-import ProductTable from "@/components/product/ProductTable";
-import MainDrawer from "@/components/drawer/MainDrawer";
-import ProductDrawer from "@/components/drawer/ProductDrawer";
-import CheckBox from "@/components/form/others/CheckBox";
-import useProductFilter from "@/hooks/useProductFilter";
-import DeleteModal from "@/components/modal/DeleteModal";
-import BulkActionDrawer from "@/components/drawer/BulkActionDrawer";
-import TableLoading from "@/components/preloader/TableLoading";
-import SelectCategory from "@/components/form/selectOption/SelectCategory";
+import useAsync from '@/hooks/useAsync';
+import useToggleDrawer from '@/hooks/useToggleDrawer';
+import UploadManyTwo from '@/components/common/UploadManyTwo';
+import NotFound from '@/components/table/NotFound';
+import ProductServices from '@/services/ProductServices';
+import PageTitle from '@/components/Typography/PageTitle';
+import { SidebarContext } from '@/context/SidebarContext';
+import ProductTable from '@/components/product/ProductTable';
+import MainDrawer from '@/components/drawer/MainDrawer';
+import ProductDrawer from '@/components/drawer/ProductDrawer';
+import CheckBox from '@/components/form/others/CheckBox';
+import useProductFilter from '@/hooks/useProductFilter';
+import DeleteModal from '@/components/modal/DeleteModal';
+import BulkActionDrawer from '@/components/drawer/BulkActionDrawer';
+import TableLoading from '@/components/preloader/TableLoading';
+import SelectCategory from '@/components/form/selectOption/SelectCategory';
 
 const Products = () => {
   const { title, allId, serviceId, handleDeleteMany, handleUpdateMany } =
@@ -80,9 +80,9 @@ const Products = () => {
   };
   // handle reset field
   const handleResetField = () => {
-    setCategory("");
-    setSortedField("");
-    searchRef.current.value = "";
+    setCategory('');
+    setSortedField('');
+    searchRef.current.value = '';
   };
 
   // console.log('productss',products)
@@ -97,7 +97,7 @@ const Products = () => {
 
   return (
     <>
-      <PageTitle>{t("ProductsPage")}</PageTitle>
+      <PageTitle>{t('ProductsPage')}</PageTitle>
       <DeleteModal ids={allId} setIsCheck={setIsCheck} title={title} />
       <BulkActionDrawer ids={allId} title="Products" />
       <MainDrawer>
@@ -130,7 +130,7 @@ const Products = () => {
                   <span className="mr-2">
                     <FiEdit />
                   </span>
-                  {t("BulkAction")}
+                  {t('BulkAction')}
                 </Button>
               </div>
               <div className="flex-grow-0 md:flex-grow lg:flex-grow xl:flex-grow">
@@ -143,7 +143,7 @@ const Products = () => {
                     <FiTrash2 />
                   </span>
 
-                  {t("Delete")}
+                  {t('Delete')}
                 </Button>
               </div>
               <div className="flex-grow-0 md:flex-grow lg:flex-grow xl:flex-grow">
@@ -154,7 +154,7 @@ const Products = () => {
                   <span className="mr-2">
                     <FiPlus />
                   </span>
-                  {t("AddProduct")}
+                  {t('AddProduct')}
                 </Button>
               </div>
             </div>
@@ -188,19 +188,19 @@ const Products = () => {
             <div className="flex-grow-0 md:flex-grow lg:flex-grow xl:flex-grow">
               <Select onChange={(e) => setSortedField(e.target.value)}>
                 <option value="All" defaultValue hidden>
-                  {t("Price")}
+                  {t('Price')}
                 </option>
-                <option value="low">{t("LowtoHigh")}</option>
-                <option value="high">{t("HightoLow")}</option>
-                <option value="published">{t("Published")}</option>
-                <option value="unPublished">{t("Unpublished")}</option>
-                <option value="status-selling">{t("StatusSelling")}</option>
-                <option value="status-out-of-stock">{t("StatusStock")}</option>
-                <option value="date-added-asc">{t("DateAddedAsc")}</option>
-                <option value="date-added-desc">{t("DateAddedDesc")}</option>
-                <option value="date-updated-asc">{t("DateUpdatedAsc")}</option>
+                <option value="low">{t('LowtoHigh')}</option>
+                <option value="high">{t('HightoLow')}</option>
+                <option value="published">{t('Published')}</option>
+                <option value="unPublished">{t('Unpublished')}</option>
+                <option value="status-selling">{t('StatusSelling')}</option>
+                <option value="status-out-of-stock">{t('StatusStock')}</option>
+                <option value="date-added-asc">{t('DateAddedAsc')}</option>
+                <option value="date-added-desc">{t('DateAddedDesc')}</option>
+                <option value="date-updated-asc">{t('DateUpdatedAsc')}</option>
                 <option value="date-updated-desc">
-                  {t("DateUpdatedDesc")}
+                  {t('DateUpdatedDesc')}
                 </option>
               </Select>
             </div>
@@ -244,17 +244,17 @@ const Products = () => {
                     handleClick={handleSelectAll}
                   />
                 </TableCell>
-                <TableCell>{t("ProductNameTbl")}</TableCell>
-                <TableCell>{t("CategoryTbl")}</TableCell>
-                <TableCell>{t("PriceTbl")}</TableCell>
+                <TableCell>{t('ProductNameTbl')}</TableCell>
+                <TableCell>{t('CategoryTbl')}</TableCell>
+                <TableCell>{t('PriceTbl')}</TableCell>
                 <TableCell>Sale Price</TableCell>
-                <TableCell>{t("StockTbl")}</TableCell>
-                <TableCell>{t("StatusTbl")}</TableCell>
-                <TableCell className="text-center">{t("DetailsTbl")}</TableCell>
+                <TableCell>{t('StockTbl')}</TableCell>
+                <TableCell>{t('StatusTbl')}</TableCell>
+                <TableCell className="text-center">{t('DetailsTbl')}</TableCell>
                 <TableCell className="text-center">
-                  {t("PublishedTbl")}
+                  {t('PublishedTbl')}
                 </TableCell>
-                <TableCell className="text-right">{t("ActionsTbl")}</TableCell>
+                <TableCell className="text-right">{t('ActionsTbl')}</TableCell>
               </tr>
             </TableHeader>
             <ProductTable

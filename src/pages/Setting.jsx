@@ -1,16 +1,16 @@
-import { useTranslation } from "react-i18next";
-import { Button, Select } from "@windmill/react-ui";
+import { useTranslation } from 'react-i18next';
+import { Button, Select } from '@windmill/react-ui';
 
 //internal import
 
-import Error from "@/components/form/others/Error";
-import PageTitle from "@/components/Typography/PageTitle";
-import useSettingSubmit from "@/hooks/useSettingSubmit";
-import spinnerLoadingImage from "@/assets/img/spinner.gif";
-import InputAreaTwo from "@/components/form/input/InputAreaTwo";
-import SelectTimeZone from "@/components/form/selectOption/SelectTimeZone";
-import SelectCurrency from "@/components/form/selectOption/SelectCurrency";
-import SelectReceiptSize from "@/components/form/selectOption/SelectPrintSize";
+import Error from '@/components/form/others/Error';
+import PageTitle from '@/components/Typography/PageTitle';
+import useSettingSubmit from '@/hooks/useSettingSubmit';
+import spinnerLoadingImage from '@/assets/img/spinner.gif';
+import InputAreaTwo from '@/components/form/input/InputAreaTwo';
+import SelectTimeZone from '@/components/form/selectOption/SelectTimeZone';
+import SelectCurrency from '@/components/form/selectOption/SelectCurrency';
+import SelectReceiptSize from '@/components/form/selectOption/SelectPrintSize';
 
 const Setting = () => {
   const { errors, register, isSave, isSubmitting, onSubmit, handleSubmit } =
@@ -20,7 +20,7 @@ const Setting = () => {
 
   return (
     <>
-      <PageTitle>{t("Setting")}</PageTitle>
+      <PageTitle>{t('Setting')}</PageTitle>
       <div className="sm:container md:p-6 p-4 w-full mx-auto bg-white  dark:bg-gray-800 dark:text-gray-200 rounded-lg">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="grid grid-cols-12 font-sans">
@@ -28,15 +28,30 @@ const Setting = () => {
               <div className="lg:px-6 pt-4 lg:pl-40 lg:pr-40 md:pl-5 md:pr-5 flex-grow scrollbar-hide w-full max-h-full pb-0">
                 <div className="grid md:grid-cols-5 items-center sm:grid-cols-12 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
                   <label className="block text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1 sm:col-span-2">
-                    {t("NumberOfImagesPerProduct")}
+                    {t('NumberOfImagesPerProduct')}
                   </label>
                   <div className="sm:col-span-3">
                     <InputAreaTwo
                       register={register}
-                      label={t("NumberOfImagesPerProduct")}
+                      label={t('NumberOfImagesPerProduct')}
                       name="number_of_image_per_product"
                       type="number"
-                      placeholder={t("NumberOfImagesPerProduct")}
+                      placeholder={t('NumberOfImagesPerProduct')}
+                    />
+                    <Error errorName={errors.number_of_image_per_product} />
+                  </div>
+                </div>
+                <div className="grid md:grid-cols-5 items-center sm:grid-cols-12 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
+                  <label className="block text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1 sm:col-span-2">
+                    {t('baseGoldPrice')}
+                  </label>
+                  <div className="sm:col-span-3">
+                    <InputAreaTwo
+                      register={register}
+                      label={t('baseGoldPrice')}
+                      name="base_gold_price"
+                      type="number"
+                      placeholder={t('baseGoldPrice')}
                     />
                     <Error errorName={errors.number_of_image_per_product} />
                   </div>
@@ -44,7 +59,7 @@ const Setting = () => {
 
                 <div className="grid md:grid-cols-5 items-center sm:grid-cols-12 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
                   <label className="block text-sm text-gray-600 font-semibold dark:text-gray-400 mb-1 sm:col-span-2">
-                    {t("DefaultCurrency")}
+                    {t('DefaultCurrency')}
                   </label>
 
                   <div className="sm:col-span-3">
@@ -61,7 +76,7 @@ const Setting = () => {
 
                 <div className="grid md:grid-cols-5 items-center sm:grid-cols-12 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
                   <label className="block text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1 sm:col-span-2">
-                    {t("TimeZone")}
+                    {t('TimeZone')}
                   </label>
 
                   <div className="sm:col-span-3">
@@ -76,17 +91,17 @@ const Setting = () => {
 
                 <div className="grid md:grid-cols-5 items-center sm:grid-cols-12 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
                   <label className="block text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1 sm:col-span-2">
-                    {t("DefaultDateFormat")}
+                    {t('DefaultDateFormat')}
                   </label>
 
                   <div className="sm:col-span-3">
                     <Select
                       {...register(`default_date_format`, {
-                        required: "Default date formate is required",
+                        required: 'Default date formate is required',
                       })}
                     >
                       <option value="" defaultValue hidden>
-                        {t("DefaultDateFormat")}
+                        {t('DefaultDateFormat')}
                       </option>
                       <option value="MMM D, YYYY">MM/DD/YYYY</option>
                       <option value="D MMM, YYYY">DD/MM/YYYY</option>
@@ -98,7 +113,7 @@ const Setting = () => {
 
                 <div className="grid md:grid-cols-5 sm:grid-cols-12 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6 relative">
                   <label className="block text-sm text-gray-600 font-semibold dark:text-gray-400 mb-1 sm:col-span-2">
-                    {t("ReceiptSize")}
+                    {t('ReceiptSize')}
                   </label>
                   <div className="sm:col-span-3">
                     <SelectReceiptSize
@@ -112,30 +127,30 @@ const Setting = () => {
 
                 <div className="grid md:grid-cols-5 items-center sm:grid-cols-12 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
                   <label className="block text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1 sm:col-span-2">
-                    {t("ShopName")}
+                    {t('ShopName')}
                   </label>
                   <div className="sm:col-span-3">
                     <InputAreaTwo
                       register={register}
-                      label={t("ShopName")}
+                      label={t('ShopName')}
                       name="shop_name"
                       type="text"
-                      placeholder={t("ShopName")}
+                      placeholder={t('ShopName')}
                     />
                     <Error errorName={errors.shop_name} />
                   </div>
                 </div>
                 <div className="grid md:grid-cols-5 items-center sm:grid-cols-12 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
                   <label className="block text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1 sm:col-span-2">
-                    {t("InvoiceCompanyName")}
+                    {t('InvoiceCompanyName')}
                   </label>
                   <div className="sm:col-span-3">
                     <InputAreaTwo
                       register={register}
-                      label={t("InvoiceCompanyName")}
+                      label={t('InvoiceCompanyName')}
                       name="company_name"
                       type="text"
-                      placeholder={t("InvoiceCompanyName")}
+                      placeholder={t('InvoiceCompanyName')}
                     />
                     <Error errorName={errors.company_name} />
                   </div>
@@ -143,7 +158,7 @@ const Setting = () => {
                 <div className="grid md:grid-cols-5 items-center sm:grid-cols-12 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
                   <label className="block text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1 sm:col-span-2">
                     {/* {t("FooterAddress")} */}
-                    {t("VatNumber")}
+                    {t('VatNumber')}
                   </label>
                   <div className="sm:col-span-3">
                     <InputAreaTwo
@@ -159,7 +174,7 @@ const Setting = () => {
                 </div>
                 <div className="grid md:grid-cols-5 items-center sm:grid-cols-12 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
                   <label className="block text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1 sm:col-span-2">
-                    {t("AddressLine")}
+                    {t('AddressLine')}
                   </label>
                   <div className="sm:col-span-3">
                     <InputAreaTwo
@@ -175,7 +190,7 @@ const Setting = () => {
 
                 <div className="grid md:grid-cols-5 items-center sm:grid-cols-12 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
                   <label className="block text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1 sm:col-span-2">
-                    {t("PostCode")}
+                    {t('PostCode')}
                   </label>
                   <div className="sm:col-span-3">
                     <InputAreaTwo
@@ -192,7 +207,7 @@ const Setting = () => {
 
                 <div className="grid md:grid-cols-5 items-center sm:grid-cols-12 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
                   <label className="block text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1 sm:col-span-2">
-                    {t("GlobalContactNumber")}
+                    {t('GlobalContactNumber')}
                   </label>
                   <div className=" sm:col-span-3">
                     <InputAreaTwo
@@ -208,7 +223,7 @@ const Setting = () => {
 
                 <div className="grid md:grid-cols-5 items-center sm:grid-cols-12 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
                   <label className="block text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1 sm:col-span-2">
-                    {t("FooterEmail")}
+                    {t('FooterEmail')}
                   </label>
                   <div className=" sm:col-span-3">
                     <InputAreaTwo
@@ -223,7 +238,7 @@ const Setting = () => {
                 </div>
                 <div className="grid md:grid-cols-5 items-center sm:grid-cols-12 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
                   <label className="block text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1 sm:col-span-2">
-                    {t("WebSite")}
+                    {t('WebSite')}
                   </label>
                   <div className=" sm:col-span-3">
                     <InputAreaTwo
@@ -245,15 +260,15 @@ const Setting = () => {
                         alt="Loading"
                         width={20}
                         height={10}
-                      />{" "}
+                      />{' '}
                       <span className="font-serif ml-2 font-light">
                         Processing
                       </span>
                     </Button>
                   ) : (
                     <Button type="submit" className="h-12 px-8">
-                      {" "}
-                      {isSave ? "Save" : "Update"}
+                      {' '}
+                      {isSave ? 'Save' : 'Update'}
                     </Button>
                   )}
                 </div>

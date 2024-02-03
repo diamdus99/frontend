@@ -954,5 +954,6 @@
   "TawkChatWidgetID": "Tawk Chat Widget ID",
   "TawkChatPropertyID": "Tawk Chat Property ID",
   "EnableTawkChat": "Enable Tawk Chat",
-  "Favicon": "Favicon"
+  "Favicon": "Favicon",
+  "baseGoldPrice": "Base Gold Price"
 }
