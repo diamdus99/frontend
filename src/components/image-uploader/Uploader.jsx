@@ -101,16 +101,6 @@ const Uploader = ({ setImageUrl, imageUrl, product, folder }) => {
         formData.append('cloud_name', import.meta.env.VITE_APP_CLOUD_NAME);
         formData.append('folder', folder);
         formData.append('public_id', public_id);
-        console.log(
-          'public_id',
-          public_id,
-          'folder',
-          folder,
-          'cloud_name',
-          import.meta.env.VITE_APP_CLOUD_NAME,
-          'upload_preset',
-          import.meta.env.VITE_APP_CLOUDINARY_UPLOAD_PRESET
-        );
 
         axios({
           url: import.meta.env.VITE_APP_CLOUDINARY_URL,
@@ -131,7 +121,6 @@ const Uploader = ({ setImageUrl, imageUrl, product, folder }) => {
           })
           .catch((err) => {
             console.error('err', err);
-            alert('err', err);
             notifyError(err.Message);
             setLoading(false);
           });
