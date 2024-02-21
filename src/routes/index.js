@@ -26,6 +26,7 @@ const Currencies = lazy(() => import('@/pages/Currencies'));
 const Setting = lazy(() => import('@/pages/Setting'));
 const StoreHome = lazy(() => import('@/pages/StoreHome'));
 const StoreSetting = lazy(() => import('@/pages/StoreSetting'));
+const BeSpoke = lazy(()=> import('@/pages/BeSpoke'));
 /*
 //  * ⚠ These are internal routes!
 //  * They will be rendered inside the app, using the default `containers/Layout`.
@@ -132,6 +133,10 @@ const routes = [
     path: '/cart',
     component: Cart,
   },
+  {
+    path: '/bespoke',
+    component: BeSpoke,
+  }
 ];
 
 export default routes;

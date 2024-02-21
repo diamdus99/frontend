@@ -82,10 +82,15 @@ const sidebar = [
       },
     ],
   },
+  // {
+  //   path: '/onlinestore',
+  //   icon: FiTarget,
+  //   name: 'OnlineStore',
+  // },
   {
-    path: '/onlinestore',
+    path: '/bespoke',
     icon: FiTarget,
-    name: 'OnlineStore',
+    name: 'BeSpoke',
   },
   // {
   //   icon: FiTarget,
