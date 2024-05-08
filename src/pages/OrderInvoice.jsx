@@ -207,7 +207,7 @@ const OrderInvoice = () => {
               loading ? (
                 'Loading...'
               ) : (
-                <button className="flex items-center text-sm leading-5 transition-colors duration-150 font-medium focus:outline-none px-5 py-2 rounded-md text-white bg-emerald-500 border border-transparent active:bg-emerald-600 hover:bg-emerald-600  w-auto cursor-pointer">
+                <button className="flex items-center text-sm leading-5 transition-colors duration-150 font-medium focus:outline-none px-5 py-2 rounded-md text-white bg-blue-500 border border-transparent active:bg-blue-950 hover:bg-blue-950  w-auto cursor-pointer">
                   Download Invoice
                   <span className="ml-2 text-base">
                     <IoCloudDownloadOutline />
@@ -219,7 +219,7 @@ const OrderInvoice = () => {
 
           <ReactToPrint
             trigger={() => (
-              <button className="flex items-center text-sm leading-5 transition-colors duration-150 font-medium focus:outline-none px-5 py-2 rounded-md text-white bg-emerald-500 border border-transparent active:bg-emerald-600 hover:bg-emerald-600  w-auto">
+              <button className="flex items-center text-sm leading-5 transition-colors duration-150 font-medium focus:outline-none px-5 py-2 rounded-md text-white bg-blue-500 border border-transparent active:bg-blue-950 hover:bg-blue-950  w-auto">
                 {t('PrintInvoice')}
                 <span className="ml-2">
                   <FiPrinter />

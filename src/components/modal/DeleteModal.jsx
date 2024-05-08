@@ -1,23 +1,23 @@
-import { Button, Modal, ModalBody, ModalFooter } from "@windmill/react-ui";
-import React, { useContext } from "react";
-import { FiTrash2 } from "react-icons/fi";
-import { useState } from "react";
-import { useTranslation } from "react-i18next";
-import { useLocation } from "react-router-dom";
+import { Button, Modal, ModalBody, ModalFooter } from '@windmill/react-ui';
+import React, { useContext } from 'react';
+import { FiTrash2 } from 'react-icons/fi';
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useLocation } from 'react-router-dom';
 
 //internal import
-import spinnerLoadingImage from "@/assets/img/spinner.gif";
-import { SidebarContext } from "@/context/SidebarContext";
-import AdminServices from "@/services/AdminServices";
-import CategoryServices from "@/services/CategoryServices";
-import CouponServices from "@/services/CouponServices";
-import CustomerServices from "@/services/CustomerServices";
-import LanguageServices from "@/services/LanguageServices";
-import ProductServices from "@/services/ProductServices";
-import useToggleDrawer from "@/hooks/useToggleDrawer";
-import AttributeServices from "@/services/AttributeServices";
-import CurrencyServices from "@/services/CurrencyServices";
-import { notifyError, notifySuccess } from "@/utils/toast";
+import spinnerLoadingImage from '@/assets/img/spinner.gif';
+import { SidebarContext } from '@/context/SidebarContext';
+import AdminServices from '@/services/AdminServices';
+import CategoryServices from '@/services/CategoryServices';
+import CouponServices from '@/services/CouponServices';
+import CustomerServices from '@/services/CustomerServices';
+import LanguageServices from '@/services/LanguageServices';
+import ProductServices from '@/services/ProductServices';
+import useToggleDrawer from '@/hooks/useToggleDrawer';
+import AttributeServices from '@/services/AttributeServices';
+import CurrencyServices from '@/services/CurrencyServices';
+import { notifyError, notifySuccess } from '@/utils/toast';
 
 const DeleteModal = ({ id, ids, setIsCheck, category, title, useParamId }) => {
   const { isModalOpen, closeModal, setIsUpdate } = useContext(SidebarContext);
@@ -30,7 +30,7 @@ const DeleteModal = ({ id, ids, setIsCheck, category, title, useParamId }) => {
     // return notifyError("This feature is disabled for demo!");
     try {
       setIsSubmitting(true);
-      if (location.pathname === "/products") {
+      if (location.pathname === '/products') {
         if (ids) {
           const res = await ProductServices.deleteManyProducts({
             ids: ids,
@@ -51,7 +51,7 @@ const DeleteModal = ({ id, ids, setIsCheck, category, title, useParamId }) => {
         }
       }
 
-      if (location.pathname === "/coupons") {
+      if (location.pathname === '/coupons') {
         if (ids) {
           const res = await CouponServices.deleteManyCoupons({
             ids: ids,
@@ -72,7 +72,7 @@ const DeleteModal = ({ id, ids, setIsCheck, category, title, useParamId }) => {
         }
       }
 
-      if (location.pathname === "/categories" || category) {
+      if (location.pathname === '/categories' || category) {
         if (ids) {
           //  console.log('delete modal categorices',ids)
           const res = await CategoryServices.deleteManyCategory({
@@ -87,7 +87,7 @@ const DeleteModal = ({ id, ids, setIsCheck, category, title, useParamId }) => {
           setIsSubmitting(false);
         } else {
           if (id === undefined || !id) {
-            notifyError("Please select a category first!");
+            notifyError('Please select a category first!');
             setIsSubmitting(false);
             return closeModal();
           }
@@ -105,7 +105,7 @@ const DeleteModal = ({ id, ids, setIsCheck, category, title, useParamId }) => {
       ) {
         // console.log('delete modal ')
         if (id === undefined || !id) {
-          notifyError("Please select a category first!");
+          notifyError('Please select a category first!');
           setIsSubmitting(false);
           return closeModal();
         }
@@ -118,7 +118,7 @@ const DeleteModal = ({ id, ids, setIsCheck, category, title, useParamId }) => {
         setIsSubmitting(false);
       }
 
-      if (location.pathname === "/customers") {
+      if (location.pathname === '/customers') {
         const res = await CustomerServices.deleteCustomer(id);
         setIsUpdate(true);
         notifySuccess(res.message);
@@ -127,7 +127,7 @@ const DeleteModal = ({ id, ids, setIsCheck, category, title, useParamId }) => {
         setIsSubmitting(false);
       }
 
-      if (location.pathname === "/attributes") {
+      if (location.pathname === '/attributes') {
         if (ids) {
           const res = await AttributeServices.deleteManyAttribute({
             ids: ids,
@@ -149,11 +149,11 @@ const DeleteModal = ({ id, ids, setIsCheck, category, title, useParamId }) => {
       }
 
       if (
-        location.pathname === `/attributes/${location.pathname.split("/")[2]}`
+        location.pathname === `/attributes/${location.pathname.split('/')[2]}`
       ) {
         if (ids) {
           const res = await AttributeServices.deleteManyChildAttribute({
-            id: location.pathname.split("/")[2],
+            id: location.pathname.split('/')[2],
             ids: ids,
           });
           setIsUpdate(true);
@@ -167,7 +167,7 @@ const DeleteModal = ({ id, ids, setIsCheck, category, title, useParamId }) => {
 
           const res = await AttributeServices.deleteChildAttribute({
             id: id,
-            ids: location.pathname.split("/")[2],
+            ids: location.pathname.split('/')[2],
           });
           setIsUpdate(true);
           notifySuccess(res.message);
@@ -177,7 +177,7 @@ const DeleteModal = ({ id, ids, setIsCheck, category, title, useParamId }) => {
         }
       }
 
-      if (location.pathname === "/our-staff") {
+      if (location.pathname === '/our-staff') {
         const res = await AdminServices.deleteStaff(id);
         setIsUpdate(true);
         notifySuccess(res.message);
@@ -186,7 +186,7 @@ const DeleteModal = ({ id, ids, setIsCheck, category, title, useParamId }) => {
         setIsSubmitting(false);
       }
 
-      if (location.pathname === "/languages") {
+      if (location.pathname === '/languages') {
         if (ids) {
           const res = await LanguageServices.deleteManyLanguage({
             ids: ids,
@@ -206,7 +206,7 @@ const DeleteModal = ({ id, ids, setIsCheck, category, title, useParamId }) => {
         }
       }
 
-      if (location.pathname === "/currencies") {
+      if (location.pathname === '/currencies') {
         if (ids) {
           const res = await CurrencyServices.deleteManyCurrency({
             ids: ids,
@@ -245,9 +245,9 @@ const DeleteModal = ({ id, ids, setIsCheck, category, title, useParamId }) => {
           </span>
           {/* <h2 className="text-xl font-medium mb-1">{t('DeleteModalH2')}</h2> */}
           <h2 className="text-xl font-medium mb-2">
-            {t("DeleteModalH2")} <span className="text-red-500">{title}</span>?
+            {t('DeleteModalH2')} <span className="text-red-500">{title}</span>?
           </h2>
-          <p>{t("DeleteModalPtag")}</p>
+          <p>{t('DeleteModalPtag')}</p>
         </ModalBody>
 
         <ModalFooter className="justify-center">
@@ -256,7 +256,7 @@ const DeleteModal = ({ id, ids, setIsCheck, category, title, useParamId }) => {
             layout="outline"
             onClick={closeModal}
           >
-            {t("modalKeepBtn")}
+            {t('modalKeepBtn')}
           </Button>
           <div className="flex justify-end">
             {isSubmitting ? (
@@ -270,18 +270,18 @@ const DeleteModal = ({ id, ids, setIsCheck, category, title, useParamId }) => {
                   alt="Loading"
                   width={20}
                   height={10}
-                />{" "}
+                />{' '}
                 <span className="font-serif ml-2 font-light">
-                  {t("Processing")}
+                  {t('Processing')}
                 </span>
               </Button>
             ) : (
               <Button onClick={handleDelete} className="w-full h-12 sm:w-auto">
-                {t("modalDeletBtn")}
+                {t('modalDeletBtn')}
               </Button>
               // <button
               //   type="submit"
-              //   className="text-sm mt-6 leading-4 inline-flex items-center cursor-pointer transition ease-in-out duration-300 font-semibold font-serif text-center justify-center border-0 border-transparent rounded-md focus-visible:outline-none focus:outline-none text-white px-4 md:px-6 lg:px-8 py-4 md:py-3.5 lg:py-4 hover:text-white bg-emerald-400 hover:bg-emerald-500 h-10"
+              //   className="text-sm mt-6 leading-4 inline-flex items-center cursor-pointer transition ease-in-out duration-300 font-semibold font-serif text-center justify-center border-0 border-transparent rounded-md focus-visible:outline-none focus:outline-none text-white px-4 md:px-6 lg:px-8 py-4 md:py-3.5 lg:py-4 hover:text-white bg-blue-400 hover:bg-blue-500 h-10"
               // >
               //   Park Order
               // </button>

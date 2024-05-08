@@ -1,115 +1,115 @@
-import Ajv from "ajv";
-import csvToJson from "csvtojson";
-import dayjs from "dayjs";
-import isBetween from "dayjs/plugin/isBetween";
-import isToday from "dayjs/plugin/isToday";
-import { useContext, useEffect, useMemo, useRef, useState } from "react";
-import { useLocation } from "react-router-dom";
-import * as XLSX from "xlsx";
+import Ajv from 'ajv';
+import csvToJson from 'csvtojson';
+import dayjs from 'dayjs';
+import isBetween from 'dayjs/plugin/isBetween';
+import isToday from 'dayjs/plugin/isToday';
+import { useContext, useEffect, useMemo, useRef, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import * as XLSX from 'xlsx';
 
 //internal import
-import { SidebarContext } from "@/context/SidebarContext";
-import AttributeServices from "@/services/AttributeServices";
-import CategoryServices from "@/services/CategoryServices";
-import CouponServices from "@/services/CouponServices";
-import CurrencyServices from "@/services/CurrencyServices";
-import CustomerServices from "@/services/CustomerServices";
-import LanguageServices from "@/services/LanguageServices";
-import ProductServices from "@/services/ProductServices";
-import SettingServices from "@/services/SettingServices";
-import { notifyError, notifySuccess } from "@/utils/toast";
-import useAsync from "@/hooks/useAsync";
-import useUtilsFunction from "./useUtilsFunction";
+import { SidebarContext } from '@/context/SidebarContext';
+import AttributeServices from '@/services/AttributeServices';
+import CategoryServices from '@/services/CategoryServices';
+import CouponServices from '@/services/CouponServices';
+import CurrencyServices from '@/services/CurrencyServices';
+import CustomerServices from '@/services/CustomerServices';
+import LanguageServices from '@/services/LanguageServices';
+import ProductServices from '@/services/ProductServices';
+import SettingServices from '@/services/SettingServices';
+import { notifyError, notifySuccess } from '@/utils/toast';
+import useAsync from '@/hooks/useAsync';
+import useUtilsFunction from './useUtilsFunction';
 
 const categorySchema = {
-  type: "object",
+  type: 'object',
   properties: {
-    _id: { type: "string" },
-    name: { type: "object" },
-    description: { type: "object" },
-    icon: { type: "string" },
-    status: { type: "string" },
+    _id: { type: 'string' },
+    name: { type: 'object' },
+    description: { type: 'object' },
+    icon: { type: 'string' },
+    status: { type: 'string' },
   },
-  required: ["name"],
+  required: ['name'],
 };
 const attributeSchema = {
-  type: "object",
+  type: 'object',
   properties: {
-    status: { type: "string" },
-    title: { type: "object" },
-    name: { type: "object" },
-    variants: { type: "array" },
-    option: { type: "string" },
-    type: { type: "string" },
+    status: { type: 'string' },
+    title: { type: 'object' },
+    name: { type: 'object' },
+    variants: { type: 'array' },
+    option: { type: 'string' },
+    type: { type: 'string' },
   },
-  required: ["name", "title"],
+  required: ['name', 'title'],
 };
 const couponSchema = {
-  type: "object",
+  type: 'object',
   properties: {
-    title: { type: "object" },
-    couponCode: { type: "string" },
-    endTime: { type: "string" },
-    discountPercentage: { type: "number" },
-    minimumAmount: { type: "number" },
-    productType: { type: "string" },
-    logo: { type: "string" },
-    discountType: { type: "object" },
-    status: { type: "string" },
+    title: { type: 'object' },
+    couponCode: { type: 'string' },
+    endTime: { type: 'string' },
+    discountPercentage: { type: 'number' },
+    minimumAmount: { type: 'number' },
+    productType: { type: 'string' },
+    logo: { type: 'string' },
+    discountType: { type: 'object' },
+    status: { type: 'string' },
   },
-  required: ["title", "couponCode", "endTime", "status"],
+  required: ['title', 'couponCode', 'endTime', 'status'],
 };
 const customerSchema = {
-  type: "object",
+  type: 'object',
   properties: {
-    name: { type: "string" },
-    email: { type: "string" },
+    name: { type: 'string' },
+    email: { type: 'string' },
   },
-  required: ["name", "email"],
+  required: ['name', 'email'],
 };
 
 const useFilter = (data) => {
   const ajv = new Ajv({ allErrors: true });
 
-  const [filter, setFilter] = useState("");
-  const [sortedField, setSortedField] = useState("");
-  const [searchText, setSearchText] = useState("");
-  const [searchUser, setSearchUser] = useState("");
-  const [searchCoupon, setSearchCoupon] = useState("");
-  const [searchOrder, setSearchOrder] = useState("");
-  const [categoryType, setCategoryType] = useState("");
-  const [attributeTitle, setAttributeTitle] = useState("");
-  const [country, setCountry] = useState("");
-  const [zone, setZone] = useState("");
-  const [language, setLanguage] = useState("");
-  const [currency, setCurrency] = useState("");
+  const [filter, setFilter] = useState('');
+  const [sortedField, setSortedField] = useState('');
+  const [searchText, setSearchText] = useState('');
+  const [searchUser, setSearchUser] = useState('');
+  const [searchCoupon, setSearchCoupon] = useState('');
+  const [searchOrder, setSearchOrder] = useState('');
+  const [categoryType, setCategoryType] = useState('');
+  const [attributeTitle, setAttributeTitle] = useState('');
+  const [country, setCountry] = useState('');
+  const [zone, setZone] = useState('');
+  const [language, setLanguage] = useState('');
+  const [currency, setCurrency] = useState('');
   const [pending, setPending] = useState([]);
   const [processing, setProcessing] = useState([]);
   const [delivered, setDelivered] = useState([]);
-  const [status, setStatus] = useState("");
-  const [role, setRole] = useState("");
-  const [time, setTime] = useState("");
+  const [status, setStatus] = useState('');
+  const [role, setRole] = useState('');
+  const [time, setTime] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [dataTable, setDataTable] = useState([]); //tableTable for showing on table according to filtering
-  const [todayOrder, setTodayOrder] = useState("");
-  const [monthlyOrder, setMonthlyOrder] = useState("");
-  const [totalOrder, setTotalOrder] = useState("");
+  const [todayOrder, setTodayOrder] = useState('');
+  const [monthlyOrder, setMonthlyOrder] = useState('');
+  const [totalOrder, setTotalOrder] = useState('');
   const [selectedFile, setSelectedFile] = useState([]);
-  const [filename, setFileName] = useState("");
+  const [filename, setFileName] = useState('');
   const [isDisabled, setIsDisable] = useState(false);
-  const [shipping, setShipping] = useState("");
+  const [shipping, setShipping] = useState('');
   const [newProducts] = useState([]);
-  const currencyRef = useRef("");
-  const searchRef = useRef("");
-  const userRef = useRef("");
-  const couponRef = useRef("");
-  const orderRef = useRef("");
-  const categoryRef = useRef("");
-  const attributeRef = useRef("");
-  const countryRef = useRef("");
-  const languageRef = useRef("");
-  const taxRef = useRef("");
-  const shippingRef = useRef("");
+  const currencyRef = useRef('');
+  const searchRef = useRef('');
+  const userRef = useRef('');
+  const couponRef = useRef('');
+  const orderRef = useRef('');
+  const categoryRef = useRef('');
+  const attributeRef = useRef('');
+  const countryRef = useRef('');
+  const languageRef = useRef('');
+  const taxRef = useRef('');
+  const shippingRef = useRef('');
 
   dayjs.extend(isBetween);
   dayjs.extend(isToday);
@@ -122,26 +122,26 @@ const useFilter = (data) => {
     const date = new Date();
     date.setDate(date.getDate() - time);
     let services = data?.map((el) => {
-      const newDate = new Date(el?.updatedAt).toLocaleString("en-US", {
+      const newDate = new Date(el?.updatedAt).toLocaleString('en-US', {
         timeZone: globalSetting?.default_time_zone,
       });
       const newObj = {
         ...el,
-        updatedDate: newDate === "Invalid Date" ? "" : newDate,
+        updatedDate: newDate === 'Invalid Date' ? '' : newDate,
       };
       return newObj;
     });
-    if (location.pathname === "/dashboard") {
+    if (location.pathname === '/dashboard') {
       const orderPending = services?.filter(
-        (statusP) => statusP.status === "Pending"
+        (statusP) => statusP.status === 'Pending'
       );
       setPending(orderPending);
       const orderProcessing = services?.filter(
-        (statusO) => statusO.status === "Processing"
+        (statusO) => statusO.status === 'Processing'
       );
       setProcessing(orderProcessing);
       const orderDelivered = services?.filter(
-        (statusD) => statusD.status === "Delivered"
+        (statusD) => statusD.status === 'Delivered'
       );
       setDelivered(orderDelivered);
       //daily total order calculation
@@ -176,10 +176,10 @@ const useFilter = (data) => {
     if (filter) {
       services = services.filter((item) => item.parent === filter);
     }
-    if (sortedField === "Low") {
+    if (sortedField === 'Low') {
       services = services.sort((a, b) => a.price < b.price && -1);
     }
-    if (sortedField === "High") {
+    if (sortedField === 'High') {
       services = services.sort((a, b) => a.price > b.price && -1);
     }
     if (searchText) {
@@ -377,7 +377,7 @@ const useFilter = (data) => {
   };
   const handleUploadProducts = () => {
     if (newProducts.length < 1) {
-      notifyError("Please upload/select csv file first!");
+      notifyError('Please upload/select csv file first!');
     } else {
       // return notifyError("This option disabled for this option!");
       ProductServices.addAllProducts(newProducts)
@@ -394,16 +394,16 @@ const useFilter = (data) => {
     const fileReader = new FileReader();
     const file = e.target?.files[0];
 
-    if (file && file.type === "application/json") {
+    if (file && file.type === 'application/json') {
       setFileName(file?.name);
       setIsDisable(true);
 
-      fileReader.readAsText(file, "UTF-8");
+      fileReader.readAsText(file, 'UTF-8');
       fileReader.onload = (e) => {
         let text = JSON.parse(e.target.result);
 
         let data = [];
-        if (location.pathname === "/categories") {
+        if (location.pathname === '/categories') {
           data = text.map((value) => {
             return {
               _id: value._id,
@@ -417,7 +417,7 @@ const useFilter = (data) => {
             };
           });
         }
-        if (location.pathname === "/attributes") {
+        if (location.pathname === '/attributes') {
           data = text.map((value) => {
             return {
               _id: value._id,
@@ -431,7 +431,7 @@ const useFilter = (data) => {
           });
         }
 
-        if (location.pathname === "/coupons") {
+        if (location.pathname === '/coupons') {
           data = text.map((value) => {
             return {
               title: value.title,
@@ -446,7 +446,7 @@ const useFilter = (data) => {
             };
           });
         }
-        if (location.pathname === "/customers") {
+        if (location.pathname === '/customers') {
           data = text.map((value) => {
             return {
               name: value.name,
@@ -458,7 +458,7 @@ const useFilter = (data) => {
         }
         setSelectedFile(data);
       };
-    } else if (file && file.type === "text/csv") {
+    } else if (file && file.type === 'text/csv') {
       setFileName(file?.name);
       setIsDisable(true);
 
@@ -468,7 +468,7 @@ const useFilter = (data) => {
         // console.log("json", json);
         let data = [];
 
-        if (location.pathname === "/categories") {
+        if (location.pathname === '/categories') {
           data = json.map((value) => {
             return {
               _id: value._id,
@@ -482,7 +482,7 @@ const useFilter = (data) => {
             };
           });
         }
-        if (location.pathname === "/attributes") {
+        if (location.pathname === '/attributes') {
           data = json.map((value) => {
             return {
               status: value.status,
@@ -495,7 +495,7 @@ const useFilter = (data) => {
           });
         }
 
-        if (location.pathname === "/coupons") {
+        if (location.pathname === '/coupons') {
           data = json.map((value) => {
             return {
               title: JSON.parse(value.title),
@@ -514,7 +514,7 @@ const useFilter = (data) => {
             };
           });
         }
-        if (location.pathname === "/customers") {
+        if (location.pathname === '/customers') {
           data = json.map((value) => {
             return {
               name: value.name,
@@ -537,7 +537,7 @@ const useFilter = (data) => {
         /* Parse data */
         const bstr = event.target.result;
         const wb = XLSX.read(bstr, {
-          type: rABS ? "binary" : "array",
+          type: rABS ? 'binary' : 'array',
           bookVBA: true,
         });
         /* Get first worksheet */
@@ -548,7 +548,7 @@ const useFilter = (data) => {
 
         let data = [];
 
-        if (location.pathname === "/categories") {
+        if (location.pathname === '/categories') {
           data = json.map((value) => {
             return {
               _id: value._id,
@@ -562,7 +562,7 @@ const useFilter = (data) => {
             };
           });
         }
-        if (location.pathname === "/attributes") {
+        if (location.pathname === '/attributes') {
           data = json.map((value) => {
             return {
               status: value.status,
@@ -575,7 +575,7 @@ const useFilter = (data) => {
           });
         }
 
-        if (location.pathname === "/coupons") {
+        if (location.pathname === '/coupons') {
           data = json.map((value) => {
             return {
               title: JSON.parse(value.title),
@@ -590,13 +590,13 @@ const useFilter = (data) => {
             };
           });
         }
-        if (location.pathname === "/customers") {
+        if (location.pathname === '/customers') {
           data = json.map((value) => {
             return {
               name: value.name,
               email: value.email,
-              password: value.password ? value.password : "null",
-              phone: value.phone ? value.phone : "null",
+              password: value.password ? value.password : 'null',
+              phone: value.phone ? value.phone : 'null',
             };
           });
         }
@@ -612,10 +612,11 @@ const useFilter = (data) => {
   };
 
   const handleUploadMultiple = (e) => {
+    console.log(location.pathname, 'location.pathname');
     // return notifyError("This feature is disabled for demo!");
 
     if (selectedFile.length > 1) {
-      if (location.pathname === "/categories") {
+      if (location.pathname === '/categories') {
         setLoading(true);
         let categoryDataValidation = selectedFile.map((value) =>
           ajv.validate(categorySchema, value)
@@ -636,10 +637,11 @@ const useFilter = (data) => {
               notifyError(err ? err.response.data.message : err.message);
             });
         } else {
-          notifyError("Please enter valid data!");
+          notifyError('Please enter valid data!');
         }
       }
-      if (location.pathname === "/customers") {
+
+      if (location.pathname === '/customers') {
         setLoading(true);
         let customerDataValidation = selectedFile.map((value) =>
           ajv.validate(customerSchema, value)
@@ -663,10 +665,10 @@ const useFilter = (data) => {
               notifyError(err ? err.response.data.message : err.message);
             });
         } else {
-          notifyError("Please enter valid data!");
+          notifyError('Please enter valid data!');
         }
       }
-      if (location.pathname === "/coupons") {
+      if (location.pathname === '/coupons') {
         setLoading(true);
         let attributeDataValidation = selectedFile.map((value) =>
           ajv.validate(couponSchema, value)
@@ -687,10 +689,10 @@ const useFilter = (data) => {
               notifyError(err ? err.response.data.message : err.message);
             });
         } else {
-          notifyError("Please enter valid data!");
+          notifyError('Please enter valid data!');
         }
       }
-      if (location.pathname === "/attributes") {
+      if (location.pathname === '/attributes') {
         setLoading(true);
         let attributeDataValidation = selectedFile.map((value) =>
           ajv.validate(attributeSchema, value)
@@ -711,11 +713,11 @@ const useFilter = (data) => {
               notifyError(err ? err.response.data.message : err.message);
             });
         } else {
-          notifyError("Please enter valid data!");
+          notifyError('Please enter valid data!');
         }
       }
 
-      if (location.pathname === "/languages") {
+      if (location.pathname === '/languages') {
         LanguageServices.addAllLanguage(selectedFile)
           .then((res) => {
             setIsUpdate(true);
@@ -726,7 +728,7 @@ const useFilter = (data) => {
           );
       }
 
-      if (location.pathname === "/currencies") {
+      if (location.pathname === '/currencies') {
         CurrencyServices.addAllCurrency(selectedFile)
           .then((res) => {
             setIsUpdate(true);
@@ -737,13 +739,13 @@ const useFilter = (data) => {
           );
       }
     } else {
-      notifyError("Please select a valid .JSON/.CSV/.XLS file first!");
+      notifyError('Please select a valid .JSON/.CSV/.XLS file first!');
     }
   };
 
   const handleRemoveSelectFile = (e) => {
     // console.log('remove');
-    setFileName("");
+    setFileName('');
     setSelectedFile([]);
     setTimeout(() => setIsDisable(false), 1000);
   };

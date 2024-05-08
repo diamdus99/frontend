@@ -9,27 +9,27 @@ import {
   TableContainer,
   TableFooter,
   TableHeader,
-} from "@windmill/react-ui";
-import React, { useContext, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { FiEdit, FiPlus, FiTrash2 } from "react-icons/fi";
+} from '@windmill/react-ui';
+import React, { useContext, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { FiEdit, FiPlus, FiTrash2 } from 'react-icons/fi';
 
 //internal import
-import AttributeTable from "@/components/attribute/AttributeTable";
-import UploadManyTwo from "@/components/common/UploadManyTwo";
-import AttributeDrawer from "@/components/drawer/AttributeDrawer";
-import BulkActionDrawer from "@/components/drawer/BulkActionDrawer";
-import MainDrawer from "@/components/drawer/MainDrawer";
-import CheckBox from "@/components/form/others/CheckBox";
-import DeleteModal from "@/components/modal/DeleteModal";
-import TableLoading from "@/components/preloader/TableLoading";
-import NotFound from "@/components/table/NotFound";
-import PageTitle from "@/components/Typography/PageTitle";
-import { SidebarContext } from "@/context/SidebarContext";
-import useAsync from "@/hooks/useAsync";
-import useFilter from "@/hooks/useFilter";
-import useToggleDrawer from "@/hooks/useToggleDrawer";
-import AttributeServices from "@/services/AttributeServices";
+import AttributeTable from '@/components/attribute/AttributeTable';
+import UploadManyTwo from '@/components/common/UploadManyTwo';
+import AttributeDrawer from '@/components/drawer/AttributeDrawer';
+import BulkActionDrawer from '@/components/drawer/BulkActionDrawer';
+import MainDrawer from '@/components/drawer/MainDrawer';
+import CheckBox from '@/components/form/others/CheckBox';
+import DeleteModal from '@/components/modal/DeleteModal';
+import TableLoading from '@/components/preloader/TableLoading';
+import NotFound from '@/components/table/NotFound';
+import PageTitle from '@/components/Typography/PageTitle';
+import { SidebarContext } from '@/context/SidebarContext';
+import useAsync from '@/hooks/useAsync';
+import useFilter from '@/hooks/useFilter';
+import useToggleDrawer from '@/hooks/useToggleDrawer';
+import AttributeServices from '@/services/AttributeServices';
 
 //internal import
 
@@ -37,9 +37,9 @@ const Attributes = () => {
   const { toggleDrawer, lang } = useContext(SidebarContext);
   const { data, loading, error } = useAsync(() =>
     AttributeServices.getAllAttributes({
-      type: "attribute",
-      option: "Dropdown",
-      option1: "Radio",
+      type: 'attribute',
+      option: 'Dropdown',
+      option1: 'Radio',
     })
   );
 
@@ -76,13 +76,13 @@ const Attributes = () => {
   };
   // handle reset field function
   const handleResetField = () => {
-    setAttributeTitle("");
-    attributeRef.current.value = "";
+    setAttributeTitle('');
+    attributeRef.current.value = '';
   };
 
   return (
     <>
-      <PageTitle>{t("AttributeTitle")}</PageTitle>
+      <PageTitle>{t('AttributeTitle')}</PageTitle>
       <DeleteModal
         ids={allId}
         setIsCheck={setIsCheck}
@@ -122,7 +122,7 @@ const Attributes = () => {
                     <FiEdit />
                   </span>
 
-                  {t("BulkAction")}
+                  {t('BulkAction')}
                 </Button>
               </div>
               <div className="w-full md:w-32 lg:w-32 xl:w-32 mr-3 mb-3 lg:mb-0">
@@ -134,7 +134,7 @@ const Attributes = () => {
                   <span className="mr-2">
                     <FiTrash2 />
                   </span>
-                  {t("Delete")}
+                  {t('Delete')}
                 </Button>
               </div>
               <div className="w-full md:w-48 lg:w-48 xl:w-48">
@@ -145,7 +145,7 @@ const Attributes = () => {
                   <span className="mr-2">
                     <FiPlus />
                   </span>
-                  {t("CouponsAddAttributeBtn")}
+                  {t('CouponsAddAttributeBtn')}
                 </Button>
               </div>
             </div>
@@ -162,12 +162,12 @@ const Attributes = () => {
               <Input
                 ref={attributeRef}
                 type="search"
-                placeholder={t("SearchAttributePlaceholder")}
+                placeholder={t('SearchAttributePlaceholder')}
               />
             </div>
             <div className="flex items-center gap-2 flex-grow-0 md:flex-grow lg:flex-grow xl:flex-grow">
               <div className="w-full mx-1">
-                <Button type="submit" className="h-12 w-full bg-emerald-700">
+                <Button type="submit" className="h-12 w-full bg-blue-700">
                   Filter
                 </Button>
               </div>
@@ -205,18 +205,18 @@ const Attributes = () => {
                     isChecked={isCheckAll}
                   />
                 </TableCell>
-                <TableCell> {t("Id")} </TableCell>
-                <TableCell> {t("AName")}</TableCell>
-                <TableCell> {t("ADisplayName")}</TableCell>
-                <TableCell>{t("AOption")}</TableCell>
+                <TableCell> {t('Id')} </TableCell>
+                <TableCell> {t('AName')}</TableCell>
+                <TableCell> {t('ADisplayName')}</TableCell>
+                <TableCell>{t('AOption')}</TableCell>
 
                 <TableCell className="text-center">
-                  {t("catPublishedTbl")}
+                  {t('catPublishedTbl')}
                 </TableCell>
 
-                <TableCell className="text-center">{t("Avalues")}</TableCell>
+                <TableCell className="text-center">{t('Avalues')}</TableCell>
 
-                <TableCell className="text-right">{t("AAction")}</TableCell>
+                <TableCell className="text-right">{t('AAction')}</TableCell>
               </tr>
             </TableHeader>
 

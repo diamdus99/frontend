@@ -1,30 +1,38 @@
-import requests from "./httpService";
+import requests from './httpService';
 
 const ProductServices = {
   getAllProducts: async ({ page, limit, category, title, price }) => {
-    const searchCategory = category !== null ? category : "";
-    const searchTitle = title !== null ? title : "";
-    const searchPrice = price !== null ? price : "";
+    const searchCategory = category !== null ? category : '';
+    const searchTitle = title !== null ? title : '';
+    const searchPrice = price !== null ? price : '';
 
     return requests.get(
       `/products?page=${page}&limit=${limit}&category=${searchCategory}&title=${searchTitle}&price=${searchPrice}`
     );
   },
 
+  getAllDiamonds: async ({ page, limit, category, title, price }) => {
+    return requests.get(`/diamondsproducts/getDiamonds`);
+  },
+
+  addDiamondProduct: async (body) => {
+    return requests.post('/diamondsproducts/adddiamondproduct', body);
+  },
+
   getProductById: async (id) => {
     return requests.post(`/products/${id}`);
   },
   addProduct: async (body) => {
-    return requests.post("/products/add", body);
+    return requests.post('/products/add', body);
   },
   addAllProducts: async (body) => {
-    return requests.post("/products/all", body);
+    return requests.post('/products/all', body);
   },
   updateProduct: async (id, body) => {
     return requests.patch(`/products/${id}`, body);
   },
   updateManyProducts: async (body) => {
-    return requests.patch("products/update/many", body);
+    return requests.patch('products/update/many', body);
   },
   updateStatus: async (id, body) => {
     return requests.put(`/products/status/${id}`, body);
@@ -34,7 +42,7 @@ const ProductServices = {
     return requests.delete(`/products/${id}`);
   },
   deleteManyProducts: async (body) => {
-    return requests.patch("/products/delete/many", body);
+    return requests.patch('/products/delete/many', body);
   },
 };
 

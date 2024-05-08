@@ -9,19 +9,19 @@ import {
   TableContainer,
   TableFooter,
   TableHeader,
-} from "@windmill/react-ui";
-import React from "react";
-import { useTranslation } from "react-i18next";
+} from '@windmill/react-ui';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 //internal import
-import UploadManyTwo from "@/components/common/UploadManyTwo";
-import CustomerTable from "@/components/customer/CustomerTable";
-import TableLoading from "@/components/preloader/TableLoading";
-import NotFound from "@/components/table/NotFound";
-import PageTitle from "@/components/Typography/PageTitle";
-import useAsync from "@/hooks/useAsync";
-import useFilter from "@/hooks/useFilter";
-import CustomerServices from "@/services/CustomerServices";
+import UploadManyTwo from '@/components/common/UploadManyTwo';
+import CustomerTable from '@/components/customer/CustomerTable';
+import TableLoading from '@/components/preloader/TableLoading';
+import NotFound from '@/components/table/NotFound';
+import PageTitle from '@/components/Typography/PageTitle';
+import useAsync from '@/hooks/useAsync';
+import useFilter from '@/hooks/useFilter';
+import CustomerServices from '@/services/CustomerServices';
 
 const Customers = () => {
   const { data, loading, error } = useAsync(CustomerServices.getAllCustomers);
@@ -46,13 +46,13 @@ const Customers = () => {
 
   const { t } = useTranslation();
   const handleResetField = () => {
-    setSearchUser("");
-    userRef.current.value = "";
+    setSearchUser('');
+    userRef.current.value = '';
   };
 
   return (
     <>
-      <PageTitle>{t("CustomersPage")}</PageTitle>
+      <PageTitle>{t('CustomersPage')}</PageTitle>
 
       <Card className="min-w-0 shadow-xs overflow-hidden bg-white dark:bg-gray-800 mb-5">
         <CardBody>
@@ -86,7 +86,7 @@ const Customers = () => {
                 ref={userRef}
                 type="search"
                 name="search"
-                placeholder={t("CustomersPageSearchPlaceholder")}
+                placeholder={t('CustomersPageSearchPlaceholder')}
               />
               <button
                 type="submit"
@@ -95,7 +95,7 @@ const Customers = () => {
             </div>
             <div className="flex items-center gap-2 flex-grow-0 md:flex-grow lg:flex-grow xl:flex-grow">
               <div className="w-full mx-1">
-                <Button type="submit" className="h-12 w-full bg-emerald-700">
+                <Button type="submit" className="h-12 w-full bg-blue-700">
                   Filter
                 </Button>
               </div>
@@ -125,13 +125,13 @@ const Customers = () => {
           <Table>
             <TableHeader>
               <tr>
-                <TableCell>{t("CustomersId")}</TableCell>
-                <TableCell>{t("CustomersJoiningDate")}</TableCell>
-                <TableCell>{t("CustomersName")}</TableCell>
-                <TableCell>{t("CustomersEmail")}</TableCell>
-                <TableCell>{t("CustomersPhone")}</TableCell>
+                <TableCell>{t('CustomersId')}</TableCell>
+                <TableCell>{t('CustomersJoiningDate')}</TableCell>
+                <TableCell>{t('CustomersName')}</TableCell>
+                <TableCell>{t('CustomersEmail')}</TableCell>
+                <TableCell>{t('CustomersPhone')}</TableCell>
                 <TableCell className="text-right">
-                  {t("CustomersActions")}
+                  {t('CustomersActions')}
                 </TableCell>
               </tr>
             </TableHeader>

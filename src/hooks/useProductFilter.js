@@ -1,34 +1,34 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import Ajv from "ajv";
-import csvToJson from "csvtojson";
-import { useContext, useState } from "react";
-import * as XLSX from "xlsx";
+import Ajv from 'ajv';
+import csvToJson from 'csvtojson';
+import { useContext, useState } from 'react';
+import * as XLSX from 'xlsx';
 
 //internal import
-import { SidebarContext } from "@/context/SidebarContext";
-import ProductServices from "@/services/ProductServices";
-import { notifyError, notifySuccess } from "@/utils/toast";
+import { SidebarContext } from '@/context/SidebarContext';
+import ProductServices from '@/services/ProductServices';
+import { notifyError, notifySuccess } from '@/utils/toast';
 
 // custom product upload validation schema
 const schema = {
-  type: "object",
+  type: 'object',
   properties: {
-    categories: { type: "array" },
-    image: { type: "array" },
-    tag: { type: "array" },
-    variants: { type: "array" },
-    show: { type: "array" },
-    status: { type: "string" },
-    prices: { type: "object" },
-    isCombination: { type: "boolean" },
-    title: { type: "object" },
-    productId: { type: "string" },
-    slug: { type: "string" },
-    category: { type: "object" },
-    stock: { type: "number" },
-    description: { type: "object" },
+    categories: { type: 'array' },
+    image: { type: 'array' },
+    tag: { type: 'array' },
+    variants: { type: 'array' },
+    show: { type: 'array' },
+    status: { type: 'string' },
+    prices: { type: 'object' },
+    isCombination: { type: 'boolean' },
+    title: { type: 'object' },
+    productId: { type: 'string' },
+    slug: { type: 'string' },
+    category: { type: 'object' },
+    stock: { type: 'number' },
+    description: { type: 'object' },
   },
-  required: ["categories", "category", "prices", "title"],
+  required: ['categories', 'category', 'prices', 'title'],
 };
 
 const useProductFilter = (data) => {
@@ -37,8 +37,9 @@ const useProductFilter = (data) => {
 
   const [newProducts] = useState([]);
   const [selectedFile, setSelectedFile] = useState([]);
-  const [filename, setFileName] = useState("");
+  const [filename, setFileName] = useState('');
   const [isDisabled, setIsDisable] = useState(false);
+  const [productsDataInXls, setproductsDataInXls] = useState([]);
 
   //service data filtering
   const serviceData = data;
@@ -55,7 +56,7 @@ const useProductFilter = (data) => {
   const handleUploadProducts = () => {
     // return notifyError("This feature is disabled for demo!");
     if (newProducts.length < 1) {
-      notifyError("Please upload/select csv file first!");
+      notifyError('Please upload/select csv file first!');
     } else {
       // notifySuccess('CRUD operation disable for demo!');
       ProductServices.addAllProducts(newProducts)
@@ -67,16 +68,18 @@ const useProductFilter = (data) => {
   };
 
   const handleSelectFile = async (e) => {
+    console.log('xls upload');
     e.preventDefault();
 
     const fileReader = new FileReader();
     const file = e.target?.files[0];
+    console.log(file.type, 'files');
 
-    if (file && file.type === "application/json") {
+    if (file && file.type === 'application/json') {
       setFileName(file?.name);
       setIsDisable(true);
 
-      fileReader.readAsText(file, "UTF-8");
+      fileReader.readAsText(file, 'UTF-8');
       fileReader.onload = (e) => {
         const text = JSON.parse(e.target.result);
 
@@ -102,7 +105,7 @@ const useProductFilter = (data) => {
 
         setSelectedFile(productData);
       };
-    } else if (file && file.type === "text/csv") {
+    } else if (file && file.type === 'text/csv') {
       setFileName(file?.name);
       setIsDisable(true);
 
@@ -134,6 +137,25 @@ const useProductFilter = (data) => {
       };
 
       fileReader.readAsText(file);
+    } else if (
+      file &&
+      file.type ===
+        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+    ) {
+      console.log(file.name, 'swapnil vishwakarma');
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          const data = event.target.result;
+          const workbook = XLSX.read(data, { type: 'binary' });
+          const sheetName = workbook.SheetNames[0];
+          const sheet = workbook.Sheets[sheetName];
+          const result = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+          setproductsDataInXls(result);
+        };
+
+        reader.readAsBinaryString(file);
+      }
     } else {
       setFileName(file?.name);
       setIsDisable(true);
@@ -144,7 +166,7 @@ const useProductFilter = (data) => {
         /* Parse data */
         const bstr = event.target.result;
         const wb = XLSX.read(bstr, {
-          type: rABS ? "binary" : "array",
+          type: rABS ? 'binary' : 'array',
           bookVBA: true,
         });
         /* Get first worksheet */
@@ -184,41 +206,44 @@ const useProductFilter = (data) => {
   };
 
   const handleUploadMultiple = (e) => {
+    console.log(location.pathname, 'location.pathname');
+    console.log(JSON.stringify(productsDataInXls[2][30]), 'productsDataInXls');
+
     // return notifyError("This feature is disabled for demo!");
-    if (selectedFile.length > 1) {
-      setLoading(true);
-      let productDataValidation = selectedFile.map((value) =>
-        ajv.validate(schema, value)
-      );
+    // if (selectedFile.length > 1) {
+    //   setLoading(true);
+    //   let productDataValidation = selectedFile.map((value) =>
+    //     ajv.validate(schema, value)
+    //   );
 
-      const isBelowThreshold = (currentValue) => currentValue === true;
-      const validationData = productDataValidation.every(isBelowThreshold);
-      // console.log('validationdata',validationData)
+    //   const isBelowThreshold = (currentValue) => currentValue === true;
+    //   const validationData = productDataValidation.every(isBelowThreshold);
+    //   // console.log('validationdata',validationData)
 
-      if (validationData) {
-        ProductServices.addAllProducts(selectedFile)
-          .then((res) => {
-            setIsUpdate(true);
-            setLoading(false);
-            notifySuccess(res.message);
-          })
-          .catch((err) => {
-            setLoading(false);
-            notifyError(err.message);
-          });
-      } else {
-        setLoading(false);
-        notifyError("Please enter valid data!");
-      }
-    } else {
-      setLoading(false);
-      notifyError("Please select a valid json, csv & xls file first!");
-    }
+    //   if (validationData) {
+    //     ProductServices.addAllProducts(selectedFile)
+    //       .then((res) => {
+    //         setIsUpdate(true);
+    //         setLoading(false);
+    //         notifySuccess(res.message);
+    //       })
+    //       .catch((err) => {
+    //         setLoading(false);
+    //         notifyError(err.message);
+    //       });
+    //   } else {
+    //     setLoading(false);
+    //     notifyError('Please enter valid data!');
+    //   }
+    // } else {
+    //   setLoading(false);
+    //   notifyError('Please select a valid json, csv & xls file first!');
+    // }
   };
 
   const handleRemoveSelectFile = (e) => {
     // console.log('remove');
-    setFileName("");
+    setFileName('');
     setSelectedFile([]);
     setTimeout(() => setIsDisable(false), 1000);
   };

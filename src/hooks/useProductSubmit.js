@@ -1,17 +1,17 @@
-import combinate from "combinate";
-import { useContext, useEffect, useRef, useState } from "react";
-import { useForm } from "react-hook-form";
-import { useLocation } from "react-router-dom";
-import swal from "sweetalert";
+import combinate from 'combinate';
+import { useContext, useEffect, useRef, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useLocation } from 'react-router-dom';
+import swal from 'sweetalert';
 
 //internal import
-import useAsync from "@/hooks/useAsync";
-import { SidebarContext } from "@/context/SidebarContext";
-import AttributeServices from "@/services/AttributeServices";
-import ProductServices from "@/services/ProductServices";
-import { notifyError, notifySuccess } from "@/utils/toast";
-// import useTranslationValue from "./useTranslationValue";
-import useUtilsFunction from "./useUtilsFunction";
+import useAsync from '@/hooks/useAsync';
+import { SidebarContext } from '@/context/SidebarContext';
+import AttributeServices from '@/services/AttributeServices';
+import ProductServices from '@/services/ProductServices';
+import { notifyError, notifySuccess } from '@/utils/toast';
+import useTranslationValue from './useTranslationValue';
+import useUtilsFunction from './useUtilsFunction';
 
 const useProductSubmit = (id) => {
   const location = useLocation();
@@ -22,7 +22,7 @@ const useProductSubmit = (id) => {
 
   // react ref
   const resetRef = useRef([]);
-  const resetRefTwo = useRef("");
+  const resetRefTwo = useRef('');
 
   // react hook
   const [imageUrl, setImageUrl] = useState([]);
@@ -35,17 +35,17 @@ const useProductSubmit = (id) => {
 
   const [originalPrice, setOriginalPrice] = useState(0);
   const [price, setPrice] = useState(0);
-  const [sku, setSku] = useState("");
-  const [barcode, setBarcode] = useState("");
+  const [sku, setSku] = useState('');
+  const [barcode, setBarcode] = useState('');
   const [isBasicComplete, setIsBasicComplete] = useState(false);
-  const [tapValue, setTapValue] = useState("Basic Info");
+  const [tapValue, setTapValue] = useState('Basic Info');
   const [isCombination, setIsCombination] = useState(false);
   const [attTitle, setAttTitle] = useState([]);
   const [variantTitle, setVariantTitle] = useState([]);
   const [attributes, setAttributes] = useState([]);
-  const [productId, setProductId] = useState("");
+  const [productId, setProductId] = useState('');
   const [updatedId, setUpdatedId] = useState(id);
-  const [imgId, setImgId] = useState("");
+  const [imgId, setImgId] = useState('');
   const [isBulkUpdate, setIsBulkUpdate] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState([]);
   const [defaultCategory, setDefaultCategory] = useState([]);
@@ -53,9 +53,9 @@ const useProductSubmit = (id) => {
   const [language, setLanguage] = useState(lang);
   const [openModal, setOpenModal] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [slug, setSlug] = useState("");
+  const [slug, setSlug] = useState('');
 
-  // const { handlerTextTranslateHandler } = useTranslationValue();
+  const { handlerTextTranslateHandler } = useTranslationValue();
   const { showingTranslateValue, getNumber, getNumberTwo } = useUtilsFunction();
 
   // console.log("lang", lang);
@@ -78,10 +78,10 @@ const useProductSubmit = (id) => {
   } = useForm();
 
   const onSubmit = async (data) => {
-    // console.log('data is data',data)
+    console.log('data is data', data);
     try {
       setIsSubmitting(true);
-      if (!imageUrl) return notifyError("Image is required!");
+      if (!imageUrl) return notifyError('Image is required!');
       // console.log(
       //   "data",
       //   data.originalPrice,
@@ -92,12 +92,12 @@ const useProductSubmit = (id) => {
       if (data.originalPrice < data.price) {
         setIsSubmitting(false);
         return notifyError(
-          "Sale Price must be less then or equal of product price!"
+          'Sale Price must be less then or equal of product price!'
         );
       }
       if (!defaultCategory[0]) {
         setIsSubmitting(false);
-        return notifyError("Default Category is required!");
+        return notifyError('Default Category is required!');
       }
 
       const updatedVariants = variants.map((v, i) => {
@@ -129,19 +129,19 @@ const useProductSubmit = (id) => {
 
       const productData = {
         productId: productId,
-        sku: data.sku || "",
-        barcode: data.barcode || "",
+        sku: data.sku || '',
+        barcode: data.barcode || '',
         title: {
           [language]: data.title,
           // ...titleTranslates,
         },
         description: {
-          [language]: data.description || "",
+          [language]: data.description || '',
           // ...descriptionTranslates,
         },
         slug: data.slug
           ? data.slug
-          : data.title.toLowerCase().replace(/[^A-Z0-9]+/gi, "-"),
+          : data.title.toLowerCase().replace(/[^A-Z0-9]+/gi, '-'),
 
         categories: selectedCategory.map((item) => item._id),
         category: defaultCategory[0]._id,
@@ -170,7 +170,7 @@ const useProductSubmit = (id) => {
             notifySuccess(res.message);
             setIsBasicComplete(true);
             setIsSubmitting(false);
-            handleProductTap("Combination", true);
+            handleProductTap('Combination', true);
           } else {
             setIsUpdate(true);
             notifySuccess(res.message);
@@ -179,8 +179,8 @@ const useProductSubmit = (id) => {
         }
 
         if (
-          tapValue === "Combination" ||
-          (tapValue !== "Combination" && !isCombination)
+          tapValue === 'Combination' ||
+          (tapValue !== 'Combination' && !isCombination)
         ) {
           closeDrawer();
         }
@@ -189,16 +189,16 @@ const useProductSubmit = (id) => {
         // console.log("res is ", res);
         if (isCombination) {
           setUpdatedId(res._id);
-          setValue("title", res.title[language ? language : "en"]);
-          setValue("description", res.description[language ? language : "en"]);
-          setValue("slug", res.slug);
-          setValue("show", res.show);
-          setValue("barcode", res.barcode);
-          setValue("stock", res.stock);
+          setValue('title', res.title[language ? language : 'en']);
+          setValue('description', res.description[language ? language : 'en']);
+          setValue('slug', res.slug);
+          setValue('show', res.show);
+          setValue('barcode', res.barcode);
+          setValue('stock', res.stock);
           setTag(JSON.parse(res.tag));
           setImageUrl(res.image);
           setVariants(res.variants);
-          setValue("productId", res.productId);
+          setValue('productId', res.productId);
           setProductId(res.productId);
           setOriginalPrice(res?.prices?.originalPrice);
           setPrice(res?.prices?.price);
@@ -222,16 +222,16 @@ const useProductSubmit = (id) => {
           setIsUpdate(true);
           setIsBasicComplete(true);
           setIsSubmitting(false);
-          handleProductTap("Combination", true);
-          notifySuccess("Product Added Successfully!");
+          handleProductTap('Combination', true);
+          notifySuccess('Product Added Successfully!');
         } else {
           setIsUpdate(true);
-          notifySuccess("Product Added Successfully!");
+          notifySuccess('Product Added Successfully!');
         }
 
         if (
-          tapValue === "Combination" ||
-          (tapValue !== "Combination" && !isCombination)
+          tapValue === 'Combination' ||
+          (tapValue !== 'Combination' && !isCombination)
         ) {
           setIsSubmitting(false);
           closeDrawer();
@@ -247,23 +247,23 @@ const useProductSubmit = (id) => {
 
   useEffect(() => {
     if (!isDrawerOpen) {
-      setSlug("");
+      setSlug('');
       setLanguage(lang);
-      setValue("language", language);
-      handleProductTap("Basic Info", true);
+      setValue('language', language);
+      handleProductTap('Basic Info', true);
       setResData({});
-      setValue("sku");
-      setValue("title");
-      setValue("slug");
-      setValue("description");
-      setValue("quantity");
-      setValue("stock");
-      setValue("originalPrice");
-      setValue("price");
-      setValue("barcode");
-      setValue("productId");
+      setValue('sku');
+      setValue('title');
+      setValue('slug');
+      setValue('description');
+      setValue('quantity');
+      setValue('stock');
+      setValue('originalPrice');
+      setValue('price');
+      setValue('barcode');
+      setValue('productId');
 
-      setProductId("");
+      setProductId('');
       // setValue('show');
       setImageUrl([]);
       setTag([]);
@@ -273,22 +273,22 @@ const useProductSubmit = (id) => {
       setTotalStock(0);
       setSelectedCategory([]);
       setDefaultCategory([]);
-      if (location.pathname === "/products") {
+      if (location.pathname === '/products') {
         resetRefTwo?.current?.resetSelectedValues();
       }
 
-      clearErrors("sku");
-      clearErrors("title");
-      clearErrors("slug");
-      clearErrors("description");
-      clearErrors("stock");
-      clearErrors("quantity");
-      setValue("stock", 0);
-      setValue("costPrice", 0);
-      setValue("price", 0);
-      setValue("originalPrice", 0);
-      clearErrors("show");
-      clearErrors("barcode");
+      clearErrors('sku');
+      clearErrors('title');
+      clearErrors('slug');
+      clearErrors('description');
+      clearErrors('stock');
+      clearErrors('quantity');
+      setValue('stock', 0);
+      setValue('costPrice', 0);
+      setValue('price', 0);
+      setValue('originalPrice', 0);
+      clearErrors('show');
+      clearErrors('barcode');
       setIsCombination(false);
       setIsBasicComplete(false);
       setIsSubmitting(false);
@@ -297,7 +297,7 @@ const useProductSubmit = (id) => {
       setUpdatedId();
       return;
     } else {
-      handleProductTap("Basic Info", true);
+      handleProductTap('Basic Info', true);
     }
 
     if (id) {
@@ -312,20 +312,20 @@ const useProductSubmit = (id) => {
             setResData(res);
             setSlug(res.slug);
             setUpdatedId(res._id);
-            setValue("title", res.title[language ? language : "en"]);
+            setValue('title', res.title[language ? language : 'en']);
             setValue(
-              "description",
-              res.description[language ? language : "en"]
+              'description',
+              res.description[language ? language : 'en']
             );
-            setValue("slug", res.slug);
-            setValue("show", res.show);
-            setValue("sku", res.sku);
-            setValue("barcode", res.barcode);
-            setValue("stock", res.stock);
-            setValue("productId", res.productId);
-            setValue("price", res?.prices?.price);
-            setValue("originalPrice", res?.prices?.originalPrice);
-            setValue("stock", res.stock);
+            setValue('slug', res.slug);
+            setValue('show', res.show);
+            setValue('sku', res.sku);
+            setValue('barcode', res.barcode);
+            setValue('stock', res.stock);
+            setValue('productId', res.productId);
+            setValue('price', res?.prices?.price);
+            setValue('originalPrice', res?.prices?.originalPrice);
+            setValue('stock', res.stock);
             setProductId(res.productId ? res.productId : res._id);
             setBarcode(res.barcode);
             setSku(res.sku);
@@ -371,7 +371,7 @@ const useProductSubmit = (id) => {
   //for filter related attribute and extras for every product which need to update
   useEffect(() => {
     const result = attribue
-      ?.filter((att) => att.option !== "Checkbox")
+      ?.filter((att) => att.option !== 'Checkbox')
       .map((v) => {
         return {
           label: showingTranslateValue(v?.title, lang),
@@ -413,7 +413,7 @@ const useProductSubmit = (id) => {
   //generate all combination combination
   const handleGenerateCombination = () => {
     if (Object.keys(values).length === 0) {
-      return notifyError("Please select a variant first!");
+      return notifyError('Please select a variant first!');
     }
 
     const result = variants.filter(
@@ -427,7 +427,7 @@ const useProductSubmit = (id) => {
         productId,
         image,
         ...rest
-      }) => JSON.stringify({ ...rest }) !== "{}"
+      }) => JSON.stringify({ ...rest }) !== '{}'
     );
 
     // console.log("result", result);
@@ -447,10 +447,10 @@ const useProductSubmit = (id) => {
           price: getNumber(price),
           quantity: Number(quantity),
           discount: Number(originalPrice - price),
-          productId: productId && productId + "-" + (variants.length + i),
+          productId: productId && productId + '-' + (variants.length + i),
           barcode: barcode,
           sku: sku,
-          image: imageUrl[0] || "",
+          image: imageUrl[0] || '',
         };
 
         setVariants((pre) => [...pre, newCom]);
@@ -479,18 +479,18 @@ const useProductSubmit = (id) => {
 
   //for edit combination values
   const handleEditVariant = (variant) => {
-    setTapValue("Combine");
+    setTapValue('Combine');
   };
 
   //for remove combination values
   const handleRemoveVariant = (vari, ext) => {
     // console.log("handleRemoveVariant", vari, ext);
     swal({
-      title: `Are you sure to delete this ${ext ? "Extra" : "combination"}!`,
+      title: `Are you sure to delete this ${ext ? 'Extra' : 'combination'}!`,
       text: `(If Okay, It will be delete this ${
-        ext ? "Extra" : "combination"
+        ext ? 'Extra' : 'combination'
       })`,
-      icon: "warning",
+      icon: 'warning',
       buttons: true,
       dangerMode: true,
     }).then((willDelete) => {
@@ -525,23 +525,23 @@ const useProductSubmit = (id) => {
   const handleIsCombination = () => {
     if ((isCombination && variantTitle.length) > 0) {
       swal({
-        title: "Are you sure to remove combination from this product!",
-        text: "(It will be delete all your combination and extras)",
-        icon: "warning",
+        title: 'Are you sure to remove combination from this product!',
+        text: '(It will be delete all your combination and extras)',
+        icon: 'warning',
         buttons: true,
         dangerMode: true,
       }).then((value) => {
         // console.log(value);
         if (value) {
           setIsCombination(!isCombination);
-          setTapValue("Basic Info");
+          setTapValue('Basic Info');
           setVariants([]);
           setVariant([]);
         }
       });
     } else {
       setIsCombination(!isCombination);
-      setTapValue("Basic Info");
+      setTapValue('Basic Info');
     }
   };
 
@@ -570,12 +570,12 @@ const useProductSubmit = (id) => {
     if (value) {
       if (!value)
         return notifyError(
-          `${"Please save product before adding combinations!"}`
+          `${'Please save product before adding combinations!'}`
         );
     } else {
       if (!isBasicComplete)
         return notifyError(
-          `${"Please save product before adding combinations!"}`
+          `${'Please save product before adding combinations!'}`
         );
     }
     setTapValue(e);
@@ -592,18 +592,18 @@ const useProductSubmit = (id) => {
     //   "variant",
     //   variant
     // );
-    if (name === "originalPrice" && Number(value) < Number(variant.price)) {
+    if (name === 'originalPrice' && Number(value) < Number(variant.price)) {
       // variants[id][name] = Number(variant.originalPrice);
-      notifyError("Price must be more then or equal of originalPrice!");
-      setValue("originalPrice", variant.originalPrice);
+      notifyError('Price must be more then or equal of originalPrice!');
+      setValue('originalPrice', variant.originalPrice);
       setIsBulkUpdate(true);
       const timeOutId = setTimeout(() => setIsBulkUpdate(false), 100);
       return () => clearTimeout(timeOutId);
     }
-    if (name === "price" && Number(variant.originalPrice) < Number(value)) {
+    if (name === 'price' && Number(variant.originalPrice) < Number(value)) {
       // variants[id][name] = Number(variant.originalPrice);
-      notifyError("Sale Price must be less then or equal of product price!");
-      setValue("price", variant.originalPrice);
+      notifyError('Sale Price must be less then or equal of product price!');
+      setValue('price', variant.originalPrice);
       setIsBulkUpdate(true);
       const timeOutId = setTimeout(() => setIsBulkUpdate(false), 100);
       return () => clearTimeout(timeOutId);
@@ -616,11 +616,11 @@ const useProductSubmit = (id) => {
             [name]: Math.round(value),
           };
 
-          if (name === "price") {
+          if (name === 'price') {
             updatedCom.price = getNumberTwo(value);
             updatedCom.discount = Number(variant.originalPrice) - Number(value);
           }
-          if (name === "originalPrice") {
+          if (name === 'originalPrice') {
             updatedCom.originalPrice = getNumberTwo(value);
             updatedCom.discount = Number(value) - Number(variant.price);
           }
@@ -642,15 +642,15 @@ const useProductSubmit = (id) => {
   const handleSelectLanguage = (lang) => {
     setLanguage(lang);
     if (Object.keys(resData).length > 0) {
-      setValue("title", resData.title[lang ? lang : "en"]);
-      setValue("description", resData.description[lang ? lang : "en"]);
+      setValue('title', resData.title[lang ? lang : 'en']);
+      setValue('description', resData.description[lang ? lang : 'en']);
     }
   };
 
   //for handle product slug
   const handleProductSlug = (value) => {
-    setValue("slug", value.toLowerCase().replace(/[^A-Z0-9]+/gi, "-"));
-    setSlug(value.toLowerCase().replace(/[^A-Z0-9]+/gi, "-"));
+    setValue('slug', value.toLowerCase().replace(/[^A-Z0-9]+/gi, '-'));
+    setSlug(value.toLowerCase().replace(/[^A-Z0-9]+/gi, '-'));
   };
 
   return {

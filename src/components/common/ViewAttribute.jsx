@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import { FiX, FiZoomIn } from "react-icons/fi";
-import { Modal } from "react-responsive-modal";
-import "react-responsive-modal/styles.css";
-import { Link } from "react-router-dom";
+import React, { useState } from 'react';
+import { FiX, FiZoomIn } from 'react-icons/fi';
+import { Modal } from 'react-responsive-modal';
+import 'react-responsive-modal/styles.css';
+import { Link } from 'react-router-dom';
 
 //internal import
-import Tooltip from "@/components/tooltip/Tooltip";
+import Tooltip from '@/components/tooltip/Tooltip';
 
 const ViewAttribute = ({ attribute }) => {
   const [openModal, setOpenModal] = useState(false);
@@ -30,7 +30,7 @@ const ViewAttribute = ({ attribute }) => {
           {attribute.variants.map((att, i) => (
             <ul key={att._id}>
               <li className="text-sm">
-                {i + 1}){" "}
+                {i + 1}){' '}
                 <span className="ml-2 hover:text-emerald-500">{att.name}</span>
               </li>
             </ul>
@@ -40,7 +40,7 @@ const ViewAttribute = ({ attribute }) => {
         <div className="flex justify-end">
           <Link
             to={`/attributes/${attribute._id}`}
-            className="absolute bottom-0 right-0 focus:outline-none active:outline-none text-sm py-1 px-2 rounded-sm bg-emerald-500 text-gray-100 hover:bg-emerald-600"
+            className="absolute bottom-0 right-0 focus:outline-none active:outline-none text-sm py-1 px-2 rounded-sm bg-blue-500 text-gray-100 hover:bg-blue-950"
           >
             View
           </Link>
@@ -51,7 +51,7 @@ const ViewAttribute = ({ attribute }) => {
         onClick={() => setOpenModal(true)}
         className="flex justify-center text-center cursor-pointer text-gray-400 hover:text-emerald-600"
       >
-        {" "}
+        {' '}
         <Tooltip
           id="view"
           Icon={FiZoomIn}

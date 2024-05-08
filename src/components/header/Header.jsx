@@ -370,7 +370,7 @@ const Header = () => {
             {/* <!-- Profile menu --> */}
             <li className="relative inline-block text-left" ref={pRef}>
               <button
-                className="rounded-full dark:bg-gray-500 bg-emerald-500 text-white h-8 w-8 font-medium mx-auto focus:outline-none"
+                className="rounded-full dark:bg-gray-500 bg-blue-500 text-white h-8 w-8 font-medium mx-auto focus:outline-none"
                 onClick={handleProfileOpen}
               >
                 {adminInfo.image ? (

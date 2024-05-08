@@ -1,17 +1,17 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { Input, Label, Button } from "@windmill/react-ui";
-import { ImFacebook, ImGoogle } from "react-icons/im";
-import { useTranslation } from "react-i18next";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Input, Label, Button } from '@windmill/react-ui';
+import { ImFacebook, ImGoogle } from 'react-icons/im';
+import { useTranslation } from 'react-i18next';
 
 //internal import
-import Error from "@/components/form/others/Error";
-import InputArea from "@/components/form/input/InputArea";
-import LabelArea from "@/components/form/selectOption/LabelArea";
-import SelectRole from "@/components/form/selectOption/SelectRole";
-import useLoginSubmit from "@/hooks/useLoginSubmit";
-import ImageLight from "@/assets/img/create-account-office.jpeg";
-import ImageDark from "@/assets/img/create-account-office-dark.jpeg";
+import Error from '@/components/form/others/Error';
+import InputArea from '@/components/form/input/InputArea';
+import LabelArea from '@/components/form/selectOption/LabelArea';
+import SelectRole from '@/components/form/selectOption/SelectRole';
+import useLoginSubmit from '@/hooks/useLoginSubmit';
+import ImageLight from '@/assets/img/create-account-office.jpeg';
+import ImageDark from '@/assets/img/create-account-office-dark.jpeg';
 
 const SignUp = () => {
   const { t } = useTranslation();
@@ -39,7 +39,7 @@ const SignUp = () => {
           <main className="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
             <div className="w-full">
               <h1 className="mb-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-                {t("CreateAccount")}
+                {t('CreateAccount')}
               </h1>
               <form onSubmit={handleSubmit(onSubmit)}>
                 <LabelArea label="Name" />
@@ -81,8 +81,8 @@ const SignUp = () => {
                 <Label className="mt-6" check>
                   <Input type="checkbox" />
                   <span className="ml-2">
-                    {t("Iagree")}{" "}
-                    <span className="underline">{t("privacyPolicy")}</span>
+                    {t('Iagree')}{' '}
+                    <span className="underline">{t('privacyPolicy')}</span>
                   </span>
                 </Label>
 
@@ -93,7 +93,7 @@ const SignUp = () => {
                   to="/dashboard"
                   block
                 >
-                  {t("CreateAccountTitle")}
+                  {t('CreateAccountTitle')}
                 </Button>
               </form>
 
@@ -101,17 +101,17 @@ const SignUp = () => {
 
               <button
                 disabled
-                className="text-sm inline-flex items-center cursor-pointer transition ease-in-out duration-300 font-semibold font-serif text-center justify-center rounded-md focus:outline-none text-gray-700 bg-gray-100 shadow-sm my-2 md:px-2 lg:px-3 py-4 md:py-3.5 lg:py-4 hover:text-white hover:bg-blue-600 h-11 md:h-12 w-full mr-2"
+                className="text-sm inline-flex items-center cursor-pointer transition ease-in-out duration-300 font-semibold font-serif text-center justify-center rounded-md focus:outline-none text-gray-700 bg-gray-100 shadow-sm my-2 md:px-2 lg:px-3 py-4 md:py-3.5 lg:py-4 hover:text-white hover:bg-blue-950 h-11 md:h-12 w-full mr-2"
               >
-                <ImFacebook className="w-4 h-4 mr-2" />{" "}
-                <span className="ml-2"> {t("LoginWithFacebook")} </span>
+                <ImFacebook className="w-4 h-4 mr-2" />{' '}
+                <span className="ml-2"> {t('LoginWithFacebook')} </span>
               </button>
               <button
                 disabled
                 className="text-sm inline-flex items-center cursor-pointer transition ease-in-out duration-300 font-semibold font-serif text-center justify-center rounded-md focus:outline-none text-gray-700 bg-gray-100 shadow-sm my-2  md:px-2 lg:px-3 py-4 md:py-3.5 lg:py-4 hover:text-white hover:bg-red-500 h-11 md:h-12 w-full"
               >
-                <ImGoogle className="w-4 h-4 mr-2" />{" "}
-                <span className="ml-2">{t("LoginWithGoogle")}</span>
+                <ImGoogle className="w-4 h-4 mr-2" />{' '}
+                <span className="ml-2">{t('LoginWithGoogle')}</span>
               </button>
 
               <p className="mt-4">
@@ -119,7 +119,7 @@ const SignUp = () => {
                   className="text-sm font-medium text-emerald-500 dark:text-emerald-400 hover:underline"
                   to="/login"
                 >
-                  {t("AlreadyAccount")}
+                  {t('AlreadyAccount')}
                 </Link>
               </p>
             </div>

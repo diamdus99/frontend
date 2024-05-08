@@ -6,7 +6,6 @@ import {
   FiSettings,
   FiSlack,
   FiGlobe,
-  FiTarget,
 } from 'react-icons/fi';
 
 /**
@@ -52,6 +51,16 @@ const sidebar = [
     name: 'Customers',
   },
   {
+    path: '/bespoke',
+    icon: FiUsers,
+    name: 'Bespoke',
+  },
+  {
+    path: '/uploadsheet',
+    icon: FiUsers,
+    name: 'UploadSheet',
+  },
+  {
     path: '/orders',
     icon: FiCompass,
     name: 'Orders',
@@ -69,6 +78,23 @@ const sidebar = [
     name: 'Settings',
   },
   {
+    path: '/calculator',
+    icon: FiCompass,
+    name: 'Calculator',
+  },
+
+  {
+    path: '/search',
+    icon: FiCompass,
+    name: 'Search',
+  },
+  {
+    path: '/submitticket',
+    name: 'SubmitTicket',
+    icon: FiCompass,
+  },
+
+  {
     icon: FiGlobe,
     name: 'International',
     routes: [
@@ -82,11 +108,11 @@ const sidebar = [
       },
     ],
   },
-  {
-    path: '/onlinestore',
-    icon: FiTarget,
-    name: 'OnlineStore',
-  },
+  // {
+  //   path: '/onlinestore',
+  //   icon: FiTarget,
+  //   name: 'OnlineStore',
+  // },
   // {
   //   icon: FiTarget,
   //   name: 'OnlineStore',

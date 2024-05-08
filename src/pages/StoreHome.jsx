@@ -1,32 +1,32 @@
-import { useContext, useEffect } from "react";
-import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import { useTranslation } from "react-i18next";
-import { Link, useLocation } from "react-router-dom";
-import "react-tabs/style/react-tabs.css";
+import { useContext, useEffect } from 'react';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import { useTranslation } from 'react-i18next';
+import { Link, useLocation } from 'react-router-dom';
+import 'react-tabs/style/react-tabs.css';
 
 //internal import
-import useQuery from "@/hooks/useQuery";
-import Faq from "@/components/store-home/Faq";
-import Offer from "@/components/store-home/Offer";
-import AboutUs from "@/components/store-home/AboutUs";
-import ContactUs from "@/components/store-home/ContactUs";
-import { SidebarContext } from "@/context/SidebarContext";
-import useStoreHomeSubmit from "@/hooks/useStoreHomeSubmit";
-import PageTitle from "@/components/Typography/PageTitle";
-import PrivacyPolicy from "@/components/store-home/PrivacyPolicy";
-import HomePage from "@/components/store-home/HomePage";
-import SinglePage from "@/components/store-home/SinglePage";
-import Checkout from "@/components/store-home/Checkout";
-import SeoSetting from "@/components/settings/SeoSetting";
-import DashboardSetting from "@/components/store-home/DashboardSetting";
-import SelectLanguageTwo from "@/components/form/selectOption/SelectLanguageTwo";
+import useQuery from '@/hooks/useQuery';
+import Faq from '@/components/store-home/Faq';
+import Offer from '@/components/store-home/Offer';
+import AboutUs from '@/components/store-home/AboutUs';
+import ContactUs from '@/components/store-home/ContactUs';
+import { SidebarContext } from '@/context/SidebarContext';
+import useStoreHomeSubmit from '@/hooks/useStoreHomeSubmit';
+import PageTitle from '@/components/Typography/PageTitle';
+import PrivacyPolicy from '@/components/store-home/PrivacyPolicy';
+import HomePage from '@/components/store-home/HomePage';
+import SinglePage from '@/components/store-home/SinglePage';
+import Checkout from '@/components/store-home/Checkout';
+import SeoSetting from '@/components/settings/SeoSetting';
+import DashboardSetting from '@/components/store-home/DashboardSetting';
+import SelectLanguageTwo from '@/components/form/selectOption/SelectLanguageTwo';
 
 const StoreHome = () => {
   let location = useLocation();
   let query = useQuery();
   const { t } = useTranslation();
 
-  const tabName = query.get("storeTab");
+  const tabName = query.get('storeTab');
   const { setTabIndex } = useContext(SidebarContext);
 
   const {
@@ -202,23 +202,23 @@ const StoreHome = () => {
   } = useStoreHomeSubmit();
 
   useEffect(() => {
-    if (tabName === "seo-setting") {
+    if (tabName === 'seo-setting') {
       setTabIndex(9);
-    } else if (tabName === "dashboard-setting") {
+    } else if (tabName === 'dashboard-setting') {
       setTabIndex(8);
-    } else if (tabName === "checkout-setting") {
+    } else if (tabName === 'checkout-setting') {
       setTabIndex(7);
-    } else if (tabName === "contact-us-setting") {
+    } else if (tabName === 'contact-us-setting') {
       setTabIndex(6);
-    } else if (tabName === "offers-setting") {
+    } else if (tabName === 'offers-setting') {
       setTabIndex(5);
-    } else if (tabName === "FAQ-setting") {
+    } else if (tabName === 'FAQ-setting') {
       setTabIndex(4);
-    } else if (tabName === "privacy-setting") {
+    } else if (tabName === 'privacy-setting') {
       setTabIndex(3);
-    } else if (tabName === "about-us-setting") {
+    } else if (tabName === 'about-us-setting') {
       setTabIndex(2);
-    } else if (tabName === "single-setting") {
+    } else if (tabName === 'single-setting') {
       setTabIndex(1);
     } else {
       setTabIndex(0);
@@ -257,7 +257,7 @@ const StoreHome = () => {
     <>
       <div className="flex justify-between text-center items-center">
         <div>
-          <PageTitle>{t("StoreCustomizationPageTitle")}</PageTitle>
+          <PageTitle>{t('StoreCustomizationPageTitle')}</PageTitle>
         </div>
         <div className="pb-4">
           <SelectLanguageTwo
@@ -271,125 +271,125 @@ const StoreHome = () => {
         <ul className="sm:flex grid grid-cols-3 text-sm font-medium text-center text-gray-500 sm:divide-x divide-gray-200 rounded-lg dark:divide-gray-700 dark:text-gray-400 mb-5">
           <li>
             <Link
-              to={"/store/customization?storeTab=home-settings"}
+              to={'/store/customization?storeTab=home-settings'}
               className={`inline-block w-full px-4 py-3 shadow-md ${
-                tabName === "home-settings" || location.search === ""
-                  ? "bg-emerald-500 text-white dark:bg-emerald-500 dark:text-white"
-                  : "bg-gray-200 text-gray-800 font-medium dark:bg-gray-600 dark:text-gray-300"
-              } hover:text-white hover:bg-emerald-500  focus:outline-none dark:hover:text-white dark:hover:bg-emerald-500 sm:rounded-l-md rounded-tl-md`}
+                tabName === 'home-settings' || location.search === ''
+                  ? 'bg-blue-500 text-white dark:bg-blue-500 dark:text-white'
+                  : 'bg-gray-200 text-gray-800 font-medium dark:bg-gray-600 dark:text-gray-300'
+              } hover:text-white hover:bg-blue-500  focus:outline-none dark:hover:text-white dark:hover:bg-blue-500 sm:rounded-l-md rounded-tl-md`}
             >
               <span className="text-sm font-medium font-serif xl:inline-block hidden">
-                {t("HomeSettings")}
+                {t('HomeSettings')}
               </span>
               <span className="text-sm font-medium font-serif xl:hidden">
-                {tabName === "home-settings" || location.search === ""
-                  ? "Home"
-                  : "Home"}
+                {tabName === 'home-settings' || location.search === ''
+                  ? 'Home'
+                  : 'Home'}
               </span>
             </Link>
           </li>
 
           <li>
             <Link
-              to={"/store/customization?storeTab=single-setting"}
+              to={'/store/customization?storeTab=single-setting'}
               className={`inline-block w-full py-3 px-4 shadow-md ${
-                tabName === "single-setting"
-                  ? "bg-emerald-500 text-white dark:bg-emerald-500 dark:text-white"
-                  : "bg-gray-200 text-gray-800 font-medium dark:bg-gray-600 dark:text-gray-300"
-              } hover:text-white hover:bg-emerald-500  focus:outline-none dark:hover:text-white dark:hover:bg-emerald-500`}
+                tabName === 'single-setting'
+                  ? 'bg-blue-500 text-white dark:bg-blue-500 dark:text-white'
+                  : 'bg-gray-200 text-gray-800 font-medium dark:bg-gray-600 dark:text-gray-300'
+              } hover:text-white hover:bg-blue-500  focus:outline-none dark:hover:text-white dark:hover:bg-blue-500`}
             >
               <span className="text-sm font-medium font-serif xl:inline-block hidden">
-                {t("SingleSetting")}
+                {t('SingleSetting')}
               </span>
               <span className="text-sm font-medium font-serif xl:hidden">
-                {"Setting"}
+                {'Setting'}
               </span>
             </Link>
           </li>
 
           <li>
             <Link
-              to={"/store/customization?storeTab=about-us-setting"}
+              to={'/store/customization?storeTab=about-us-setting'}
               className={`inline-block w-full py-3 px-4 shadow-md ${
-                tabName === "about-us-setting"
-                  ? "bg-emerald-500 text-white dark:bg-emerald-500 dark:text-white"
-                  : "bg-gray-200 text-gray-800 font-medium dark:bg-gray-600 dark:text-gray-300"
-              } hover:text-white hover:bg-emerald-500 focus:outline-none dark:hover:text-white dark:hover:bg-emerald-500 sm:rounded-tr-none rounded-tr-md`}
+                tabName === 'about-us-setting'
+                  ? 'bg-blue-500 text-white dark:bg-blue-500 dark:text-white'
+                  : 'bg-gray-200 text-gray-800 font-medium dark:bg-gray-600 dark:text-gray-300'
+              } hover:text-white hover:bg-blue-500 focus:outline-none dark:hover:text-white dark:hover:bg-blue-500 sm:rounded-tr-none rounded-tr-md`}
             >
               <span className="text-sm font-medium font-serif xl:inline-block hidden">
-                {t("AboutUsSetting")}
+                {t('AboutUsSetting')}
               </span>
               <span className="text-sm font-medium font-serif xl:hidden">
-                {"About"}
+                {'About'}
               </span>
             </Link>
           </li>
 
           <li>
             <Link
-              to={"/store/customization?storeTab=privacy-setting"}
+              to={'/store/customization?storeTab=privacy-setting'}
               className={`inline-block w-full py-3 px-4 shadow-md ${
-                tabName === "privacy-setting"
-                  ? "bg-emerald-500 text-white dark:bg-emerald-500 dark:text-white"
-                  : "bg-gray-200 text-gray-800 font-medium dark:bg-gray-600 dark:text-gray-300"
-              } hover:text-white hover:bg-emerald-500  focus:outline-none dark:hover:text-white dark:hover:bg-emerald-500`}
+                tabName === 'privacy-setting'
+                  ? 'bg-blue-500 text-white dark:bg-blue-500 dark:text-white'
+                  : 'bg-gray-200 text-gray-800 font-medium dark:bg-gray-600 dark:text-gray-300'
+              } hover:text-white hover:bg-blue-500  focus:outline-none dark:hover:text-white dark:hover:bg-blue-500`}
             >
               <span className="text-sm font-medium font-serif xl:inline-block hidden">
-                {t("PrivacyTCSetting")}
+                {t('PrivacyTCSetting')}
               </span>
               <span className="text-sm font-medium font-serif xl:hidden">
-                {"Privacy"}
+                {'Privacy'}
               </span>
             </Link>
           </li>
 
           <li>
             <Link
-              to={"/store/customization?storeTab=FAQ-setting"}
+              to={'/store/customization?storeTab=FAQ-setting'}
               className={`inline-block w-full py-3 px-4 shadow-md ${
-                tabName === "FAQ-setting"
-                  ? "bg-emerald-500 text-white dark:bg-emerald-500 dark:text-white"
-                  : "bg-gray-200 text-gray-800 font-medium dark:bg-gray-600 dark:text-gray-300"
-              } hover:text-white hover:bg-emerald-500  focus:outline-none dark:hover:text-white dark:hover:bg-emerald-500`}
+                tabName === 'FAQ-setting'
+                  ? 'bg-blue-500 text-white dark:bg-blue-500 dark:text-white'
+                  : 'bg-gray-200 text-gray-800 font-medium dark:bg-gray-600 dark:text-gray-300'
+              } hover:text-white hover:bg-blue-500  focus:outline-none dark:hover:text-white dark:hover:bg-blue-500`}
             >
               <span className="text-sm font-medium font-serif xl:inline-block hidden">
-                {t("FAQSetting")}
+                {t('FAQSetting')}
               </span>
               <span className="text-sm font-medium font-serif xl:hidden">
-                {t("FAQSetting")}
+                {t('FAQSetting')}
               </span>
             </Link>
           </li>
 
           <li>
             <Link
-              to={"/store/customization?storeTab=offers-setting"}
+              to={'/store/customization?storeTab=offers-setting'}
               className={`inline-block w-full py-3 px-4 shadow-md ${
-                tabName === "offers-setting"
-                  ? "bg-emerald-500 text-white dark:bg-emerald-500 dark:text-white"
-                  : "bg-gray-200 text-gray-800 font-medium dark:bg-gray-600 dark:text-gray-300"
-              } hover:text-white hover:bg-emerald-500  focus:outline-none dark:hover:text-white dark:hover:bg-emerald-500`}
+                tabName === 'offers-setting'
+                  ? 'bg-blue-500 text-white dark:bg-blue-500 dark:text-white'
+                  : 'bg-gray-200 text-gray-800 font-medium dark:bg-gray-600 dark:text-gray-300'
+              } hover:text-white hover:bg-blue-500  focus:outline-none dark:hover:text-white dark:hover:bg-blue-500`}
             >
               <span className="text-sm font-medium font-serif xl:inline-block hidden">
-                {t("OffersStting")}
+                {t('OffersStting')}
               </span>
               <span className="text-sm font-medium font-serif xl:hidden">
-                {t("OffersStting")}
+                {t('OffersStting')}
               </span>
             </Link>
           </li>
 
           <li>
             <Link
-              to={"/store/customization?storeTab=contact-us-setting"}
+              to={'/store/customization?storeTab=contact-us-setting'}
               className={`inline-block w-full py-3 px-4 shadow-md ${
-                tabName === "contact-us-setting"
-                  ? "bg-emerald-500 text-white dark:bg-emerald-500 dark:text-white"
-                  : "bg-gray-200 text-gray-800 font-medium dark:bg-gray-600 dark:text-gray-300"
-              } hover:text-white hover:bg-emerald-500  focus:outline-none dark:hover:text-white dark:hover:bg-emerald-500 sm:rounded-bl-none rounded-bl-md`}
+                tabName === 'contact-us-setting'
+                  ? 'bg-blue-500 text-white dark:bg-blue-500 dark:text-white'
+                  : 'bg-gray-200 text-gray-800 font-medium dark:bg-gray-600 dark:text-gray-300'
+              } hover:text-white hover:bg-blue-500  focus:outline-none dark:hover:text-white dark:hover:bg-blue-500 sm:rounded-bl-none rounded-bl-md`}
             >
               <span className="text-sm font-medium font-serif xl:inline-block hidden">
-                {t("ContactUsStting")}
+                {t('ContactUsStting')}
               </span>
               <span className="text-sm font-medium font-serif xl:hidden">
                 Contact
@@ -398,59 +398,59 @@ const StoreHome = () => {
           </li>
           <li>
             <Link
-              to={"/store/customization?storeTab=checkout-setting"}
+              to={'/store/customization?storeTab=checkout-setting'}
               className={`inline-block w-full py-3 px-4 shadow-md ${
-                tabName === "checkout-setting"
-                  ? "bg-emerald-500 text-white dark:bg-emerald-500 dark:text-white"
-                  : "bg-gray-200 text-gray-800 font-medium dark:bg-gray-600 dark:text-gray-300"
-              } hover:text-white hover:bg-emerald-500  focus:outline-none dark:hover:text-white dark:hover:bg-emerald-500 sm:rounded-bl-none rounded-bl-md`}
+                tabName === 'checkout-setting'
+                  ? 'bg-blue-500 text-white dark:bg-blue-500 dark:text-white'
+                  : 'bg-gray-200 text-gray-800 font-medium dark:bg-gray-600 dark:text-gray-300'
+              } hover:text-white hover:bg-blue-500  focus:outline-none dark:hover:text-white dark:hover:bg-blue-500 sm:rounded-bl-none rounded-bl-md`}
             >
               <span className="text-sm font-medium font-serif xl:inline-block hidden">
-                {t("Checkout")}
+                {t('Checkout')}
               </span>
               <span className="text-sm font-medium font-serif xl:hidden">
-                {t("Checkout")}
+                {t('Checkout')}
               </span>
             </Link>
           </li>
           <li>
             <Link
-              to={"/store/customization?storeTab=dashboard-setting"}
+              to={'/store/customization?storeTab=dashboard-setting'}
               className={`inline-block w-full py-3 px-4 shadow-md ${
-                tabName === "dashboard-setting"
-                  ? "bg-emerald-500 text-white dark:bg-emerald-500 dark:text-white"
-                  : "bg-gray-200 text-gray-800 font-medium dark:bg-gray-600 dark:text-gray-300"
-              } hover:text-white hover:bg-emerald-500  focus:outline-none dark:hover:text-white dark:hover:bg-emerald-500 sm:rounded-bl-none rounded-bl-md`}
+                tabName === 'dashboard-setting'
+                  ? 'bg-blue-500 text-white dark:bg-blue-500 dark:text-white'
+                  : 'bg-gray-200 text-gray-800 font-medium dark:bg-gray-600 dark:text-gray-300'
+              } hover:text-white hover:bg-blue-500  focus:outline-none dark:hover:text-white dark:hover:bg-blue-500 sm:rounded-bl-none rounded-bl-md`}
             >
               <span className="text-sm font-medium font-serif xl:inline-block hidden">
-                {t("DashboardSetting")}
+                {t('DashboardSetting')}
               </span>
               <span className="text-sm font-medium font-serif xl:hidden">
-                {t("Dashboard")}
+                {t('Dashboard')}
               </span>
             </Link>
           </li>
           <li>
             <Link
-              to={"/store/customization?storeTab=seo-settings"}
+              to={'/store/customization?storeTab=seo-settings'}
               className={`inline-block w-full py-3 px-4 shadow-md ${
-                tabName === "seo-settings"
-                  ? "bg-emerald-500 text-white dark:bg-emerald-500 dark:text-white"
-                  : "bg-gray-200 text-gray-800 font-medium dark:bg-gray-600 dark:text-gray-300"
-              } hover:text-white hover:bg-emerald-500  focus:outline-none dark:hover:text-white dark:hover:bg-emerald-500`}
+                tabName === 'seo-settings'
+                  ? 'bg-blue-500 text-white dark:bg-blue-500 dark:text-white'
+                  : 'bg-gray-200 text-gray-800 font-medium dark:bg-gray-600 dark:text-gray-300'
+              } hover:text-white hover:bg-blue-500  focus:outline-none dark:hover:text-white dark:hover:bg-blue-500`}
             >
               <span className="text-sm font-medium font-serif xl:inline-block hidden">
-                {t("SeoSetting")}
+                {t('SeoSetting')}
               </span>
               <span className="text-sm font-medium font-serif xl:hidden">
-                {"Seo"}
+                {'Seo'}
               </span>
             </Link>
           </li>
         </ul>
 
         {/************ TabPanel 1 ************/}
-        {(tabName === "home-settings" || tabName === null) && (
+        {(tabName === 'home-settings' || tabName === null) && (
           <div className="sm:container md:p-6 p-4 mx-auto bg-white dark:bg-gray-800 dark:text-gray-200 rounded-lg">
             <form onSubmit={handleSubmit(onSubmit)}>
               <HomePage
@@ -548,7 +548,7 @@ const StoreHome = () => {
         {/************ TabPanel 1 END************/}
 
         {/************* TabPanel 2*************/}
-        {tabName === "single-setting" && (
+        {tabName === 'single-setting' && (
           <div className="sm:container w-full md:p-6 p-4 mx-auto bg-white dark:bg-gray-800 dark:text-gray-200 rounded-lg">
             <form onSubmit={handleSubmit(onSubmit)}>
               <SinglePage
@@ -566,7 +566,7 @@ const StoreHome = () => {
         {/************* TabPanel 2 END *************/}
 
         {/************* TabPanel 3*************/}
-        {tabName === "about-us-setting" && (
+        {tabName === 'about-us-setting' && (
           <div className="sm:container md:p-6 p-4 mx-auto bg-white  dark:bg-gray-800 dark:text-gray-200 rounded-lg">
             <form onSubmit={handleSubmit(onSubmit)}>
               <AboutUs
@@ -609,7 +609,7 @@ const StoreHome = () => {
         {/************* TabPanel 3 END*************/}
 
         {/************* TabPanel 4 *************/}
-        {tabName === "privacy-setting" && (
+        {tabName === 'privacy-setting' && (
           <div className="sm:container md:p-6 p-4 mx-auto bg-white dark:bg-gray-800 dark:text-gray-200 rounded-lg">
             <form onSubmit={handleSubmit(onSubmit)}>
               <PrivacyPolicy
@@ -636,7 +636,7 @@ const StoreHome = () => {
         {/************* TabPanel 4 END*************/}
 
         {/************* TabPanel 5 *************/}
-        {tabName === "FAQ-setting" && (
+        {tabName === 'FAQ-setting' && (
           <div className="sm:container md:p-6 p-4 mx-auto w-full bg-white  dark:bg-gray-800 dark:text-gray-200 rounded-lg">
             <form onSubmit={handleSubmit(onSubmit)}>
               <Faq
@@ -661,7 +661,7 @@ const StoreHome = () => {
         {/************* TabPanel 5 END*************/}
 
         {/************* TabPanel 6 *************/}
-        {tabName === "offers-setting" && (
+        {tabName === 'offers-setting' && (
           <div className="sm:container md:p-6 p-4 mx-auto bg-white  dark:bg-gray-800 dark:text-gray-200 rounded-lg">
             <form onSubmit={handleSubmit(onSubmit)}>
               <Offer
@@ -682,7 +682,7 @@ const StoreHome = () => {
         {/************* TabPanel 6 END*************/}
 
         {/************* TabPanel 7 *************/}
-        {tabName === "contact-us-setting" && (
+        {tabName === 'contact-us-setting' && (
           <div className="sm:container md:p-6 p-4 w-full mx-auto bg-white  dark:bg-gray-800 dark:text-gray-200 rounded-lg">
             <form onSubmit={handleSubmit(onSubmit)}>
               <ContactUs
@@ -712,7 +712,7 @@ const StoreHome = () => {
         )}
         {/************* TabPanel 7 END*************/}
         {/************* TabPanel 8 *************/}
-        {tabName === "checkout-setting" && (
+        {tabName === 'checkout-setting' && (
           <div className="sm:container md:p-6 p-4 w-full mx-auto bg-white  dark:bg-gray-800 dark:text-gray-200 rounded-lg">
             <form onSubmit={handleSubmit(onSubmit)}>
               <Checkout
@@ -726,7 +726,7 @@ const StoreHome = () => {
         )}
         {/************* TabPanel 8 END*************/}
         {/************* TabPanel 9 *************/}
-        {tabName === "dashboard-setting" && (
+        {tabName === 'dashboard-setting' && (
           <div className="sm:container md:p-6 p-4 w-full mx-auto bg-white  dark:bg-gray-800 dark:text-gray-200 rounded-lg">
             <form onSubmit={handleSubmit(onSubmit)}>
               <DashboardSetting
@@ -740,7 +740,7 @@ const StoreHome = () => {
         )}
         {/************* TabPanel 9 END*************/}
 
-        {tabName === "seo-settings" && (
+        {tabName === 'seo-settings' && (
           <div className="sm:container md:p-6 p-4 w-full mx-auto bg-white  dark:bg-gray-800 dark:text-gray-200 rounded-lg">
             <form onSubmit={handleSubmit(onSubmit)}>
               <SeoSetting

@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import { NavLink, Route } from "react-router-dom";
-import { useTranslation } from "react-i18next";
+import React, { useState } from 'react';
+import { NavLink, Route } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import {
   IoChevronDownOutline,
   IoChevronForwardOutline,
   IoRemoveSharp,
-} from "react-icons/io5";
+} from 'react-icons/io5';
 
 const SidebarSubMenu = ({ route }) => {
   const { t } = useTranslation();
@@ -47,7 +47,7 @@ const SidebarSubMenu = ({ route }) => {
                   >
                     <Route path={child.path} exact={child.exact}>
                       <span
-                        className="absolute inset-y-0 left-0 w-1 bg-emerald-500 rounded-tr-lg rounded-br-lg"
+                        className="absolute inset-y-0 left-0 w-1 bg-blue-500 rounded-tr-lg rounded-br-lg"
                         aria-hidden="true"
                       ></span>
                     </Route>
@@ -72,7 +72,7 @@ const SidebarSubMenu = ({ route }) => {
                   >
                     <Route path={child.path} exact={route.exact}>
                       <span
-                        className="absolute inset-y-0 left-0 w-1 bg-emerald-600 rounded-tr-lg rounded-br-lg"
+                        className="absolute inset-y-0 left-0 w-1 bg-blue-950 rounded-tr-lg rounded-br-lg"
                         aria-hidden="true"
                       ></span>
                     </Route>

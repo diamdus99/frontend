@@ -1,25 +1,25 @@
-import { useContext, useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { useContext, useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
 
 //internal import
-import { SidebarContext } from "@/context/SidebarContext";
-import CategoryServices from "@/services/CategoryServices";
-import { notifyError, notifySuccess } from "@/utils/toast";
-// import useTranslationValue from "./useTranslationValue";
+import { SidebarContext } from '@/context/SidebarContext';
+import CategoryServices from '@/services/CategoryServices';
+import { notifyError, notifySuccess } from '@/utils/toast';
+import useTranslationValue from './useTranslationValue';
 
 const useCategorySubmit = (id, data) => {
   const { isDrawerOpen, closeDrawer, setIsUpdate, lang } =
     useContext(SidebarContext);
   const [resData, setResData] = useState({});
-  const [checked, setChecked] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
+  const [checked, setChecked] = useState('');
+  const [imageUrl, setImageUrl] = useState('');
   const [children, setChildren] = useState([]);
   const [language, setLanguage] = useState(lang);
   const [published, setPublished] = useState(true);
-  const [selectCategoryName, setSelectCategoryName] = useState("");
+  const [selectCategoryName, setSelectCategoryName] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // const { handlerTextTranslateHandler } = useTranslationValue();
+  const { handlerTextTranslateHandler } = useTranslationValue();
 
   const {
     register,
@@ -34,39 +34,44 @@ const useCategorySubmit = (id, data) => {
 
   // console.log("resData", resData);
 
+  // const onSubmit = async ({ name, description }) => {
+  //   console.log('onSubmit', name, description);
+  // };
+
   const onSubmit = async ({ name, description }) => {
     try {
       setIsSubmitting(true);
 
-      // const nameTranslates = await handlerTextTranslateHandler(name, language);
-      // const descriptionTranslates = await handlerTextTranslateHandler(
-      //   description,
-      //   language
-      // );
+      const nameTranslates = await handlerTextTranslateHandler(name, language);
+      const descriptionTranslates = await handlerTextTranslateHandler(
+        description,
+        language
+      );
 
       const categoryData = {
         name: {
           [language]: name,
 
-          // ...nameTranslates,
+          ...nameTranslates,
         },
         description: {
-          [language]: description || "",
+          [language]: description || '',
 
-          // ...descriptionTranslates,
+          ...descriptionTranslates,
         },
         parentId: checked ? checked : undefined,
-        parentName: selectCategoryName ? selectCategoryName : "Home",
+        parentName: selectCategoryName ? selectCategoryName : 'Home',
         // parentName: selectCategoryName ? selectCategoryName : 'Home',
 
         icon: imageUrl,
-        status: published ? "show" : "hide",
+        status: published ? 'show' : 'hide',
         lang: language,
       };
+      console.log(categoryData, 'categoryData');
 
-      console.log("category submit", categoryData);
-      setIsSubmitting(false);
-      return;
+      // console.log('category submit', categoryData);
+      // setIsSubmitting(false);
+      // return;
 
       if (id) {
         const res = await CategoryServices.updateCategory(id, categoryData);
@@ -77,12 +82,14 @@ const useCategorySubmit = (id, data) => {
         reset();
       } else {
         const res = await CategoryServices.addCategory(categoryData);
+
         setIsUpdate(true);
         setIsSubmitting(false);
         notifySuccess(res.message);
         closeDrawer();
       }
     } catch (err) {
+      console.error(err);
       setIsSubmitting(false);
       notifyError(err ? err?.response?.data?.message : err?.message);
       closeDrawer();
@@ -92,28 +99,28 @@ const useCategorySubmit = (id, data) => {
   const handleSelectLanguage = (lang) => {
     setLanguage(lang);
     if (Object.keys(resData).length > 0) {
-      setValue("name", resData.name[lang ? lang : "en"]);
-      setValue("description", resData.description[lang ? lang : "en"]);
+      setValue('name', resData.name[lang ? lang : 'en']);
+      setValue('description', resData.description[lang ? lang : 'en']);
     }
   };
 
   useEffect(() => {
     if (!isDrawerOpen) {
       setResData({});
-      setValue("name");
-      setValue("parentId");
-      setValue("parentName");
-      setValue("description");
-      setValue("icon");
-      setImageUrl("");
+      setValue('name');
+      setValue('parentId');
+      setValue('parentName');
+      setValue('description');
+      setValue('icon');
+      setImageUrl('');
       setPublished(true);
-      clearErrors("name");
-      clearErrors("parentId");
-      clearErrors("parentName");
-      clearErrors("description");
-      setSelectCategoryName("Home");
+      clearErrors('name');
+      clearErrors('parentId');
+      clearErrors('parentName');
+      clearErrors('description');
+      setSelectCategoryName('Home');
       setLanguage(lang);
-      setValue("language", language);
+      setValue('language', language);
 
       if (data !== undefined && data[0]?._id !== undefined) {
         setChecked(data[0]._id);
@@ -128,18 +135,18 @@ const useCategorySubmit = (id, data) => {
 
           if (res) {
             setResData(res);
-            setValue("name", res.name[language ? language : "en"]);
+            setValue('name', res.name[language ? language : 'en']);
             setValue(
-              "description",
-              res.description[language ? language : "en"]
+              'description',
+              res.description[language ? language : 'en']
             );
-            setValue("language", language);
-            setValue("parentId", res.parentId);
-            setValue("parentName", res.parentName);
+            setValue('language', language);
+            setValue('parentId', res.parentId);
+            setValue('parentName', res.parentName);
             setSelectCategoryName(res.parentName);
             setChecked(res.parentId);
             setImageUrl(res.icon);
-            setPublished(res.status === "show" ? true : false);
+            setPublished(res.status === 'show' ? true : false);
           }
         } catch (err) {
           notifyError(err ? err.response.data.message : err.message);

@@ -1,13 +1,13 @@
-import { useContext, useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { useContext, useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
 
 //internal import
 // import useNotification from "./useNotification";
-import { SidebarContext } from "@/context/SidebarContext";
-import SettingServices from "@/services/SettingServices";
-import { notifyError, notifySuccess } from "@/utils/toast";
-import { useDispatch } from "react-redux";
-import { removeSetting } from "@/reduxStore/slice/settingSlice";
+import { SidebarContext } from '@/context/SidebarContext';
+import SettingServices from '@/services/SettingServices';
+import { notifyError, notifySuccess } from '@/utils/toast';
+import { useDispatch } from 'react-redux';
+import { removeSetting } from '@/reduxStore/slice/settingSlice';
 
 const useSettingSubmit = (id) => {
   const dispatch = useDispatch();
@@ -34,9 +34,10 @@ const useSettingSubmit = (id) => {
     try {
       setIsSubmitting(true);
       const settingData = {
-        name: "globalSetting",
+        name: 'globalSetting',
         setting: {
           //for common setting
+          base_gold_price: data.base_gold_price,
           number_of_image_per_product: data.number_of_image_per_product,
           shop_name: data.shop_name,
           address: data.address,
@@ -64,7 +65,7 @@ const useSettingSubmit = (id) => {
         // });
         setIsUpdate(true);
         setIsSubmitting(false);
-        dispatch(removeSetting("globalSetting"));
+        dispatch(removeSetting('globalSetting'));
 
         window.location.reload();
         notifySuccess(res.message);
@@ -94,22 +95,23 @@ const useSettingSubmit = (id) => {
         // console.log("res>>>", res);
         if (res) {
           setIsSave(false);
-          setValue(
-            "number_of_image_per_product",
-            res.number_of_image_per_product
-          );
-          setValue("shop_name", res.shop_name);
-          setValue("address", res.address);
-          setValue("company_name", res.company_name);
-          setValue("vat_number", res.vat_number);
-          setValue("post_code", res.post_code);
-          setValue("contact", res.contact);
-          setValue("email", res.email);
-          setValue("website", res.website);
-          setValue("receipt_size", res.receipt_size);
-          setValue("default_currency", res.default_currency);
-          setValue("default_time_zone", res?.default_time_zone);
-          setValue("default_date_format", res?.default_date_format);
+          setValue('base_gold_price', res.base_gold_price),
+            setValue(
+              'number_of_image_per_product',
+              res.number_of_image_per_product
+            );
+          setValue('shop_name', res.shop_name);
+          setValue('address', res.address);
+          setValue('company_name', res.company_name);
+          setValue('vat_number', res.vat_number);
+          setValue('post_code', res.post_code);
+          setValue('contact', res.contact);
+          setValue('email', res.email);
+          setValue('website', res.website);
+          setValue('receipt_size', res.receipt_size);
+          setValue('default_currency', res.default_currency);
+          setValue('default_time_zone', res?.default_time_zone);
+          setValue('default_date_format', res?.default_date_format);
         }
       } catch (err) {
         notifyError(err?.response?.data?.message || err?.message);

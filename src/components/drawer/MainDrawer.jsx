@@ -1,21 +1,25 @@
-import Drawer from "rc-drawer";
-import React, { useContext, useEffect, useState } from "react";
-import { FiX } from "react-icons/fi";
-import { useLocation } from "react-router-dom";
+import Drawer from 'rc-drawer';
+import React, { useContext, useEffect, useState } from 'react';
+import { FiX } from 'react-icons/fi';
+import { useLocation } from 'react-router-dom';
 
 //internal import
-import { SidebarContext } from "@/context/SidebarContext";
+import { SidebarContext } from '@/context/SidebarContext';
 
 const MainDrawer = ({ children, product }) => {
   const { toggleDrawer, isDrawerOpen, closeDrawer, windowDimension } =
     useContext(SidebarContext);
   const [isProduct, setIsProduct] = useState(false);
+  const [isBeSpoke, setisBeSpoke] = useState(false);
 
   const location = useLocation();
 
   useEffect(() => {
-    if (location.pathname === "/products") {
+    if (location.pathname === '/products') {
       setIsProduct(true);
+    }
+    if (location.pathname === '/besopke') {
+      setisBeSpoke(true);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -28,9 +32,9 @@ const MainDrawer = ({ children, product }) => {
       onClose={closeDrawer}
       parent={null}
       level={null}
-      placement={"right"}
+      placement={'right'}
       width={`${
-        windowDimension <= 575 ? "100%" : product || isProduct ? "85%" : "50%"
+        windowDimension <= 575 ? '100%' : product || isProduct ? '85%' : '80%'
       }`}
     >
       <button

@@ -29,11 +29,11 @@ const Uploader = ({ setImageUrl, imageUrl, product, folder }) => {
   // console.log("data", data);
 
   const { getRootProps, getInputProps, fileRejections } = useDropzone({
-    accept: {
-      'image/*': ['.jpeg', '.jpg', '.png', '.webp'],
-    },
+    // accept: {
+    //   'image/*': ['.jpeg', '.jpg', '.png', '.webp', 'gif', 'mp4', 'zip', 'glb'],
+    // },
     multiple: product ? true : false,
-    maxSize: 500000,
+    maxSize: 5000000000,
     maxFiles: globalSetting?.number_of_image_per_product || 2,
     onDrop: (acceptedFiles) => {
       setFiles(

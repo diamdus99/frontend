@@ -1,4 +1,4 @@
-import ReactTagInput from "@pathofdev/react-tag-input";
+import ReactTagInput from '@pathofdev/react-tag-input';
 import {
   Button,
   Input,
@@ -7,39 +7,42 @@ import {
   TableHeader,
   Textarea,
   Table,
-} from "@windmill/react-ui";
-import Multiselect from "multiselect-react-dropdown";
-import React from "react";
-import { Scrollbars } from "react-custom-scrollbars-2";
-import { MultiSelect } from "react-multi-select-component";
-import { Modal } from "react-responsive-modal";
-import "react-responsive-modal/styles.css";
-import { Link } from "react-router-dom";
-import { useTranslation } from "react-i18next";
-import { FiX } from "react-icons/fi";
+} from '@windmill/react-ui';
+import Multiselect from 'multiselect-react-dropdown';
+import React from 'react';
+import { Scrollbars } from 'react-custom-scrollbars-2';
+import { MultiSelect } from 'react-multi-select-component';
+import { Modal } from 'react-responsive-modal';
+import 'react-responsive-modal/styles.css';
+import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { FiX } from 'react-icons/fi';
 
 //internal import
 
-import Title from "@/components/form/others/Title";
-import Error from "@/components/form/others/Error";
-import InputArea from "@/components/form/input/InputArea";
-import useUtilsFunction from "@/hooks/useUtilsFunction";
-import LabelArea from "@/components/form/selectOption/LabelArea";
-import DrawerButton from "@/components/form/button/DrawerButton";
-import InputValue from "@/components/form/input/InputValue";
-import useProductSubmit from "@/hooks/useProductSubmit";
-import ActiveButton from "@/components/form/button/ActiveButton";
-import InputValueFive from "@/components/form/input/InputValueFive";
-import Uploader from "@/components/image-uploader/Uploader";
-import ParentCategory from "@/components/category/ParentCategory";
-import UploaderThree from "@/components/image-uploader/UploaderThree";
-import AttributeOptionTwo from "@/components/attribute/AttributeOptionTwo";
-import AttributeListTable from "@/components/attribute/AttributeListTable";
-import SwitchToggleForCombination from "@/components/form/switch/SwitchToggleForCombination";
+import Title from '@/components/form/others/Title';
+import Error from '@/components/form/others/Error';
+import InputArea from '@/components/form/input/InputArea';
+import useUtilsFunction from '@/hooks/useUtilsFunction';
+import LabelArea from '@/components/form/selectOption/LabelArea';
+import DrawerButton from '@/components/form/button/DrawerButton';
+import InputValue from '@/components/form/input/InputValue';
+import useProductSubmit from '@/hooks/useProductSubmit';
+import ActiveButton from '@/components/form/button/ActiveButton';
+import InputValueFive from '@/components/form/input/InputValueFive';
+import Uploader from '@/components/image-uploader/Uploader';
+import ParentCategory from '@/components/category/ParentCategory';
+import UploaderThree from '@/components/image-uploader/UploaderThree';
+import AttributeOptionTwo from '@/components/attribute/AttributeOptionTwo';
+import AttributeListTable from '@/components/attribute/AttributeListTable';
+import SwitchToggleForCombination from '@/components/form/switch/SwitchToggleForCombination';
 
 //internal import
 
 const ProductDrawer = ({ id }) => {
+  React.useEffect(() => {
+    console.log(id, 'ProductDrawerid');
+  }, []);
   const { t } = useTranslation();
 
   const {
@@ -117,15 +120,15 @@ const ProductDrawer = ({ id }) => {
           <Title
             register={register}
             handleSelectLanguage={handleSelectLanguage}
-            title={t("UpdateProduct")}
-            description={t("UpdateProductDescription")}
+            title={t('UpdateProduct')}
+            description={t('UpdateProductDescription')}
           />
         ) : (
           <Title
             register={register}
             handleSelectLanguage={handleSelectLanguage}
-            title={t("DrawerAddProduct")}
-            description={t("AddProductDescription")}
+            title={t('DrawerAddProduct')}
+            description={t('AddProductDescription')}
           />
         )}
       </div>
@@ -160,37 +163,37 @@ const ProductDrawer = ({ id }) => {
 
       <Scrollbars className="track-horizontal thumb-horizontal w-full md:w-7/12 lg:w-8/12 xl:w-8/12 relative dark:bg-gray-700 dark:text-gray-200">
         <form onSubmit={handleSubmit(onSubmit)} className="block" id="block">
-          {tapValue === "Basic Info" && (
+          {tapValue === 'Basic Info' && (
             <div className="px-6 pt-8 flex-grow w-full h-full max-h-full pb-40 md:pb-32 lg:pb-32 xl:pb-32">
               {/* <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
                 <LabelArea label={t("ProductID")} />
                 <div className="col-span-8 sm:col-span-4">{productId}</div>
               </div> */}
               <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
-                <LabelArea label={t("ProductTitleName")} />
+                <LabelArea label={t('ProductTitleName')} />
                 <div className="col-span-8 sm:col-span-4">
                   <Input
                     {...register(`title`, {
-                      required: "TItle is required!",
+                      required: 'TItle is required!',
                     })}
                     name="title"
                     type="text"
-                    placeholder={t("ProductTitleName")}
+                    placeholder={t('ProductTitleName')}
                     onBlur={(e) => handleProductSlug(e.target.value)}
                   />
                   <Error errorName={errors.title} />
                 </div>
               </div>
               <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
-                <LabelArea label={t("ProductDescription")} />
+                <LabelArea label={t('ProductDescription')} />
                 <div className="col-span-8 sm:col-span-4">
                   <Textarea
                     className="border text-sm  block w-full bg-gray-100 border-gray-200"
-                    {...register("description", {
+                    {...register('description', {
                       required: false,
                     })}
                     name="description"
-                    placeholder={t("ProductDescription")}
+                    placeholder={t('ProductDescription')}
                     rows="4"
                     spellCheck="false"
                   />
@@ -198,7 +201,7 @@ const ProductDrawer = ({ id }) => {
                 </div>
               </div>
               <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
-                <LabelArea label={t("ProductImage")} />
+                <LabelArea label={t('ProductImage')} />
                 <div className="col-span-8 sm:col-span-4">
                   <Uploader
                     product
@@ -210,37 +213,37 @@ const ProductDrawer = ({ id }) => {
               </div>
 
               <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
-                <LabelArea label={t("ProductSKU")} />
+                <LabelArea label={t('ProductSKU')} />
                 <div className="col-span-8 sm:col-span-4">
                   <InputArea
                     register={register}
                     required="false"
-                    label={t("ProductSKU")}
+                    label={t('ProductSKU')}
                     name="sku"
                     type="text"
-                    placeholder={t("ProductSKU")}
+                    placeholder={t('ProductSKU')}
                   />
                   <Error errorName={errors.sku} />
                 </div>
               </div>
 
               <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
-                <LabelArea label={t("ProductBarcode")} />
+                <LabelArea label={t('ProductBarcode')} />
                 <div className="col-span-8 sm:col-span-4">
                   <InputArea
                     register={register}
                     required="false"
-                    label={t("ProductBarcode")}
+                    label={t('ProductBarcode')}
                     name="barcode"
                     type="text"
-                    placeholder={t("ProductBarcode")}
+                    placeholder={t('ProductBarcode')}
                   />
                   <Error errorName={errors.barcode} />
                 </div>
               </div>
 
               <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
-                <LabelArea label={t("Category")} />
+                <LabelArea label={t('Category')} />
                 <div className="col-span-8 sm:col-span-4">
                   <ParentCategory
                     lang={language}
@@ -252,7 +255,7 @@ const ProductDrawer = ({ id }) => {
               </div>
 
               <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
-                <LabelArea label={t("DefaultCategory")} />
+                <LabelArea label={t('DefaultCategory')} />
                 <div className="col-span-8 sm:col-span-4">
                   <Multiselect
                     displayValue="name"
@@ -266,7 +269,7 @@ const ProductDrawer = ({ id }) => {
                     onSelect={(v) => setDefaultCategory(v)}
                     selectedValues={defaultCategory}
                     options={selectedCategory}
-                    placeholder={"Default Category"}
+                    placeholder={'Default Category'}
                   ></Multiselect>
                 </div>
               </div>
@@ -293,7 +296,7 @@ const ProductDrawer = ({ id }) => {
               </div>
 
               <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
-                <LabelArea label={t("SalePrice")} />
+                <LabelArea label={t('SalePrice')} />
                 <div className="col-span-8 sm:col-span-4">
                   <InputValue
                     disabled={isCombination}
@@ -313,7 +316,7 @@ const ProductDrawer = ({ id }) => {
               </div>
 
               <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6 relative">
-                <LabelArea label={t("ProductQuantity")} />
+                <LabelArea label={t('ProductQuantity')} />
                 <div className="col-span-8 sm:col-span-4">
                   <InputValueFive
                     disabled={isCombination}
@@ -323,24 +326,24 @@ const ProductDrawer = ({ id }) => {
                     label="Quantity"
                     name="stock"
                     type="number"
-                    placeholder={t("ProductQuantity")}
+                    placeholder={t('ProductQuantity')}
                   />
                   <Error errorName={errors.stock} />
                 </div>
               </div>
 
               <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
-                <LabelArea label={t("ProductSlug")} />
+                <LabelArea label={t('ProductSlug')} />
                 <div className="col-span-8 sm:col-span-4">
                   <Input
                     {...register(`slug`, {
-                      required: "slug is required!",
+                      required: 'slug is required!',
                     })}
                     className=" mr-2 p-2"
                     name="slug"
                     type="text"
                     defaultValue={slug}
-                    placeholder={t("ProductSlug")}
+                    placeholder={t('ProductSlug')}
                     onBlur={(e) => handleProductSlug(e.target.value)}
                   />
                   <Error errorName={errors.slug} />
@@ -348,10 +351,10 @@ const ProductDrawer = ({ id }) => {
               </div>
 
               <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
-                <LabelArea label={t("ProductTag")} />
+                <LabelArea label={t('ProductTag')} />
                 <div className="col-span-8 sm:col-span-4">
                   <ReactTagInput
-                    placeholder={t("ProductTagPlaseholder")}
+                    placeholder={t('ProductTagPlaseholder')}
                     tags={tag}
                     onChange={(newTags) => setTag(newTags)}
                   />
@@ -360,7 +363,7 @@ const ProductDrawer = ({ id }) => {
             </div>
           )}
 
-          {tapValue === "Combination" &&
+          {tapValue === 'Combination' &&
             isCombination &&
             (attribue.length < 1 ? (
               <div
@@ -379,11 +382,11 @@ const ProductDrawer = ({ id }) => {
                   </div>
                   <div>
                     <p className="text-sm">
-                      {t("AddCombinationsDiscription")}{" "}
+                      {t('AddCombinationsDiscription')}{' '}
                       <Link to="/attributes" className="font-bold">
-                        {t("AttributesFeatures")}
+                        {t('AttributesFeatures')}
                       </Link>
-                      {t("AddCombinationsDiscriptionTwo")}
+                      {t('AddCombinationsDiscriptionTwo')}
                     </p>
                   </div>
                 </div>
@@ -402,7 +405,7 @@ const ProductDrawer = ({ id }) => {
                   {attributes?.map((attribute, i) => (
                     <div key={attribute._id}>
                       <div className="flex w-full h-10 justify-between font-sans rounded-tl rounded-tr bg-gray-200 px-4 py-3 text-left text-sm font-normal text-gray-700 hover:bg-gray-200">
-                        {"Select"}
+                        {'Select'}
                         {showingTranslateValue(attribute?.title)}
                       </div>
 
@@ -424,13 +427,13 @@ const ProductDrawer = ({ id }) => {
                       type="button"
                       className="mx-2"
                     >
-                      <span className="text-xs">{t("GenerateVariants")}</span>
+                      <span className="text-xs">{t('GenerateVariants')}</span>
                     </Button>
                   )}
 
                   {variantTitle.length > 0 && (
                     <Button onClick={handleClearVariant} className="mx-2">
-                      <span className="text-xs">{t("ClearVariants")}</span>
+                      <span className="text-xs">{t('ClearVariants')}</span>
                     </Button>
                   )}
                 </div>
@@ -449,12 +452,12 @@ const ProductDrawer = ({ id }) => {
             <DrawerButton id={id} title="Product" isSubmitting={isSubmitting} />
           )}
 
-          {tapValue === "Combination" && (
+          {tapValue === 'Combination' && (
             <DrawerButton id={id} title="Product" isSubmitting={isSubmitting} />
           )}
         </form>
 
-        {tapValue === "Combination" &&
+        {tapValue === 'Combination' &&
           isCombination &&
           variantTitle.length > 0 && (
             <div className="px-6 overflow-x-auto">
@@ -464,15 +467,15 @@ const ProductDrawer = ({ id }) => {
                   <Table>
                     <TableHeader>
                       <tr>
-                        <TableCell>{t("Image")}</TableCell>
-                        <TableCell>{t("Combination")}</TableCell>
-                        <TableCell>{t("Sku")}</TableCell>
-                        <TableCell>{t("Barcode")}</TableCell>
-                        <TableCell>{t("Price")}</TableCell>
-                        <TableCell>{t("SalePrice")}</TableCell>
-                        <TableCell>{t("QuantityTbl")}</TableCell>
+                        <TableCell>{t('Image')}</TableCell>
+                        <TableCell>{t('Combination')}</TableCell>
+                        <TableCell>{t('Sku')}</TableCell>
+                        <TableCell>{t('Barcode')}</TableCell>
+                        <TableCell>{t('Price')}</TableCell>
+                        <TableCell>{t('SalePrice')}</TableCell>
+                        <TableCell>{t('QuantityTbl')}</TableCell>
                         <TableCell className="text-right">
-                          {t("Action")}
+                          {t('Action')}
                         </TableCell>
                       </tr>
                     </TableHeader>

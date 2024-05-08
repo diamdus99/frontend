@@ -6,30 +6,30 @@ import {
   TableFooter,
   TableHeader,
   WindmillContext,
-} from "@windmill/react-ui";
-import dayjs from "dayjs";
-import isBetween from "dayjs/plugin/isBetween";
-import isToday from "dayjs/plugin/isToday";
-import isYesterday from "dayjs/plugin/isYesterday";
-import { useContext, useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { FiCheck, FiRefreshCw, FiShoppingCart, FiTruck } from "react-icons/fi";
-import { ImCreditCard, ImStack } from "react-icons/im";
+} from '@windmill/react-ui';
+import dayjs from 'dayjs';
+import isBetween from 'dayjs/plugin/isBetween';
+import isToday from 'dayjs/plugin/isToday';
+import isYesterday from 'dayjs/plugin/isYesterday';
+import { useContext, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { FiCheck, FiRefreshCw, FiShoppingCart, FiTruck } from 'react-icons/fi';
+import { ImCreditCard, ImStack } from 'react-icons/im';
 
 //internal import
-import useAsync from "@/hooks/useAsync";
-import useFilter from "@/hooks/useFilter";
-import LineChart from "@/components/chart/LineChart/LineChart";
-import PieChart from "@/components/chart/Pie/PieChart";
-import CardItem from "@/components/dashboard/CardItem";
-import CardItemTwo from "@/components/dashboard/CardItemTwo";
-import ChartCard from "@/components/chart/ChartCard";
-import OrderTable from "@/components/order/OrderTable";
-import TableLoading from "@/components/preloader/TableLoading";
-import NotFound from "@/components/table/NotFound";
-import PageTitle from "@/components/Typography/PageTitle";
-import { SidebarContext } from "@/context/SidebarContext";
-import OrderServices from "@/services/OrderServices";
+import useAsync from '@/hooks/useAsync';
+import useFilter from '@/hooks/useFilter';
+import LineChart from '@/components/chart/LineChart/LineChart';
+import PieChart from '@/components/chart/Pie/PieChart';
+import CardItem from '@/components/dashboard/CardItem';
+import CardItemTwo from '@/components/dashboard/CardItemTwo';
+import ChartCard from '@/components/chart/ChartCard';
+import OrderTable from '@/components/order/OrderTable';
+import TableLoading from '@/components/preloader/TableLoading';
+import NotFound from '@/components/table/NotFound';
+import PageTitle from '@/components/Typography/PageTitle';
+import { SidebarContext } from '@/context/SidebarContext';
+import OrderServices from '@/services/OrderServices';
 
 const Dashboard = () => {
   const { t } = useTranslation();
@@ -85,7 +85,7 @@ const Dashboard = () => {
 
     // yesterday orders
     const yesterdayOrder = dashboardOrderAmount?.ordersData?.filter((order) =>
-      dayjs(order.updatedAt).set(-1, "day").isYesterday()
+      dayjs(order.updatedAt).set(-1, 'day').isYesterday()
     );
 
     const yesterdayReport = yesterdayOrder?.reduce(
@@ -104,7 +104,7 @@ const Dashboard = () => {
     );
 
     salesOrderChartData?.reduce((res, value) => {
-      let onlyDate = value.updatedAt.split("T")[0];
+      let onlyDate = value.updatedAt.split('T')[0];
 
       if (!res[onlyDate]) {
         res[onlyDate] = { date: onlyDate, total: 0, order: 0 };
@@ -123,26 +123,26 @@ const Dashboard = () => {
     // today order payment method
     dashboardOrderAmount?.ordersData?.filter((item, value) => {
       if (dayjs(item.updatedAt).isToday()) {
-        if (item.paymentMethod === "Cash") {
+        if (item.paymentMethod === 'Cash') {
           let cashMethod = {
-            paymentMethod: "Cash",
+            paymentMethod: 'Cash',
             total: item.total,
           };
           todayPaymentMethodData.push(cashMethod);
         }
 
-        if (item.paymentMethod === "Credit") {
+        if (item.paymentMethod === 'Credit') {
           const cashMethod = {
-            paymentMethod: "Credit",
+            paymentMethod: 'Credit',
             total: item.total,
           };
 
           todayPaymentMethodData.push(cashMethod);
         }
 
-        if (item.paymentMethod === "Card") {
+        if (item.paymentMethod === 'Card') {
           const cashMethod = {
-            paymentMethod: "Card",
+            paymentMethod: 'Card',
             total: item.total,
           };
 
@@ -154,27 +154,27 @@ const Dashboard = () => {
     });
     // yesterday order payment method
     dashboardOrderAmount?.ordersData?.filter((item, value) => {
-      if (dayjs(item.updatedAt).set(-1, "day").isYesterday()) {
-        if (item.paymentMethod === "Cash") {
+      if (dayjs(item.updatedAt).set(-1, 'day').isYesterday()) {
+        if (item.paymentMethod === 'Cash') {
           let cashMethod = {
-            paymentMethod: "Cash",
+            paymentMethod: 'Cash',
             total: item.total,
           };
           yesterDayPaymentMethodData.push(cashMethod);
         }
 
-        if (item.paymentMethod === "Credit") {
+        if (item.paymentMethod === 'Credit') {
           const cashMethod = {
-            paymentMethod: "Credit",
+            paymentMethod: 'Credit',
             total: item?.total,
           };
 
           yesterDayPaymentMethodData.push(cashMethod);
         }
 
-        if (item.paymentMethod === "Card") {
+        if (item.paymentMethod === 'Card') {
           const cashMethod = {
-            paymentMethod: "Card",
+            paymentMethod: 'Card',
             total: item?.total,
           };
 
@@ -196,15 +196,15 @@ const Dashboard = () => {
       }, {})
     );
     const today_cash_payment = todayCsCdCit.find(
-      (el) => el.paymentMethod === "Cash"
+      (el) => el.paymentMethod === 'Cash'
     );
     setTodayCashPayment(today_cash_payment?.total);
     const today_card_payment = todayCsCdCit.find(
-      (el) => el.paymentMethod === "Card"
+      (el) => el.paymentMethod === 'Card'
     );
     setTodayCardPayment(today_card_payment?.total);
     const today_credit_payment = todayCsCdCit.find(
-      (el) => el.paymentMethod === "Credit"
+      (el) => el.paymentMethod === 'Credit'
     );
     setTodayCreditPayment(today_credit_payment?.total);
 
@@ -219,15 +219,15 @@ const Dashboard = () => {
       }, {})
     );
     const yesterday_cash_payment = yesterDayCsCdCit.find(
-      (el) => el.paymentMethod === "Cash"
+      (el) => el.paymentMethod === 'Cash'
     );
     setYesterdayCashPayment(yesterday_cash_payment?.total);
     const yesterday_card_payment = yesterDayCsCdCit.find(
-      (el) => el.paymentMethod === "Card"
+      (el) => el.paymentMethod === 'Card'
     );
     setYesterdayCardPayment(yesterday_card_payment?.total);
     const yesterday_credit_payment = yesterDayCsCdCit.find(
-      (el) => el.paymentMethod === "Credit"
+      (el) => el.paymentMethod === 'Credit'
     );
     setYesterdayCreditPayment(yesterday_credit_payment?.total);
 
@@ -236,7 +236,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <PageTitle>{t("DashboardOverview")}</PageTitle>
+      <PageTitle>{t('DashboardOverview')}</PageTitle>
 
       <div className="grid gap-2 mb-8 xl:grid-cols-5 md:grid-cols-2">
         <CardItemTwo
@@ -288,7 +288,7 @@ const Dashboard = () => {
           title2="AllTimeSales"
           Icon={ImCreditCard}
           price={dashboardOrderAmount?.totalAmount || 0}
-          className="text-white dark:text-emerald-100 bg-emerald-600"
+          className="text-white dark:text-emerald-100 bg-blue-950"
           loading={loadingOrderAmount}
         />
       </div>
@@ -302,7 +302,7 @@ const Dashboard = () => {
           className="text-orange-600 dark:text-orange-100 bg-orange-100 dark:bg-orange-500"
         />
         <CardItem
-          title={t("OrderPending")}
+          title={t('OrderPending')}
           Icon={FiRefreshCw}
           loading={loadingOrderCount}
           quantity={dashboardOrderCount?.totalPendingOrder?.count || 0}
@@ -310,18 +310,18 @@ const Dashboard = () => {
           className="text-blue-600 dark:text-blue-100 bg-blue-100 dark:bg-blue-500"
         />
         <CardItem
-          title={t("OrderProcessing")}
+          title={t('OrderProcessing')}
           Icon={FiTruck}
           loading={loadingOrderCount}
           quantity={dashboardOrderCount?.totalProcessingOrder || 0}
           className="text-teal-600 dark:text-teal-100 bg-teal-100 dark:bg-teal-500"
         />
         <CardItem
-          title={t("OrderDelivered")}
+          title={t('OrderDelivered')}
           Icon={FiCheck}
           loading={loadingOrderCount}
           quantity={dashboardOrderCount?.totalDeliveredOrder || 0}
-          className="text-emerald-600 dark:text-emerald-100 bg-emerald-100 dark:bg-emerald-500"
+          className="text-emerald-600 dark:text-emerald-100 bg-blue-100 dark:bg-blue-500"
         />
       </div>
 
@@ -329,7 +329,7 @@ const Dashboard = () => {
         <ChartCard
           mode={mode}
           loading={loadingOrderAmount}
-          title={t("WeeklySales")}
+          title={t('WeeklySales')}
         >
           <LineChart salesReport={salesReport} />
         </ChartCard>
@@ -337,13 +337,13 @@ const Dashboard = () => {
         <ChartCard
           mode={mode}
           loading={loadingBestSellerProduct}
-          title={t("BestSellingProducts")}
+          title={t('BestSellingProducts')}
         >
           <PieChart data={bestSellerProductChart} />
         </ChartCard>
       </div>
 
-      <PageTitle>{t("RecentOrder")}</PageTitle>
+      <PageTitle>{t('RecentOrder')}</PageTitle>
 
       {/* <Loading loading={loading} /> */}
 
@@ -356,14 +356,14 @@ const Dashboard = () => {
           <Table>
             <TableHeader>
               <tr>
-                <TableCell>{t("InvoiceNo")}</TableCell>
-                <TableCell>{t("TimeTbl")}</TableCell>
-                <TableCell>{t("CustomerName")} </TableCell>
-                <TableCell> {t("MethodTbl")} </TableCell>
-                <TableCell> {t("AmountTbl")} </TableCell>
-                <TableCell>{t("OderStatusTbl")}</TableCell>
-                <TableCell>{t("ActionTbl")}</TableCell>
-                <TableCell className="text-right">{t("InvoiceTbl")}</TableCell>
+                <TableCell>{t('InvoiceNo')}</TableCell>
+                <TableCell>{t('TimeTbl')}</TableCell>
+                <TableCell>{t('CustomerName')} </TableCell>
+                <TableCell> {t('MethodTbl')} </TableCell>
+                <TableCell> {t('AmountTbl')} </TableCell>
+                <TableCell>{t('OderStatusTbl')}</TableCell>
+                <TableCell>{t('ActionTbl')}</TableCell>
+                <TableCell className="text-right">{t('InvoiceTbl')}</TableCell>
               </tr>
             </TableHeader>
 

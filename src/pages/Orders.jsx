@@ -11,24 +11,24 @@ import {
   TableContainer,
   TableFooter,
   TableHeader,
-} from "@windmill/react-ui";
-import { useContext, useState } from "react";
-import { IoCloudDownloadOutline } from "react-icons/io5";
-import { useTranslation } from "react-i18next";
-import exportFromJSON from "export-from-json";
+} from '@windmill/react-ui';
+import { useContext, useState } from 'react';
+import { IoCloudDownloadOutline } from 'react-icons/io5';
+import { useTranslation } from 'react-i18next';
+import exportFromJSON from 'export-from-json';
 
 //internal import
-import { notifyError } from "@/utils/toast";
-import useAsync from "@/hooks/useAsync";
-import useFilter from "@/hooks/useFilter";
-import OrderServices from "@/services/OrderServices";
-import NotFound from "@/components/table/NotFound";
-import PageTitle from "@/components/Typography/PageTitle";
-import { SidebarContext } from "@/context/SidebarContext";
-import OrderTable from "@/components/order/OrderTable";
-import TableLoading from "@/components/preloader/TableLoading";
-import spinnerLoadingImage from "@/assets/img/spinner.gif";
-import useUtilsFunction from "@/hooks/useUtilsFunction";
+import { notifyError } from '@/utils/toast';
+import useAsync from '@/hooks/useAsync';
+import useFilter from '@/hooks/useFilter';
+import OrderServices from '@/services/OrderServices';
+import NotFound from '@/components/table/NotFound';
+import PageTitle from '@/components/Typography/PageTitle';
+import { SidebarContext } from '@/context/SidebarContext';
+import OrderTable from '@/components/order/OrderTable';
+import TableLoading from '@/components/preloader/TableLoading';
+import spinnerLoadingImage from '@/assets/img/spinner.gif';
+import useUtilsFunction from '@/hooks/useUtilsFunction';
 
 const Orders = () => {
   const {
@@ -107,7 +107,7 @@ const Orders = () => {
 
       exportFromJSON({
         data: exportData,
-        fileName: "orders",
+        fileName: 'orders',
         exportType: exportFromJSON.types.csv,
       });
       setLoadingExport(false);
@@ -120,19 +120,19 @@ const Orders = () => {
 
   // handle reset field
   const handleResetField = () => {
-    setTime("");
-    setMethod("");
-    setStatus("");
-    setEndDate("");
-    setStartDate("");
-    setSearchText("");
-    searchRef.current.value = "";
+    setTime('');
+    setMethod('');
+    setStatus('');
+    setEndDate('');
+    setStartDate('');
+    setSearchText('');
+    searchRef.current.value = '';
   };
   // console.log("data in orders page", data);
 
   return (
     <>
-      <PageTitle>{t("Orders")}</PageTitle>
+      <PageTitle>{t('Orders')}</PageTitle>
 
       <Card className="min-w-0 shadow-xs overflow-hidden bg-white dark:bg-gray-800 mb-5">
         <CardBody>
@@ -150,35 +150,35 @@ const Orders = () => {
               <div>
                 <Select onChange={(e) => setStatus(e.target.value)}>
                   <option value="Status" defaultValue hidden>
-                    {t("Status")}
+                    {t('Status')}
                   </option>
-                  <option value="Delivered">{t("PageOrderDelivered")}</option>
-                  <option value="Pending">{t("PageOrderPending")}</option>
-                  <option value="Processing">{t("PageOrderProcessing")}</option>
-                  <option value="Cancel">{t("OrderCancel")}</option>
+                  <option value="Delivered">{t('PageOrderDelivered')}</option>
+                  <option value="Pending">{t('PageOrderPending')}</option>
+                  <option value="Processing">{t('PageOrderProcessing')}</option>
+                  <option value="Cancel">{t('OrderCancel')}</option>
                 </Select>
               </div>
 
               <div>
                 <Select onChange={(e) => setTime(e.target.value)}>
                   <option value="Order limits" defaultValue hidden>
-                    {t("Orderlimits")}
+                    {t('Orderlimits')}
                   </option>
-                  <option value="5">{t("DaysOrders5")}</option>
-                  <option value="7">{t("DaysOrders7")}</option>
-                  <option value="15">{t("DaysOrders15")}</option>
-                  <option value="30">{t("DaysOrders30")}</option>
+                  <option value="5">{t('DaysOrders5')}</option>
+                  <option value="7">{t('DaysOrders7')}</option>
+                  <option value="15">{t('DaysOrders15')}</option>
+                  <option value="30">{t('DaysOrders30')}</option>
                 </Select>
               </div>
               <div>
                 <Select onChange={(e) => setMethod(e.target.value)}>
                   <option value="Method" defaultValue hidden>
-                    {t("Method")}
+                    {t('Method')}
                   </option>
 
-                  <option value="Cash">{t("Cash")}</option>
-                  <option value="Card">{t("Card")}</option>
-                  <option value="Credit">{t("Credit")}</option>
+                  <option value="Cash">{t('Cash')}</option>
+                  <option value="Card">{t('Card')}</option>
+                  <option value="Credit">{t('Credit')}</option>
                 </Select>
               </div>
               <div>
@@ -189,7 +189,7 @@ const Orders = () => {
                       alt="Loading"
                       width={20}
                       height={10}
-                    />{" "}
+                    />{' '}
                     <span className="font-serif ml-2 font-light">
                       Processing
                     </span>
@@ -201,8 +201,8 @@ const Orders = () => {
                     type="button"
                     className={`${
                       (data?.orders?.length <= 0 || loadingExport) &&
-                      "opacity-50 cursor-not-allowed bg-emerald-600"
-                    } flex items-center justify-center text-sm leading-5 h-12 w-full text-center transition-colors duration-150 font-medium px-6 py-2 rounded-md text-white bg-emerald-500 border border-transparent active:bg-emerald-600 hover:bg-emerald-600 `}
+                      'opacity-50 cursor-not-allowed bg-blue-950'
+                    } flex items-center justify-center text-sm leading-5 h-12 w-full text-center transition-colors duration-150 font-medium px-6 py-2 rounded-md text-white bg-blue-500 border border-transparent active:bg-blue-950 hover:bg-blue-950 `}
                   >
                     Download All Orders
                     <span className="ml-2 text-base">
@@ -233,14 +233,14 @@ const Orders = () => {
               </div>
               <div className="mt-2 md:mt-0 flex items-center xl:gap-x-4 gap-x-1 flex-grow-0 md:flex-grow lg:flex-grow xl:flex-grow">
                 <div className="w-full mx-1">
-                  <Label style={{ visibility: "hidden" }}>Filter</Label>
-                  <Button type="submit" className="h-12 w-full bg-emerald-700">
+                  <Label style={{ visibility: 'hidden' }}>Filter</Label>
+                  <Button type="submit" className="h-12 w-full bg-blue-700">
                     Filter
                   </Button>
                 </div>
 
                 <div className="w-full">
-                  <Label style={{ visibility: "hidden" }}>Reset</Label>
+                  <Label style={{ visibility: 'hidden' }}>Reset</Label>
                   <Button
                     layout="outline"
                     onClick={handleResetField}
@@ -263,7 +263,7 @@ const Orders = () => {
                 <div key={i + 1} className="dark:text-gray-300">
                   {el?.method && (
                     <>
-                      <span className="font-medium"> {el.method}</span> :{" "}
+                      <span className="font-medium"> {el.method}</span> :{' '}
                       <span className="font-semibold mr-2">
                         {currency}
                         {getNumber(el.total)}
@@ -286,14 +286,14 @@ const Orders = () => {
           <Table>
             <TableHeader>
               <tr>
-                <TableCell>{t("InvoiceNo")}</TableCell>
-                <TableCell>{t("TimeTbl")}</TableCell>
-                <TableCell>{t("CustomerName")}</TableCell>
-                <TableCell>{t("MethodTbl")}</TableCell>
-                <TableCell>{t("AmountTbl")}</TableCell>
-                <TableCell>{t("OderStatusTbl")}</TableCell>
-                <TableCell>{t("ActionTbl")}</TableCell>
-                <TableCell className="text-right">{t("InvoiceTbl")}</TableCell>
+                <TableCell>{t('InvoiceNo')}</TableCell>
+                <TableCell>{t('TimeTbl')}</TableCell>
+                <TableCell>{t('CustomerName')}</TableCell>
+                <TableCell>{t('MethodTbl')}</TableCell>
+                <TableCell>{t('AmountTbl')}</TableCell>
+                <TableCell>{t('OderStatusTbl')}</TableCell>
+                <TableCell>{t('ActionTbl')}</TableCell>
+                <TableCell className="text-right">{t('InvoiceTbl')}</TableCell>
               </tr>
             </TableHeader>
 

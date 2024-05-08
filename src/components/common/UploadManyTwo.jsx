@@ -1,22 +1,24 @@
-import { Button, Input } from "@windmill/react-ui";
-import exportFromJSON from "export-from-json";
-import { useContext, useEffect, useRef, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { BsFileEarmarkCode, BsFileEarmarkMedical } from "react-icons/bs";
+import { Button, Input } from '@windmill/react-ui';
+import exportFromJSON from 'export-from-json';
+import { useContext, useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { BsFileEarmarkCode, BsFileEarmarkMedical } from 'react-icons/bs';
 import {
   FiDownload,
   FiPlus,
   FiUpload,
   FiUploadCloud,
   FiXCircle,
-} from "react-icons/fi";
+} from 'react-icons/fi';
+import * as XLSX from 'xlsx';
+
 // import { ImFileExcel } from "react-icons/im";
-import { useLocation } from "react-router-dom";
+import { useLocation } from 'react-router-dom';
 
 //internal import
-import spinnerLoadingImage from "@/assets/img/spinner.gif";
-import { SidebarContext } from "@/context/SidebarContext";
-import ProductServices from "@/services/ProductServices";
+import spinnerLoadingImage from '@/assets/img/spinner.gif';
+import { SidebarContext } from '@/context/SidebarContext';
+import ProductServices from '@/services/ProductServices';
 
 const UploadManyTwo = ({
   title,
@@ -33,15 +35,35 @@ const UploadManyTwo = ({
   const [dropDown, setDropDown] = useState(false);
   const { loading } = useContext(SidebarContext);
   const [loadingExport, setLoadingExport] = useState({
-    name: "",
+    name: '',
     status: false,
   });
 
   // console.log(exportData);
 
+  // const handleUploadMultiple = (e) => {
+  //   console.log('handleUploadMultiple', e);
+  //   const file = e.target.files[0];
+
+  //   if (file) {
+  //     const reader = new FileReader();
+  //     reader.onload = (event) => {
+  //       const data = event.target.result;
+  //       const workbook = XLSX.read(data, { type: 'binary' });
+  //       const sheetName = workbook.SheetNames[0];
+  //       const sheet = workbook.Sheets[sheetName];
+  //       const result = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+  //       console.log(result);
+  //       // setJsonData(result);
+  //     };
+
+  //     reader.readAsBinaryString(file);
+  //   }
+  // };
+
   const handleExportCSV = () => {
-    if (location.pathname === "/products") {
-      setLoadingExport({ name: "csv", status: true });
+    if (location.pathname === '/products') {
+      setLoadingExport({ name: 'csv', status: true });
       ProductServices.getAllProducts({
         page: 1,
         limit: totalDoc,
@@ -51,53 +73,53 @@ const UploadManyTwo = ({
       })
         .then((res) => {
           setDropDown(false);
-          setLoadingExport({ name: "", status: false });
+          setLoadingExport({ name: '', status: false });
           exportFromJSON({
             data: res.products,
-            fileName: "products",
+            fileName: 'products',
             exportType: exportFromJSON.types.csv,
           });
         })
         .catch((err) => {
-          setLoadingExport({ name: "", status: false });
+          setLoadingExport({ name: '', status: false });
           setDropDown(false);
           // console.log(err);
         });
     }
-    if (location.pathname === "/categories") {
+    if (location.pathname === '/categories') {
       exportFromJSON({
         data: exportData,
-        fileName: "categories",
+        fileName: 'categories',
         exportType: exportFromJSON.types.csv,
       });
     }
-    if (location.pathname === "/attributes") {
+    if (location.pathname === '/attributes') {
       exportFromJSON({
         data: exportData,
-        fileName: "attributes",
+        fileName: 'attributes',
         exportType: exportFromJSON.types.csv,
       });
     }
 
-    if (location.pathname === "/coupons") {
+    if (location.pathname === '/coupons') {
       exportFromJSON({
         data: exportData,
-        fileName: "coupons",
+        fileName: 'coupons',
         exportType: exportFromJSON.types.csv,
       });
     }
-    if (location.pathname === "/customers") {
+    if (location.pathname === '/customers') {
       exportFromJSON({
         data: exportData,
-        fileName: "customers",
+        fileName: 'customers',
         exportType: exportFromJSON.types.csv,
       });
     }
   };
 
   const handleExportJSON = () => {
-    if (location.pathname === "/products") {
-      setLoadingExport({ name: "json", status: true });
+    if (location.pathname === '/products') {
+      setLoadingExport({ name: 'json', status: true });
       ProductServices.getAllProducts({
         page: 1,
         limit: totalDoc,
@@ -107,45 +129,45 @@ const UploadManyTwo = ({
       })
         .then((res) => {
           setDropDown(false);
-          setLoadingExport({ name: "json", status: true });
+          setLoadingExport({ name: 'json', status: true });
           exportFromJSON({
             data: res.products,
-            fileName: "products",
+            fileName: 'products',
             exportType: exportFromJSON.types.json,
           });
         })
         .catch((err) => {
           setDropDown(false);
-          setLoadingExport({ name: "json", status: true });
+          setLoadingExport({ name: 'json', status: true });
           // console.log(err);
         });
     }
-    if (location.pathname === "/categories") {
+    if (location.pathname === '/categories') {
       exportFromJSON({
         data: exportData,
-        fileName: "categories",
+        fileName: 'categories',
         exportType: exportFromJSON.types.json,
       });
     }
-    if (location.pathname === "/attributes") {
+    if (location.pathname === '/attributes') {
       exportFromJSON({
         data: exportData,
-        fileName: "attributes",
+        fileName: 'attributes',
         exportType: exportFromJSON.types.json,
       });
     }
 
-    if (location.pathname === "/coupons") {
+    if (location.pathname === '/coupons') {
       exportFromJSON({
         data: exportData,
-        fileName: "coupons",
+        fileName: 'coupons',
         exportType: exportFromJSON.types.json,
       });
     }
-    if (location.pathname === "/customers") {
+    if (location.pathname === '/customers') {
       exportFromJSON({
         data: exportData,
-        fileName: "customers",
+        fileName: 'customers',
         exportType: exportFromJSON.types.json,
       });
     }
@@ -157,7 +179,7 @@ const UploadManyTwo = ({
         setDropDown(false);
       }
     };
-    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
   }, [dRef]);
 
   const [isImportBoxShown, setisImportBoxShown] = useState(false);
@@ -171,12 +193,12 @@ const UploadManyTwo = ({
     <div className=" lg:flex md:flex flex-grow-0">
       <div className="flex">
         <div ref={dRef} className="lg:flex-1 md:flex-1 mr-3 sm:flex-none">
-          {(title === "Products" ||
-            title === "Attribute" ||
-            title === "Extra" ||
-            title === "Coupon" ||
-            title === "Customers" ||
-            title === "Categories") && (
+          {(title === 'Products' ||
+            title === 'Attribute' ||
+            title === 'Extra' ||
+            title === 'Coupon' ||
+            title === 'Customers' ||
+            title === 'Categories') && (
             <button
               onClick={() => {
                 setDropDown(!dropDown);
@@ -185,7 +207,7 @@ const UploadManyTwo = ({
             >
               {/* <BsPlus className="text-4xl" /> */}
               <FiUpload className="mr-2" />
-              <span className="text-xs">{t("Export")}</span>
+              <span className="text-xs">{t('Export')}</span>
             </button>
           )}
           {dropDown && (
@@ -207,9 +229,9 @@ const UploadManyTwo = ({
 
                     <span>
                       Export to CSV
-                      {loadingExport.name === "csv" &&
+                      {loadingExport.name === 'csv' &&
                         loadingExport.status &&
-                        "...."}
+                        '....'}
                     </span>
                   </span>
                 </button>
@@ -228,9 +250,9 @@ const UploadManyTwo = ({
                     />
                     <span>
                       Export to JSON
-                      {loadingExport.name === "json" &&
+                      {loadingExport.name === 'json' &&
                         loadingExport.status &&
-                        "...."}
+                        '....'}
                     </span>
                   </span>
                 </button>
@@ -258,15 +280,15 @@ const UploadManyTwo = ({
                 <Input
                   disabled={isDisabled}
                   type="file"
-                  accept=".csv,.xls,.json"
+                  accept=".csv,.xls,.json,.xlsx"
                   onChange={handleSelectFile}
                 />
                 {filename ? (
                   filename
                 ) : (
                   <>
-                    <FiUploadCloud className="mx-2 text-emerald-500 text-lg dark:text-gray-400" />{" "}
-                    {t("SelectYourJSON")} {title} {t("File")}
+                    <FiUploadCloud className="mx-2 text-emerald-500 text-lg dark:text-gray-400" />{' '}
+                    {t('SelectYourJSON')} {title} {t('File')}
                   </>
                 )}
                 {filename && (
@@ -289,7 +311,7 @@ const UploadManyTwo = ({
                     alt="Loading"
                     width={20}
                     height={10}
-                  />{" "}
+                  />{' '}
                   <span className="font-serif ml-2 font-light">Processing</span>
                 </Button>
               ) : (
@@ -300,7 +322,7 @@ const UploadManyTwo = ({
                   <span className="">
                     <FiPlus />
                   </span>
-                  <span className="text-sx w-20">{t("ImportNow")}</span>
+                  <span className="text-sx w-20">{t('ImportNow')}</span>
                 </Button>
               )}
             </div>

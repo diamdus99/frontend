@@ -9,27 +9,27 @@ import {
   TableContainer,
   TableFooter,
   TableHeader,
-} from "@windmill/react-ui";
-import { useContext, useState } from "react";
-import { FiEdit, FiPlus, FiTrash2 } from "react-icons/fi";
-import { useTranslation } from "react-i18next";
+} from '@windmill/react-ui';
+import { useContext, useState } from 'react';
+import { FiEdit, FiPlus, FiTrash2 } from 'react-icons/fi';
+import { useTranslation } from 'react-i18next';
 
 //internal import
-import { SidebarContext } from "@/context/SidebarContext";
-import CouponServices from "@/services/CouponServices";
-import useAsync from "@/hooks/useAsync";
-import useToggleDrawer from "@/hooks/useToggleDrawer";
-import useFilter from "@/hooks/useFilter";
-import PageTitle from "@/components/Typography/PageTitle";
-import DeleteModal from "@/components/modal/DeleteModal";
-import BulkActionDrawer from "@/components/drawer/BulkActionDrawer";
-import MainDrawer from "@/components/drawer/MainDrawer";
-import CouponDrawer from "@/components/drawer/CouponDrawer";
-import TableLoading from "@/components/preloader/TableLoading";
-import CheckBox from "@/components/form/others/CheckBox";
-import CouponTable from "@/components/coupon/CouponTable";
-import NotFound from "@/components/table/NotFound";
-import UploadManyTwo from "@/components/common/UploadManyTwo";
+import { SidebarContext } from '@/context/SidebarContext';
+import CouponServices from '@/services/CouponServices';
+import useAsync from '@/hooks/useAsync';
+import useToggleDrawer from '@/hooks/useToggleDrawer';
+import useFilter from '@/hooks/useFilter';
+import PageTitle from '@/components/Typography/PageTitle';
+import DeleteModal from '@/components/modal/DeleteModal';
+import BulkActionDrawer from '@/components/drawer/BulkActionDrawer';
+import MainDrawer from '@/components/drawer/MainDrawer';
+import CouponDrawer from '@/components/drawer/CouponDrawer';
+import TableLoading from '@/components/preloader/TableLoading';
+import CheckBox from '@/components/form/others/CheckBox';
+import CouponTable from '@/components/coupon/CouponTable';
+import NotFound from '@/components/table/NotFound';
+import UploadManyTwo from '@/components/common/UploadManyTwo';
 
 const Coupons = () => {
   const { t } = useTranslation();
@@ -68,13 +68,13 @@ const Coupons = () => {
 
   // handle reset field function
   const handleResetField = () => {
-    setSearchCoupon("");
-    couponRef.current.value = "";
+    setSearchCoupon('');
+    couponRef.current.value = '';
   };
 
   return (
     <>
-      <PageTitle>{t("CouponspageTitle")}</PageTitle>
+      <PageTitle>{t('CouponspageTitle')}</PageTitle>
       <DeleteModal
         ids={allId}
         setIsCheck={setIsCheck}
@@ -114,7 +114,7 @@ const Coupons = () => {
                   <span className="mr-2">
                     <FiEdit />
                   </span>
-                  {t("BulkAction")}
+                  {t('BulkAction')}
                 </Button>
               </div>
 
@@ -128,7 +128,7 @@ const Coupons = () => {
                     <FiTrash2 />
                   </span>
 
-                  {t("Delete")}
+                  {t('Delete')}
                 </Button>
               </div>
 
@@ -140,7 +140,7 @@ const Coupons = () => {
                   <span className="mr-2">
                     <FiPlus />
                   </span>
-                  {t("AddCouponsBtn")}
+                  {t('AddCouponsBtn')}
                 </Button>
               </div>
             </div>
@@ -158,12 +158,12 @@ const Coupons = () => {
               <Input
                 ref={couponRef}
                 type="search"
-                placeholder={t("SearchCoupon")}
+                placeholder={t('SearchCoupon')}
               />
             </div>
             <div className="flex items-center gap-2 flex-grow-0 md:flex-grow lg:flex-grow xl:flex-grow">
               <div className="w-full mx-1">
-                <Button type="submit" className="h-12 w-full bg-emerald-700">
+                <Button type="submit" className="h-12 w-full bg-blue-700">
                   Filter
                 </Button>
               </div>
@@ -202,18 +202,18 @@ const Coupons = () => {
                     isChecked={isCheckAll}
                   />
                 </TableCell>
-                <TableCell>{t("CoupTblCampaignsName")}</TableCell>
-                <TableCell>{t("CoupTblCode")}</TableCell>
-                <TableCell>{t("Discount")}</TableCell>
+                <TableCell>{t('CoupTblCampaignsName')}</TableCell>
+                <TableCell>{t('CoupTblCode')}</TableCell>
+                <TableCell>{t('Discount')}</TableCell>
 
                 <TableCell className="text-center">
-                  {t("catPublishedTbl")}
+                  {t('catPublishedTbl')}
                 </TableCell>
-                <TableCell>{t("CoupTblStartDate")}</TableCell>
-                <TableCell>{t("CoupTblEndDate")}</TableCell>
-                <TableCell>{t("CoupTblStatus")}</TableCell>
+                <TableCell>{t('CoupTblStartDate')}</TableCell>
+                <TableCell>{t('CoupTblEndDate')}</TableCell>
+                <TableCell>{t('CoupTblStatus')}</TableCell>
                 <TableCell className="text-right">
-                  {t("CoupTblActions")}
+                  {t('CoupTblActions')}
                 </TableCell>
               </tr>
             </TableHeader>

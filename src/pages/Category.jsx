@@ -9,29 +9,29 @@ import {
   TableContainer,
   TableFooter,
   TableHeader,
-} from "@windmill/react-ui";
-import { useContext, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { FiEdit, FiPlus, FiTrash2 } from "react-icons/fi";
+} from '@windmill/react-ui';
+import { useContext, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { FiEdit, FiPlus, FiTrash2 } from 'react-icons/fi';
 
 //internal import
 
-import useAsync from "@/hooks/useAsync";
-import { SidebarContext } from "@/context/SidebarContext";
-import CategoryServices from "@/services/CategoryServices";
-import useToggleDrawer from "@/hooks/useToggleDrawer";
-import useFilter from "@/hooks/useFilter";
-import DeleteModal from "@/components/modal/DeleteModal";
-import BulkActionDrawer from "@/components/drawer/BulkActionDrawer";
-import PageTitle from "@/components/Typography/PageTitle";
-import MainDrawer from "@/components/drawer/MainDrawer";
-import CategoryDrawer from "@/components/drawer/CategoryDrawer";
-import UploadManyTwo from "@/components/common/UploadManyTwo";
-import SwitchToggleChildCat from "@/components/form/switch/SwitchToggleChildCat";
-import TableLoading from "@/components/preloader/TableLoading";
-import CheckBox from "@/components/form/others/CheckBox";
-import CategoryTable from "@/components/category/CategoryTable";
-import NotFound from "@/components/table/NotFound";
+import useAsync from '@/hooks/useAsync';
+import { SidebarContext } from '@/context/SidebarContext';
+import CategoryServices from '@/services/CategoryServices';
+import useToggleDrawer from '@/hooks/useToggleDrawer';
+import useFilter from '@/hooks/useFilter';
+import DeleteModal from '@/components/modal/DeleteModal';
+import BulkActionDrawer from '@/components/drawer/BulkActionDrawer';
+import PageTitle from '@/components/Typography/PageTitle';
+import MainDrawer from '@/components/drawer/MainDrawer';
+import CategoryDrawer from '@/components/drawer/CategoryDrawer';
+import UploadManyTwo from '@/components/common/UploadManyTwo';
+import SwitchToggleChildCat from '@/components/form/switch/SwitchToggleChildCat';
+import TableLoading from '@/components/preloader/TableLoading';
+import CheckBox from '@/components/form/others/CheckBox';
+import CategoryTable from '@/components/category/CategoryTable';
+import NotFound from '@/components/table/NotFound';
 
 const Category = () => {
   const { toggleDrawer, lang } = useContext(SidebarContext);
@@ -77,15 +77,15 @@ const Category = () => {
 
   // handle reset field function
   const handleResetField = () => {
-    setCategoryType("");
-    categoryRef.current.value = "";
+    setCategoryType('');
+    categoryRef.current.value = '';
   };
 
   // console.log("serviceData", serviceData, "tableData", dataTable);
 
   return (
     <>
-      <PageTitle>{t("Category")}</PageTitle>
+      <PageTitle>{t('Category')}</PageTitle>
       <DeleteModal ids={allId} setIsCheck={setIsCheck} />
 
       <BulkActionDrawer
@@ -131,7 +131,7 @@ const Category = () => {
                     <FiEdit />
                   </span>
 
-                  {t("BulkAction")}
+                  {t('BulkAction')}
                 </Button>
               </div>
               <div className="w-full md:w-32 lg:w-32 xl:w-32  mr-3 mb-3 lg:mb-0">
@@ -144,7 +144,7 @@ const Category = () => {
                     <FiTrash2 />
                   </span>
 
-                  {t("Delete")}
+                  {t('Delete')}
                 </Button>
               </div>
               <div className="w-full md:w-48 lg:w-48 xl:w-48">
@@ -156,7 +156,7 @@ const Category = () => {
                     <FiPlus />
                   </span>
 
-                  {t("AddCategory")}
+                  {t('AddCategory')}
                 </Button>
               </div>
             </div>
@@ -174,12 +174,12 @@ const Category = () => {
               <Input
                 ref={categoryRef}
                 type="search"
-                placeholder={t("SearchCategory")}
+                placeholder={t('SearchCategory')}
               />
             </div>
             <div className="flex items-center gap-2 flex-grow-0 md:flex-grow lg:flex-grow xl:flex-grow">
               <div className="w-full mx-1">
-                <Button type="submit" className="h-12 w-full bg-emerald-700">
+                <Button type="submit" className="h-12 w-full bg-blue-700">
                   Filter
                 </Button>
               </div>
@@ -224,15 +224,15 @@ const Category = () => {
                   />
                 </TableCell>
 
-                <TableCell>{t("catIdTbl")}</TableCell>
-                <TableCell>{t("catIconTbl")}</TableCell>
-                <TableCell>{t("CatTbName")}</TableCell>
-                <TableCell>{t("CatTbDescription")}</TableCell>
+                <TableCell>{t('catIdTbl')}</TableCell>
+                <TableCell>{t('catIconTbl')}</TableCell>
+                <TableCell>{t('CatTbName')}</TableCell>
+                <TableCell>{t('CatTbDescription')}</TableCell>
                 <TableCell className="text-center">
-                  {t("catPublishedTbl")}
+                  {t('catPublishedTbl')}
                 </TableCell>
                 <TableCell className="text-right">
-                  {t("catActionsTbl")}
+                  {t('catActionsTbl')}
                 </TableCell>
               </tr>
             </TableHeader>

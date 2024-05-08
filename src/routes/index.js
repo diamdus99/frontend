@@ -2,6 +2,7 @@ import { lazy } from 'react';
 
 // use lazy for better code splitting
 const Cart = lazy(() => import('@/pages/Cart'));
+const Bespoke = lazy(() => import('@/pages/Bespoke1'));
 const Preview = lazy(() => import('@/pages/Preview'));
 const Dashboard = lazy(() => import('@/pages/Dashboard'));
 const OnlineStore = lazy(() => import('@/pages/OnlineStore'));
@@ -26,6 +27,12 @@ const Currencies = lazy(() => import('@/pages/Currencies'));
 const Setting = lazy(() => import('@/pages/Setting'));
 const StoreHome = lazy(() => import('@/pages/StoreHome'));
 const StoreSetting = lazy(() => import('@/pages/StoreSetting'));
+const Calculator = lazy(() => import('@/pages/Calculator'));
+const Search = lazy(() => import('@/pages/Search'));
+const UploadSheet = lazy(() => import('@/pages/UploadSheet'));
+const SubmitTicket = lazy(() => import('@/pages/SubmitTicket'));
+const SearchProducts = lazy(() => import('@/pages/SearchProducts'));
+const ProductDisplays = lazy(() => import('@/pages/ProductDisplays'));
 /*
 //  * ⚠ These are internal routes!
 //  * They will be rendered inside the app, using the default `containers/Layout`.
@@ -69,6 +76,14 @@ const routes = [
   {
     path: '/currencies',
     component: Currencies,
+  },
+  {
+    path: '/uploadsheet',
+    component: UploadSheet,
+  },
+  {
+    path: '/submitticket',
+    component: SubmitTicket,
   },
 
   {
@@ -131,6 +146,27 @@ const routes = [
   {
     path: '/cart',
     component: Cart,
+  },
+  {
+    path: '/bespoke',
+    component: Bespoke,
+  },
+  {
+    path: '/calculator',
+    component: Calculator,
+  },
+
+  {
+    path: '/search',
+    component: Search,
+  },
+  {
+    path: '/search-products',
+    component: SearchProducts,
+  },
+  {
+    path: '/product-display/:id',
+    component: ProductDisplays,
   },
 ];
 
