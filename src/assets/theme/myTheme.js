@@ -187,7 +187,7 @@ const myTheme = {
       right: 'ml-2 -mr-1',
     },
     primary: {
-      base: 'text-blue-950 bg-blue-950 border border-transparent',
+      base: 'text-white bg-blue-950 border border-transparent',
       active: 'active:bg-blue-950 hover:bg-blue-950  text-blue-950',
       // inactive: 'text-blue-950',
       disabled: 'opacity-50 cursor-not-allowed',

@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
-import { Redirect, Route } from "react-router-dom";
-import { AdminContext } from "@/context/AdminContext";
+import React, { useContext } from 'react';
+import { Redirect, Route } from 'react-router-dom';
+import { AdminContext } from '@/context/AdminContext';
 
 const PrivateRoute = ({ children, ...rest }) => {
   const { state } = useContext(AdminContext);
@@ -15,7 +15,7 @@ const PrivateRoute = ({ children, ...rest }) => {
         ) : (
           <Redirect
             to={{
-              pathname: "/login",
+              pathname: '/landing-page',
               state: { from: location },
             }}
           />

@@ -8,6 +8,7 @@ import {
 } from 'react-router-dom';
 import AccessibleNavigationAnnouncer from '@/components/AccessibleNavigationAnnouncer';
 import PrivateRoute from '@/components/login/PrivateRoute';
+const LandingPage = lazy(() => import('@/pages/LandingPage'));
 const Layout = lazy(() => import('@/layout/Layout'));
 const Login = lazy(() => import('@/pages/Login'));
 const SignUp = lazy(() => import('@/pages/SignUp'));
@@ -22,6 +23,7 @@ const App = () => {
       <Router>
         <AccessibleNavigationAnnouncer />
         <Switch>
+          <Route path="/landing-page" component={LandingPage} />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={SignUp} />
           <Route path="/forgot-password" component={ForgetPassword} />
@@ -34,7 +36,7 @@ const App = () => {
               <div>hello</div>
             )}
           </PrivateRoute>
-          <Redirect exact from="/" to="/login" />
+          <Redirect exact from="/" to="/landing-page" />
         </Switch>
       </Router>
     </>

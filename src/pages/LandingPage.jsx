@@ -1,9 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-const Login = () => {
+const LandingPage = () => {
   React.useEffect(() => {
     // Define an array of script URLs to load
     const scriptUrls = [
+      '../../htmlscript/vendor/css/bundle.min.css',
       '../../htmlscript/vendor/js/bundle.min.js',
       '../../htmlscript/vendor/js/jquery.fancybox.min.js',
       '../../htmlscript/vendor/js/owl.carousel.min.js',
@@ -180,6 +182,11 @@ const Login = () => {
                 </ul>
               </div>
             </div>
+            {/* <li className="animated-wrap">
+              <Link to={`/login`} className="">
+                <div className="text-white z-10 ">Login</div>
+              </Link>
+            </li> */}
             <div className="col-6 col-lg-4 d-flex align-items-center justify-content-end justify-content-lg-center">
               <a className="menu_bars menu-bars-setting sidemenu_toggle link mr-3 mr-lg-0">
                 <div className="menu-lines">
@@ -190,12 +197,14 @@ const Login = () => {
               </a>
             </div>
             <div className="col-4 d-flex justify-content-end">
-              <a
-                href="javascript:void(0)"
-                className="btn-setting link btn-hvr-up btn-hvr-whatsapp color-white mr-lg-4 d-none d-lg-inline-block"
-              >
-                <i className="fab fa-whatsapp" /> +91 9702656949
-              </a>
+              <Link to={`/login`} className="">
+                <a
+                  href="javascript:void(0)"
+                  className="btn-setting link btn-hvr-up btn-hvr-whatsapp color-white mr-lg-4 d-none d-lg-inline-block"
+                >
+                  Login
+                </a>
+              </Link>
             </div>
           </div>
         </section>
@@ -277,7 +286,7 @@ const Login = () => {
           {/*        </div>*/}
           {/*    </a>*/}
           {/* Side Menu */}
-          <div className="side-menu center">
+          <div className="side-menu   ">
             <div className="quarter-circle">
               <div className="menu_bars2 active" id="btn_sideNavClose">
                 <span />
@@ -360,212 +369,33 @@ const Login = () => {
         </header>
         {/* Header end */}
         {/* Main Section start */}
-        <section id="home" className="p-0 h-100vh cursor-light">
-          <h2 className="d-none">heading</h2>
-          {/*Main Slider*/}
-          <div
-            id="rev_slider_8_1_wrapper"
-            className="rev_slider_wrapper fullscreen-container"
-            data-alias="weone"
-            data-source="gallery"
-            style={{ background: 'transparent', padding: 0 }}
-          >
-            {/* START REVOLUTION SLIDER 5.4.8.1 fullscreen mode */}
-            <div
-              id="rev_slider_8_1"
-              className="rev_slider fullscreenbanner"
-              style={{ display: 'none' }}
-              data-version="5.4.8.1"
-            >
-              <ul>
-                {/* SLIDE  */}
-                {/* SLIDE 1 */}
-                <li
-                  data-index="rs-36"
-                  data-transition="fade"
-                  data-slotamount="default"
-                  data-hideafterloop={0}
-                  data-hideslideonmobile="off"
-                  data-easein="default"
-                  data-easeout="default"
-                  data-masterspeed={300}
-                  data-rotate={0}
-                  data-saveperformance="off"
-                  data-title="Slide"
-                  data-param1=""
-                  data-param2=""
-                  data-param3=""
-                  data-param4=""
-                  data-param5=""
-                  data-param6=""
-                  data-param7=""
-                  data-param8=""
-                  data-param9=""
-                  data-param10=""
-                  data-description=""
-                >
-                  {/* LAYERS */}
-                  <img
-                    src="../../htmlscript/ad-agency/img/slider-img.jpg"
-                    data-bgposition="center center"
-                    data-bgfit="cover"
-                    data-bgrepeat="no-repeat"
-                    data-bgparallax="off"
-                    className="rev-slidebg"
-                    alt="slider-image"
-                    data-no-retina=""
-                  />
-                  <div className="banner-overlay" />
-                  {/* LAYERS */}
-                  <div
-                    className="rs-background-video-layer"
-                    data-forcerewind="on"
-                    data-volume="mute"
-                    data-videowidth="100%"
-                    data-videoheight="100vh"
-                    data-videomp4="../../htmlscript/ad-agency/video/slider-video.mp4"
-                    data-videopreload="auto"
-                    data-videoloop="loopandnoslidestop"
-                    data-forcecover={1}
-                    data-aspectratio="16:9"
-                    data-autoplay="true"
-                    data-autoplayonlyfirsttime="false"
-                  />
-                  {/* LAYER Text */}
-                  <div
-                    className="tp-caption color-yellow"
-                    data-x="['center','center','center','center']"
-                    data-hoffset="['0','0','0','0']"
-                    data-y="['top','top','top','top']"
-                    data-voffset="['270','200','100','15']"
-                    data-fontsize="['60','50','40','40']"
-                    data-lineheight="['75','75','75','40']"
-                    data-width="['556','556','556','300']"
-                    data-height="['none','none','none','87']"
-                    data-whitespace="nowrap"
-                    data-type="text"
-                    data-responsive_offset="on"
-                    data-frames='[{"delay":100,"split":"chars","splitdelay":0.1,"speed":1480,"split_direction":"random","frame":"0","from":"y:50px;sX:1;sY:1;opacity:0;fb:20px;","color":"rgba(0,0,0,0)","to":"o:1;fb:0;","ease":"Power4.easeInOut"},{"delay":"wait","speed":350,"frame":"999","color":"transparent","to":"opacity:0;fb:0;","ease":"Power3.easeInOut"}]'
-                    data-textalign="['center','center','center','center']"
-                    data-paddingtop="[0,0,0,0]"
-                    data-paddingright="[0,0,0,0]"
-                    data-paddingbottom="[0,0,0,0]"
-                    data-paddingleft="[0,0,0,0]"
-                    style={{
-                      zIndex: 10,
-                      minWidth: 556,
-                      maxWidth: 556,
-                      whiteSpace: 'nowrap',
-                      fontSize: 60,
-                      lineHeight: 75,
-                      fontWeight: 300,
-                      letterSpacing: 0,
-                      fontFamily: '"Montserrat", sans-serif',
-                    }}
-                  >
-                    <img
-                      src="../../htmlscript/ad-agency/img/logo1.png"
-                      className="link"
-                      alt="logo"
-                    />
-                  </div>
-                  {/* LAYER Text */}
-                  <div
-                    className="tp-caption color-white"
-                    data-x="['center','center','center','center']"
-                    data-hoffset="['0','0','0','0']"
-                    data-y="['top','top','top','top']"
-                    data-voffset="['368','260','155','105']"
-                    data-fontsize="['62','50','40','40']"
-                    data-lineheight="['75','75','45','45']"
-                    data-width="['556','556','556','350']"
-                    data-height="['none','none','none','87']"
-                    data-whitespace="nowrap"
-                    data-type="text"
-                    data-responsive_offset="on"
-                    data-frames='[{"delay":150,"speed":1500,"frame":"0","from":"z:0;rX:0;rY:0;rZ:0;sX:0.9;sY:0.9;skX:0;skY:0;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
-                    data-textalign="['center','center','center','center']"
-                    data-paddingtop="[0,0,0,0]"
-                    data-paddingright="[0,0,0,0]"
-                    data-paddingbottom="[0,0,0,0]"
-                    data-paddingleft="[0,0,0,0]"
-                    style={{
-                      zIndex: 10,
-                      minWidth: 556,
-                      maxWidth: 556,
-                      whiteSpace: 'nowrap',
-                      fontWeight: 500,
-                      letterSpacing: 0,
-                      fontFamily: '"Montserrat", sans-serif',
-                    }}
-                  >
-                    <div id="js-rotating">
-                      Diamond Market Place, Modern Works, Easy to Use
-                    </div>
-                  </div>
-                  {/* LAYER Text */}
-                  <div
-                    className="tp-caption color-white"
-                    data-x="['center','center','center','center']"
-                    data-hoffset="['0','0','0','0']"
-                    data-y="['top','middle','middle','middle']"
-                    data-voffset="['470','95','0','20']"
-                    data-whitespace="normal"
-                    data-width="['580','630','550','440']"
-                    data-fontsize="['20','15','15','15']"
-                    data-lineheight="['30','25','22','22']"
-                    data-type="text"
-                    data-responsive_offset="on"
-                    data-frames='[{"delay":100,"speed":1480,"frame":"0","from":"opacity:0;","to":"o:1;","ease":"Power4.easeInOut"},{"delay":"wait","speed":350,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
-                    data-textalign="['center','center','center','center']"
-                    data-paddingtop="[0,0,0,0]"
-                    data-paddingright="[0,0,0,0]"
-                    data-paddingbottom="[0,0,0,0]"
-                    data-paddingleft="[0,0,0,0]"
-                    style={{
-                      zIndex: 10,
-                      minWidth: 650,
-                      maxWidth: 650,
-                      whiteSpace: 'nowrap',
-                      fontWeight: 300,
-                      letterSpacing: 1,
-                      fontFamily: '"Source Sans Pro", sans-serif',
-                    }}
-                  >
-                    Buy &amp; Sell Best Quality Diamonds Online for Pocket -
-                    Friendly Prices! <br />
-                    Diverse Inventory Collection <br />
-                    Innovative Interface
-                  </div>
-                  {/* LAYER Button */}
-                  <div
-                    className="tp-caption tp-resizeme"
-                    data-x="['center','center','center','center']"
-                    data-hoffset="['0','0','0','0']"
-                    data-y="['middle','middle','middle','middle']"
-                    data-voffset="['170','200','90','120']"
-                    data-frames='[{"from":"y:50px;opacity:0;","speed":1000,"to":"o:1;","delay":800,"ease":"Power4.easeInOut"},{"delay":"wait","speed":1000,"to":"y:[175%];","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"Power2.easeInOut"},{"frame":"hover","speed":"300","ease":"Power1.easeInOut","to":"o:1;rX:0;rY:0;rZ:0;z:0;","style":"c:rgba(255, 255, 255, 1.00);bc:rgba(255, 255, 255, 1.00);bw:2px 2px 2px 2px;"}]'
-                    data-textalign="['center','center','center','center']"
-                    data-width="['160','160','160','160']"
-                    style={{ zIndex: 10, minWidth: 960, maxWidth: 960 }}
-                  >
-                    <a
-                      href="javascript:void(0)"
-                      className="btn-setting color-white btn-hvr-up btn-hvr-yellow link"
-                    >
-                      learn more
-                    </a>
-                  </div>
-                </li>
-              </ul>
-              <div
-                className="tp-bannertimer"
-                style={{ height: 5, background: 'rgba(0, 0, 0, 0.15)' }}
-              />
-            </div>
+        <header class="relative flex items-center justify-start h-screen mb-12 overflow-hidden">
+          <div class="relative z-30 p-5 text-2xl text-white rounded-xl">
+            <h3>Welcome to my Diamdus!!</h3>
+            <h5>Online Diamond Marketplace</h5>
+            <p className="w-2/3">
+              We are trusted marketplace with huge natural and lab grown
+              diamonds inventory with images and video, integrate with your
+              online store and get more orders.
+            </p>
           </div>
-          {/*Main Slider ends */}
-        </section>
+
+          <video
+            className="absolute z-10 w-auto min-w-full min-h-full max-w-none"
+            loop="true"
+            autoplay="autoplay"
+            id="vid"
+            muted
+            start
+          >
+            <source
+              src="../../htmlscript/ad-agency/video/slider-video.mp4"
+              type="video/mp4"
+            />
+            Your browser does not support the video tag.
+          </video>
+        </header>
+
         {/* Main Section end */}
         {/*About start*/}
         <section className="about overflow-visible bg-dark1" id="about">
@@ -1723,4 +1553,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LandingPage;
