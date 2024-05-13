@@ -1,38 +1,37 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 const LandingPage = () => {
   React.useEffect(() => {
     // Define an array of script URLs to load
     const scriptUrls = [
-      '../../htmlscript/vendor/css/bundle.min.css',
-      '../../htmlscript/vendor/js/bundle.min.js',
-      '../../htmlscript/vendor/js/jquery.fancybox.min.js',
-      '../../htmlscript/vendor/js/owl.carousel.min.js',
-      '../../htmlscript/vendor/js/swiper.min.js',
-      '../../htmlscript/vendor/js/jquery.cubeportfolio.min.js',
-      '../../htmlscript/vendor/js/jquery.appear.js',
-      '../../htmlscript/vendor/js/parallaxie.min.js',
-      '../../htmlscript/vendor/js/wow.min.js',
-      '../../htmlscript/ad-agency/js/owl.carousel.js',
-      '../../htmlscript/vendor/js/slick.min.js',
-      '../../htmlscript/ad-agency/js/TweenMax.min.js',
-      '../../htmlscript/ad-agency/js/morphext.min.js',
-      '../../htmlscript/vendor/js/jquery.themepunch.tools.min.js',
-      '../../htmlscript/vendor/js/jquery.themepunch.revolution.min.js',
-      '../../htmlscript/vendor/js/extensions/revolution.extension.actions.min.js',
-      '../../htmlscript/vendor/js/extensions/revolution.extension.carousel.min.js',
-      '../../htmlscript/vendor/js/extensions/revolution.extension.kenburn.min.js',
-      '../../htmlscript/vendor/js/extensions/revolution.extension.layeranimation.min.js',
-      '../../htmlscript/vendor/js/extensions/revolution.extension.migration.min.js',
-      '../../htmlscript/vendor/js/extensions/revolution.extension.navigation.min.js',
-      '../../htmlscript/vendor/js/extensions/revolution.extension.parallax.min.js',
-      '../../htmlscript/vendor/js/extensions/revolution.extension.slideanims.min.js',
-      '../../htmlscript/vendor/js/extensions/revolution.extension.video.min.js',
+      '/vendor/css/bundle.min.css',
+      '/vendor/js/bundle.min.js',
+      '/vendor/js/jquery.fancybox.min.js',
+      '/vendor/js/owl.carousel.min.js',
+      '/vendor/js/swiper.min.js',
+      '/vendor/js/jquery.cubeportfolio.min.js',
+      '/vendor/js/jquery.appear.js',
+      '/vendor/js/parallaxie.min.js',
+      '/vendor/js/wow.min.js',
+      '/ad-agency/js/owl.carousel.js',
+      '/vendor/js/slick.min.js',
+      '/ad-agency/js/TweenMax.min.js',
+      '/ad-agency/js/morphext.min.js',
+      '/vendor/js/jquery.themepunch.tools.min.js',
+      '/vendor/js/jquery.themepunch.revolution.min.js',
+      '/vendor/js/extensions/revolution.extension.actions.min.js',
+      '/vendor/js/extensions/revolution.extension.carousel.min.js',
+      '/vendor/js/extensions/revolution.extension.kenburn.min.js',
+      '/vendor/js/extensions/revolution.extension.layeranimation.min.js',
+      '/vendor/js/extensions/revolution.extension.migration.min.js',
+      '/vendor/js/extensions/revolution.extension.navigation.min.js',
+      '/vendor/js/extensions/revolution.extension.parallax.min.js',
+      '/vendor/js/extensions/revolution.extension.slideanims.min.js',
+      '/vendor/js/extensions/revolution.extension.video.min.js',
       // Google Maps API (loaded separately)
       'https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY', // Replace YOUR_API_KEY with your Google Maps API key
-      '../../htmlscript/ad-agency/js/maps.min.js',
-      '../../htmlscript/ad-agency/js/script.js',
+      '/ad-agency/js/maps.min.js',
+      '/ad-agency/js/script.js',
     ];
 
     // Load each script dynamically
@@ -75,58 +74,28 @@ const LandingPage = () => {
         {/* Page Title */}
         <title>Diamdus One Marketplace</title>
         {/* Favicon */}
-        <link rel="icon" href="../../htmlscript/ad-agency/img/favicon.ico" />
+        <link rel="icon" href="/ad-agency/img/favicon.ico" />
         {/* Bundle */}
-        <link
-          rel="stylesheet"
-          href="../../htmlscript/vendor/css/bundle.min.css"
-        />
+        <link rel="stylesheet" href="/vendor/css/bundle.min.css" />
         {/* Plugin Css */}
+        <link rel="stylesheet" href="/vendor/css/jquery.fancybox.min.css" />
+        <link rel="stylesheet" href="/ad-agency/css/owl.carousel.min.css" />
         <link
           rel="stylesheet"
-          href="../../htmlscript/vendor/css/jquery.fancybox.min.css"
+          href="/ad-agency/css/owl.theme.default.min.css"
         />
-        <link
-          rel="stylesheet"
-          href="../../htmlscript/ad-agency/css/owl.carousel.min.css"
-        />
-        <link
-          rel="stylesheet"
-          href="../../htmlscript/ad-agency/css/owl.theme.default.min.css"
-        />
-        <link
-          rel="stylesheet"
-          href="../../htmlscript/vendor/css/swiper.min.css"
-        />
-        <link
-          rel="stylesheet"
-          href="../../htmlscript/vendor/css/cubeportfolio.min.css"
-        />
+        <link rel="stylesheet" href="/vendor/css/swiper.min.css" />
+        <link rel="stylesheet" href="/vendor/css/cubeportfolio.min.css" />
         {/* Revolution Slider CSS Files */}
-        <link
-          rel="stylesheet"
-          href="../../htmlscript/ad-agency/css/navigation.css"
-        />
-        <link
-          rel="stylesheet"
-          href="../../htmlscript/ad-agency/css/settings.css"
-        />
+        <link rel="stylesheet" href="/ad-agency/css/navigation.css" />
+        <link rel="stylesheet" href="/ad-agency/css/settings.css" />
         {/* Slick CSS Files */}
-        <link rel="stylesheet" href="../../htmlscript/vendor/css/slick.css" />
-        <link
-          rel="stylesheet"
-          href="../../htmlscript/vendor/css/slick-theme.css"
-        />
+        <link rel="stylesheet" href="/vendor/css/slick.css" />
+        <link rel="stylesheet" href="/vendor/css/slick-theme.css" />
         {/* Style Sheet */}
-        <link
-          rel="stylesheet"
-          href="../../htmlscript/ad-agency/css/style.css"
-        />
+        <link rel="stylesheet" href="/ad-agency/css/style.css" />
         {/* Custom Style CSS File */}
-        <link
-          rel="stylesheet"
-          href="../../htmlscript/ad-agency/css/custom.css"
-        />
+        <link rel="stylesheet" href="/ad-agency/css/custom.css" />
         {/* Loader */}
         {/* <div class="loader" id="loader-fade">
 <div class="dot-container">
@@ -179,14 +148,12 @@ const LandingPage = () => {
                       <i className="fab fa-instagram" />
                     </a>
                   </li>
+                  <li className="animated-wrap">
+                    <div className="text-white mt-1">Login</div>
+                  </li>
                 </ul>
               </div>
             </div>
-            {/* <li className="animated-wrap">
-              <Link to={`/login`} className="">
-                <div className="text-white z-10 ">Login</div>
-              </Link>
-            </li> */}
             <div className="col-6 col-lg-4 d-flex align-items-center justify-content-end justify-content-lg-center">
               <a className="menu_bars menu-bars-setting sidemenu_toggle link mr-3 mr-lg-0">
                 <div className="menu-lines">
@@ -197,14 +164,12 @@ const LandingPage = () => {
               </a>
             </div>
             <div className="col-4 d-flex justify-content-end">
-              <Link to={`/login`} className="">
-                <a
-                  href="javascript:void(0)"
-                  className="btn-setting link btn-hvr-up btn-hvr-whatsapp color-white mr-lg-4 d-none d-lg-inline-block"
-                >
-                  Login
-                </a>
-              </Link>
+              <a
+                href="javascript:void(0)"
+                className="btn-setting link btn-hvr-up btn-hvr-whatsapp color-white mr-lg-4 d-none d-lg-inline-block"
+              >
+                <i className="fab fa-whatsapp" /> +91 9702656949
+              </a>
             </div>
           </div>
         </section>
@@ -213,7 +178,7 @@ const LandingPage = () => {
             <div className="container-fluid">
               <a className="logo ml-lg-1" href="javascript:void(0)">
                 <img
-                  src="../../htmlscript/ad-agency/img/logo1.png"
+                  src="/ad-agency/img/logo1.png"
                   className="logo-default"
                   alt="logo"
                   title="Logo"
@@ -297,10 +262,7 @@ const LandingPage = () => {
             <div className="inner-wrapper justify-content-center">
               <div className="col-md-12 text-center">
                 <a href="javascript:void(0)" className="logo-full mb-4">
-                  <img
-                    src="../../htmlscript/ad-agency/img/logo-pure-white.png"
-                    alt=""
-                  />
+                  <img src="/ad-agency/img/logo-pure-white.png" alt="" />
                 </a>
               </div>
               <nav className="side-nav m-0">
@@ -369,33 +331,212 @@ const LandingPage = () => {
         </header>
         {/* Header end */}
         {/* Main Section start */}
-        <header class="relative flex items-center justify-start h-screen mb-12 overflow-hidden">
-          <div class="relative z-30 p-5 text-2xl text-white rounded-xl">
-            <h3>Welcome to my Diamdus!!</h3>
-            <h5>Online Diamond Marketplace</h5>
-            <p className="w-2/3">
-              We are trusted marketplace with huge natural and lab grown
-              diamonds inventory with images and video, integrate with your
-              online store and get more orders.
-            </p>
-          </div>
-
-          <video
-            className="absolute z-10 w-auto min-w-full min-h-full max-w-none"
-            loop="true"
-            autoplay="autoplay"
-            id="vid"
-            muted
-            start
+        <section id="home" className="p-0 h-100vh cursor-light">
+          <h2 className="d-none">heading</h2>
+          {/*Main Slider*/}
+          <div
+            id="rev_slider_8_1_wrapper"
+            className="rev_slider_wrapper fullscreen-container"
+            data-alias="weone"
+            data-source="gallery"
+            style={{ background: 'transparent', padding: 0 }}
           >
-            <source
-              src="../../htmlscript/ad-agency/video/slider-video.mp4"
-              type="video/mp4"
-            />
-            Your browser does not support the video tag.
-          </video>
-        </header>
-
+            {/* START REVOLUTION SLIDER 5.4.8.1 fullscreen mode */}
+            <div
+              id="rev_slider_8_1"
+              className="rev_slider fullscreenbanner"
+              style={{ display: 'none' }}
+              data-version="5.4.8.1"
+            >
+              <ul>
+                {/* SLIDE  */}
+                {/* SLIDE 1 */}
+                <li
+                  data-index="rs-36"
+                  data-transition="fade"
+                  data-slotamount="default"
+                  data-hideafterloop={0}
+                  data-hideslideonmobile="off"
+                  data-easein="default"
+                  data-easeout="default"
+                  data-masterspeed={300}
+                  data-rotate={0}
+                  data-saveperformance="off"
+                  data-title="Slide"
+                  data-param1=""
+                  data-param2=""
+                  data-param3=""
+                  data-param4=""
+                  data-param5=""
+                  data-param6=""
+                  data-param7=""
+                  data-param8=""
+                  data-param9=""
+                  data-param10=""
+                  data-description=""
+                >
+                  {/* LAYERS */}
+                  <img
+                    src="/ad-agency/img/slider-img.jpg"
+                    data-bgposition="center center"
+                    data-bgfit="cover"
+                    data-bgrepeat="no-repeat"
+                    data-bgparallax="off"
+                    className="rev-slidebg"
+                    alt="slider-image"
+                    data-no-retina=""
+                  />
+                  <div className="banner-overlay" />
+                  {/* LAYERS */}
+                  <div
+                    className="rs-background-video-layer"
+                    data-forcerewind="on"
+                    data-volume="mute"
+                    data-videowidth="100%"
+                    data-videoheight="100vh"
+                    data-videomp4="/ad-agency/video/slider-video.mp4"
+                    data-videopreload="auto"
+                    data-videoloop="loopandnoslidestop"
+                    data-forcecover={1}
+                    data-aspectratio="16:9"
+                    data-autoplay="true"
+                    data-autoplayonlyfirsttime="false"
+                  />
+                  {/* LAYER Text */}
+                  <div
+                    className="tp-caption color-yellow"
+                    data-x="['center','center','center','center']"
+                    data-hoffset="['0','0','0','0']"
+                    data-y="['top','top','top','top']"
+                    data-voffset="['270','200','100','15']"
+                    data-fontsize="['60','50','40','40']"
+                    data-lineheight="['75','75','75','40']"
+                    data-width="['556','556','556','300']"
+                    data-height="['none','none','none','87']"
+                    data-whitespace="nowrap"
+                    data-type="text"
+                    data-responsive_offset="on"
+                    data-frames='[{"delay":100,"split":"chars","splitdelay":0.1,"speed":1480,"split_direction":"random","frame":"0","from":"y:50px;sX:1;sY:1;opacity:0;fb:20px;","color":"rgba(0,0,0,0)","to":"o:1;fb:0;","ease":"Power4.easeInOut"},{"delay":"wait","speed":350,"frame":"999","color":"transparent","to":"opacity:0;fb:0;","ease":"Power3.easeInOut"}]'
+                    data-textalign="['center','center','center','center']"
+                    data-paddingtop="[0,0,0,0]"
+                    data-paddingright="[0,0,0,0]"
+                    data-paddingbottom="[0,0,0,0]"
+                    data-paddingleft="[0,0,0,0]"
+                    style={{
+                      zIndex: 10,
+                      minWidth: 556,
+                      maxWidth: 556,
+                      whiteSpace: 'nowrap',
+                      fontSize: 60,
+                      lineHeight: 75,
+                      fontWeight: 300,
+                      letterSpacing: 0,
+                      fontFamily: '"Montserrat", sans-serif',
+                    }}
+                  >
+                    <img
+                      src="/ad-agency/img/logo1.png"
+                      className="link"
+                      alt="logo"
+                    />
+                  </div>
+                  {/* LAYER Text */}
+                  <div
+                    className="tp-caption color-white"
+                    data-x="['center','center','center','center']"
+                    data-hoffset="['0','0','0','0']"
+                    data-y="['top','top','top','top']"
+                    data-voffset="['368','260','155','105']"
+                    data-fontsize="['62','50','40','40']"
+                    data-lineheight="['75','75','45','45']"
+                    data-width="['556','556','556','350']"
+                    data-height="['none','none','none','87']"
+                    data-whitespace="nowrap"
+                    data-type="text"
+                    data-responsive_offset="on"
+                    data-frames='[{"delay":150,"speed":1500,"frame":"0","from":"z:0;rX:0;rY:0;rZ:0;sX:0.9;sY:0.9;skX:0;skY:0;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
+                    data-textalign="['center','center','center','center']"
+                    data-paddingtop="[0,0,0,0]"
+                    data-paddingright="[0,0,0,0]"
+                    data-paddingbottom="[0,0,0,0]"
+                    data-paddingleft="[0,0,0,0]"
+                    style={{
+                      zIndex: 10,
+                      minWidth: 556,
+                      maxWidth: 556,
+                      whiteSpace: 'nowrap',
+                      fontWeight: 500,
+                      letterSpacing: 0,
+                      fontFamily: '"Montserrat", sans-serif',
+                    }}
+                  >
+                    <div id="js-rotating">
+                      Diamond Market Place, Modern Works, Easy to Use
+                    </div>
+                  </div>
+                  {/* LAYER Text */}
+                  <div
+                    className="tp-caption color-white"
+                    data-x="['center','center','center','center']"
+                    data-hoffset="['0','0','0','0']"
+                    data-y="['top','middle','middle','middle']"
+                    data-voffset="['470','95','0','20']"
+                    data-whitespace="normal"
+                    data-width="['580','630','550','440']"
+                    data-fontsize="['20','15','15','15']"
+                    data-lineheight="['30','25','22','22']"
+                    data-type="text"
+                    data-responsive_offset="on"
+                    data-frames='[{"delay":100,"speed":1480,"frame":"0","from":"opacity:0;","to":"o:1;","ease":"Power4.easeInOut"},{"delay":"wait","speed":350,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
+                    data-textalign="['center','center','center','center']"
+                    data-paddingtop="[0,0,0,0]"
+                    data-paddingright="[0,0,0,0]"
+                    data-paddingbottom="[0,0,0,0]"
+                    data-paddingleft="[0,0,0,0]"
+                    style={{
+                      zIndex: 10,
+                      minWidth: 650,
+                      maxWidth: 650,
+                      whiteSpace: 'nowrap',
+                      fontWeight: 300,
+                      letterSpacing: 1,
+                      fontFamily: '"Source Sans Pro", sans-serif',
+                    }}
+                  >
+                    Buy &amp; Sell Best Quality Diamonds Online for Pocket -
+                    Friendly Prices! <br />
+                    Diverse Inventory Collection <br />
+                    Innovative Interface
+                  </div>
+                  {/* LAYER Button */}
+                  <div
+                    className="tp-caption tp-resizeme"
+                    data-x="['center','center','center','center']"
+                    data-hoffset="['0','0','0','0']"
+                    data-y="['middle','middle','middle','middle']"
+                    data-voffset="['170','200','90','120']"
+                    data-frames='[{"from":"y:50px;opacity:0;","speed":1000,"to":"o:1;","delay":800,"ease":"Power4.easeInOut"},{"delay":"wait","speed":1000,"to":"y:[175%];","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"Power2.easeInOut"},{"frame":"hover","speed":"300","ease":"Power1.easeInOut","to":"o:1;rX:0;rY:0;rZ:0;z:0;","style":"c:rgba(255, 255, 255, 1.00);bc:rgba(255, 255, 255, 1.00);bw:2px 2px 2px 2px;"}]'
+                    data-textalign="['center','center','center','center']"
+                    data-width="['160','160','160','160']"
+                    style={{ zIndex: 10, minWidth: 960, maxWidth: 960 }}
+                  >
+                    <a
+                      href="javascript:void(0)"
+                      className="btn-setting color-white btn-hvr-up btn-hvr-yellow link"
+                    >
+                      learn more
+                    </a>
+                  </div>
+                </li>
+              </ul>
+              <div
+                className="tp-bannertimer"
+                style={{ height: 5, background: 'rgba(0, 0, 0, 0.15)' }}
+              />
+            </div>
+          </div>
+          {/*Main Slider ends */}
+        </section>
         {/* Main Section end */}
         {/*About start*/}
         <section className="about overflow-visible bg-dark1" id="about">
@@ -404,7 +545,7 @@ const LandingPage = () => {
               <div className="col-lg-6 pr-5 mb-5 mb-lg-0 wow fadeInLeft">
                 <div className="rare-box" />
                 <img
-                  src="../../htmlscript/ad-agency/img/about.jpg"
+                  src="/ad-agency/img/about.jpg"
                   className="about-img-small position-relative w-100"
                   alt=""
                 />
@@ -531,7 +672,7 @@ const LandingPage = () => {
       class="col-lg-6 col-xl-3 p-0 team-col ml-md-auto mr-md-0 mx-auto"
     >
       <div class="team-image">
-        <img src="../../htmlscript/ad-agency/img/team1.jpg" alt="team1" class="m-image1" />
+        <img src="/ad-agency/img/team1.jpg" alt="team1" class="m-image1" />
       </div>
       <div class="team-classic-content hvr-team pink">
         <h3 class="mb-3 text-capitalize color-black">Jessica Jones</h3>
@@ -565,7 +706,7 @@ const LandingPage = () => {
         <div class="col-md-12 order-md-1">
           <div class="team-image">
             <img
-              src="../../htmlscript/ad-agency/img/team2.jpg"
+              src="/ad-agency/img/team2.jpg"
               alt="team2"
               class="m-image2"
             />
@@ -607,7 +748,7 @@ const LandingPage = () => {
       class="col-lg-6 col-xl-3 p-0 team-col ml-md-auto mr-md-0 mx-auto team-row2"
     >
       <div class="team-image">
-        <img src="../../htmlscript/ad-agency/img/team3.jpg" alt="team3" class="m-image3" />
+        <img src="/ad-agency/img/team3.jpg" alt="team3" class="m-image3" />
       </div>
       <div class="team-classic-content hvr-team yellow">
         <h3 class="mb-3 text-capitalize color-black">Nicole Cross</h3>
@@ -641,7 +782,7 @@ const LandingPage = () => {
         <div class="col-md-12 order-md-1">
           <div class="team-image2">
             <img
-              src="../../htmlscript/ad-agency/img/team4.jpg"
+              src="/ad-agency/img/team4.jpg"
               alt="team4"
               class="m-image2"
             />
@@ -766,15 +907,12 @@ const LandingPage = () => {
               >
                 <div className="cbp-item web-designs marketing">
                   <a
-                    href="../../htmlscript/ad-agency/img/work1.jpg"
+                    href="/ad-agency/img/work1.jpg"
                     className="cbp-caption cbp-lightbox"
                     data-title="Bolt UI<br>by Tiberiu Neamu"
                   >
                     <div className="cbp-caption-defaultWrap">
-                      <img
-                        src="../../htmlscript/ad-agency/img/work1.jpg"
-                        alt="work"
-                      />
+                      <img src="/ad-agency/img/work1.jpg" alt="work" />
                     </div>
                     <div className="cbp-caption-activeWrap">
                       <div className="cbp-l-caption-alignCenter">
@@ -793,15 +931,12 @@ const LandingPage = () => {
                 </div>
                 <div className="cbp-item graphic-designs seo">
                   <a
-                    href="../../htmlscript/ad-agency/img/work2.jpg"
+                    href="/ad-agency/img/work2.jpg"
                     className="cbp-caption cbp-lightbox"
                     data-title="World Clock<br>by Paul Flavius Nechita"
                   >
                     <div className="cbp-caption-defaultWrap">
-                      <img
-                        src="../../htmlscript/ad-agency/img/work2.jpg"
-                        alt="work"
-                      />
+                      <img src="/ad-agency/img/work2.jpg" alt="work" />
                     </div>
                     <div className="cbp-caption-activeWrap">
                       <div className="cbp-l-caption-alignCenter">
@@ -820,15 +955,12 @@ const LandingPage = () => {
                 </div>
                 <div className="cbp-item graphic-designs web-designs">
                   <a
-                    href="../../htmlscript/ad-agency/img/work3.jpg"
+                    href="/ad-agency/img/work3.jpg"
                     className="cbp-caption cbp-lightbox"
                     data-title="WhereTO App<br>by Tiberiu Neamu"
                   >
                     <div className="cbp-caption-defaultWrap">
-                      <img
-                        src="../../htmlscript/ad-agency/img/work3.jpg"
-                        alt="work"
-                      />
+                      <img src="/ad-agency/img/work3.jpg" alt="work" />
                     </div>
                     <div className="cbp-caption-activeWrap">
                       <div className="cbp-l-caption-alignCenter">
@@ -847,15 +979,12 @@ const LandingPage = () => {
                 </div>
                 <div className="cbp-item seo marketing">
                   <a
-                    href="../../htmlscript/ad-agency/img/work6.jpg"
+                    href="/ad-agency/img/work6.jpg"
                     className="cbp-caption cbp-lightbox"
                     data-title="Remind~Me Widget<br>by Tiberiu Neamu"
                   >
                     <div className="cbp-caption-defaultWrap">
-                      <img
-                        src="../../htmlscript/ad-agency/img/work6.jpg"
-                        alt="work"
-                      />
+                      <img src="/ad-agency/img/work6.jpg" alt="work" />
                     </div>
                     <div className="cbp-caption-activeWrap">
                       <div className="cbp-l-caption-alignCenter">
@@ -874,15 +1003,12 @@ const LandingPage = () => {
                 </div>
                 <div className="cbp-item web-designs seo">
                   <a
-                    href="../../htmlscript/ad-agency/img/work4.jpg"
+                    href="/ad-agency/img/work4.jpg"
                     className="cbp-caption cbp-lightbox"
                     data-title="Seemple* Music<br>by Tiberiu Neamu"
                   >
                     <div className="cbp-caption-defaultWrap">
-                      <img
-                        src="../../htmlscript/ad-agency/img/work4.jpg"
-                        alt="work"
-                      />
+                      <img src="/ad-agency/img/work4.jpg" alt="work" />
                     </div>
                     <div className="cbp-caption-activeWrap">
                       <div className="cbp-l-caption-alignCenter">
@@ -899,15 +1025,12 @@ const LandingPage = () => {
                 </div>
                 <div className="cbp-item web-designs marketing">
                   <a
-                    href="../../htmlscript/ad-agency/img/work5.jpg"
+                    href="/ad-agency/img/work5.jpg"
                     className="cbp-caption cbp-lightbox"
                     data-title="iDevices<br>by Tiberiu Neamu"
                   >
                     <div className="cbp-caption-defaultWrap">
-                      <img
-                        src="../../htmlscript/ad-agency/img/work5.jpg"
-                        alt="work"
-                      />
+                      <img src="/ad-agency/img/work5.jpg" alt="work" />
                     </div>
                     <div className="cbp-caption-activeWrap">
                       <div className="cbp-l-caption-alignCenter">
@@ -1068,56 +1191,56 @@ const LandingPage = () => {
                 <div className="owl-thumbs owl-dots d-lg-block d-none">
                   <div className="owl-dot animated-wrap active">
                     <img
-                      src="../../htmlscript/ad-agency/img/testimonial1.png"
+                      src="/ad-agency/img/testimonial1.png"
                       alt=""
                       className="animated-element"
                     />
                   </div>
                   <div className="owl-dot animated-wrap">
                     <img
-                      src="../../htmlscript/ad-agency/img/testimonial2.png"
+                      src="/ad-agency/img/testimonial2.png"
                       alt=""
                       className="animated-element"
                     />
                   </div>
                   <div className="owl-dot animated-wrap">
                     <img
-                      src="../../htmlscript/ad-agency/img/testimonial3.png"
+                      src="/ad-agency/img/testimonial3.png"
                       alt=""
                       className="animated-element"
                     />
                   </div>
                   <div className="owl-dot animated-wrap">
                     <img
-                      src="../../htmlscript/ad-agency/img/testimonial4.png"
+                      src="/ad-agency/img/testimonial4.png"
                       alt=""
                       className="animated-element"
                     />
                   </div>
                   <div className="owl-dot animated-wrap">
                     <img
-                      src="../../htmlscript/ad-agency/img/testimonial5.png"
+                      src="/ad-agency/img/testimonial5.png"
                       alt=""
                       className="animated-element"
                     />
                   </div>
                   <div className="owl-dot animated-wrap">
                     <img
-                      src="../../htmlscript/ad-agency/img/testimonial6.png"
+                      src="/ad-agency/img/testimonial6.png"
                       alt=""
                       className="animated-element"
                     />
                   </div>
                   <div className="owl-dot animated-wrap">
                     <img
-                      src="../../htmlscript/ad-agency/img/testimonial7.jpg"
+                      src="/ad-agency/img/testimonial7.jpg"
                       alt=""
                       className="animated-element"
                     />
                   </div>
                   <div className="owl-dot animated-wrap">
                     <img
-                      src="../../htmlscript/ad-agency/img/testimonial8.jpg"
+                      src="/ad-agency/img/testimonial8.jpg"
                       alt=""
                       className="animated-element"
                     />
@@ -1141,7 +1264,7 @@ const LandingPage = () => {
                       <div className="testimonial-post">
                         <a href="javascript:void(0)" className="post">
                           <img
-                            src="../../htmlscript/ad-agency/img/testimonial1.png"
+                            src="/ad-agency/img/testimonial1.png"
                             alt="image"
                           />
                         </a>
@@ -1171,7 +1294,7 @@ const LandingPage = () => {
                       <div className="testimonial-post">
                         <a href="javascript:void(0)" className="post">
                           <img
-                            src="../../htmlscript/ad-agency/img/testimonial2.png"
+                            src="/ad-agency/img/testimonial2.png"
                             alt="image"
                           />
                         </a>
@@ -1201,7 +1324,7 @@ const LandingPage = () => {
                       <div className="testimonial-post">
                         <a href="javascript:void(0)" className="post">
                           <img
-                            src="../../htmlscript/ad-agency/img/testimonial3.png"
+                            src="/ad-agency/img/testimonial3.png"
                             alt="image"
                           />
                         </a>
@@ -1231,7 +1354,7 @@ const LandingPage = () => {
                       <div className="testimonial-post">
                         <a href="javascript:void(0)" className="post">
                           <img
-                            src="../../htmlscript/ad-agency/img/testimonial4.png"
+                            src="/ad-agency/img/testimonial4.png"
                             alt="image"
                           />
                         </a>
@@ -1261,7 +1384,7 @@ const LandingPage = () => {
                       <div className="testimonial-post">
                         <a href="javascript:void(0)" className="post">
                           <img
-                            src="../../htmlscript/ad-agency/img/testimonial5.png"
+                            src="/ad-agency/img/testimonial5.png"
                             alt="image"
                           />
                         </a>
@@ -1291,7 +1414,7 @@ const LandingPage = () => {
                       <div className="testimonial-post">
                         <a href="javascript:void(0)" className="post">
                           <img
-                            src="../../htmlscript/ad-agency/img/testimonial6.png"
+                            src="/ad-agency/img/testimonial6.png"
                             alt="image"
                           />
                         </a>
@@ -1321,7 +1444,7 @@ const LandingPage = () => {
                       <div className="testimonial-post">
                         <a href="javascript:void(0)" className="post">
                           <img
-                            src="../../htmlscript/ad-agency/img/testimonial7.jpg"
+                            src="/ad-agency/img/testimonial7.jpg"
                             alt="image"
                           />
                         </a>
@@ -1351,7 +1474,7 @@ const LandingPage = () => {
                       <div className="testimonial-post">
                         <a href="javascript:void(0)" className="post">
                           <img
-                            src="../../htmlscript/ad-agency/img/testimonial8.jpg"
+                            src="/ad-agency/img/testimonial8.jpg"
                             alt="image"
                           />
                         </a>
@@ -1386,7 +1509,7 @@ const LandingPage = () => {
                 <div className="hover-effect">
                   <img
                     alt="blog"
-                    src="../../htmlscript/ad-agency/img/split-blog.jpg"
+                    src="/ad-agency/img/split-blog.jpg"
                     className="about-img"
                   />
                 </div>
@@ -1407,7 +1530,7 @@ const LandingPage = () => {
                     exercitation ullamco laboris nisi ut aliquip.
                   </p>
                   <a
-                    href="../../htmlscript/ad-agency/blog.html"
+                    href="/ad-agency/blog.html"
                     className="btn-setting color-black btn-hvr-up btn-blue btn-hvr-pink"
                   >
                     learn more
