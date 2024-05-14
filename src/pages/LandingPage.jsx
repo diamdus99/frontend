@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactPlayer from 'react-player';
 
 const LandingPage = () => {
   React.useEffect(() => {
@@ -388,19 +389,20 @@ const LandingPage = () => {
                   />
                   <div className="banner-overlay" />
                   {/* LAYERS */}
+
                   <div
                     className="rs-background-video-layer"
                     data-forcerewind="on"
                     data-volume="mute"
                     data-videowidth="100%"
                     data-videoheight="100vh"
-                    data-videomp4="/ad-agency/video/slider-video.mp4"
+                    data-videomp4="https://hicharge.in/wp-content/uploads/2024/05/Untitled-design-1.mp4"
                     data-videopreload="auto"
                     data-videoloop="loopandnoslidestop"
                     data-forcecover={1}
                     data-aspectratio="16:9"
                     data-autoplay="true"
-                    data-autoplayonlyfirsttime="false"
+                    data-autoplayonlyfirsttime="true"
                   />
                   {/* LAYER Text */}
                   <div
