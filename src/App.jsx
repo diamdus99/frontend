@@ -16,7 +16,6 @@ const ForgetPassword = lazy(() => import('@/pages/ForgotPassword'));
 const ResetPassword = lazy(() => import('@/pages/ResetPassword'));
 
 const App = () => {
-  const login = 'customer';
   return (
     <>
       <ToastContainer />
@@ -30,11 +29,7 @@ const App = () => {
           <Route path="/reset-password/:token" component={ResetPassword} />
 
           <PrivateRoute>
-            {login === 'customer' ? (
-              <Route path="/" component={Layout} />
-            ) : (
-              <div>hello</div>
-            )}
+            <Route path="/" component={Layout} />
           </PrivateRoute>
           <Redirect exact from="/" to="/landing-page" />
         </Switch>

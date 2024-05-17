@@ -15,7 +15,7 @@ import { useEffect } from 'react';
 import TableRowComponent from './TableRowComponent';
 import { PiHandDuotone } from 'react-icons/pi';
 
-const ProductDisplay = () => {
+const ProductDisplay = (props) => {
   const [frontImages, setfrontImages] = React.useState('');
   const [isVideo, setisVideo] = React.useState(false);
   const [isModalOpen, setisModalOpen] = React.useState(false);
@@ -102,7 +102,7 @@ const ProductDisplay = () => {
                     >
                       <img
                         class="h-full w-full object-contain"
-                        src="GIA_Logo.png"
+                        src="https://mountainmommagems.com/cdn/shop/products/GIA-logo-2_7a2e4248-739e-4e31-9058-ee5d25c0dee6.jpg?v=1571815460"
                         alt=""
                       />
                     </button>
@@ -113,7 +113,8 @@ const ProductDisplay = () => {
 
             <div class="lg:col-span-2 lg:row-span-2 lg:row-end-2">
               <h1 className="sm: text-2xl font-bold  sm:text-3xl">
-                CUSHION 1.01ct F VVS1 EX EX MED
+                {props.shape} {props.carat} {props.color} {props.clarity}{' '}
+                {props.cut} {props.sym} MED
               </h1>
               <p>Procurement Price</p>
               <p>2,595.19 $/ct</p>
@@ -126,7 +127,9 @@ const ProductDisplay = () => {
                     <p className=" font-semibold text-gray-600 dark:text-gray-300 ">
                       Shape
                     </p>
-                    <p className="text-gray-600 dark:text-gray-400">CUSHION</p>
+                    <p className="text-gray-600 dark:text-gray-400">
+                      {props.shape}{' '}
+                    </p>
                   </CardBody>
                 </Card>
                 <Card>
@@ -134,7 +137,9 @@ const ProductDisplay = () => {
                     <p className=" font-semibold text-gray-600 dark:text-gray-300 ">
                       Carat
                     </p>
-                    <p className="text-gray-600 dark:text-gray-400">1.01</p>
+                    <p className="text-gray-600 dark:text-gray-400">
+                      {props.carat}
+                    </p>
                   </CardBody>
                 </Card>
                 <Card>
@@ -142,7 +147,9 @@ const ProductDisplay = () => {
                     <p className=" font-semibold text-gray-600 dark:text-gray-300 ">
                       Color
                     </p>
-                    <p className="text-gray-600 dark:text-gray-400">F</p>
+                    <p className="text-gray-600 dark:text-gray-400">
+                      {props.color}
+                    </p>
                   </CardBody>
                 </Card>
                 <Card>
@@ -150,7 +157,9 @@ const ProductDisplay = () => {
                     <p className=" font-semibold text-gray-600 dark:text-gray-300 ">
                       Clarity
                     </p>
-                    <p className="text-gray-600 dark:text-gray-400">VVS1</p>
+                    <p className="text-gray-600 dark:text-gray-400">
+                      {props.clarity}
+                    </p>
                   </CardBody>
                 </Card>
                 <Card>
@@ -166,7 +175,9 @@ const ProductDisplay = () => {
                     <p className=" font-semibold text-gray-600 dark:text-gray-300 ">
                       Polish
                     </p>
-                    <p className="text-gray-600 dark:text-gray-400">EX</p>
+                    <p className="text-gray-600 dark:text-gray-400">
+                      {props.cuts}
+                    </p>
                   </CardBody>
                 </Card>
                 <Card>
@@ -174,7 +185,9 @@ const ProductDisplay = () => {
                     <p className=" font-semibold text-gray-600 dark:text-gray-300 ">
                       Symmetry
                     </p>
-                    <p className="text-gray-600 dark:text-gray-400">EX</p>
+                    <p className="text-gray-600 dark:text-gray-400">
+                      {props.sym}
+                    </p>
                   </CardBody>
                 </Card>
                 <Card>
@@ -189,8 +202,8 @@ const ProductDisplay = () => {
 
               <div class="mt-10 flex flex-col items-center justify-between space-y-4 border-t border-b py-4 sm:flex-row sm:space-y-0">
                 <div class="flex items-end">
-                  <h1 class="text-3xl font-bold">$60.50</h1>
-                  <span class="text-base">/month</span>
+                  <h1 class="text-3xl font-bold">${props.total}</h1>
+                  {/* <span class="text-base">/ct</span> */}
                 </div>
 
                 <button

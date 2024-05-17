@@ -30,6 +30,7 @@ import NotFound from '@/components/table/NotFound';
 import PageTitle from '@/components/Typography/PageTitle';
 import { SidebarContext } from '@/context/SidebarContext';
 import OrderServices from '@/services/OrderServices';
+import { AdminContext } from '@/context/AdminContext';
 
 const Dashboard = () => {
   const { t } = useTranslation();
@@ -69,7 +70,9 @@ const Dashboard = () => {
   const { data: dashboardOrderAmount, loading: loadingOrderAmount } = useAsync(
     OrderServices.getDashboardAmount
   );
-
+  const {
+    state: { adminInfo },
+  } = useContext(AdminContext);
   // console.log("dashboardOrderCount", dashboardOrderCount);
 
   const { dataTable, serviceData } = useFilter(dashboardRecentOrder?.orders);
@@ -236,7 +239,9 @@ const Dashboard = () => {
 
   return (
     <>
-      <PageTitle>{t('DashboardOverview')}</PageTitle>
+      <PageTitle>
+        {adminInfo.role} {t('DashboardOverview')}
+      </PageTitle>
 
       <div className="grid gap-2 mb-8 xl:grid-cols-5 md:grid-cols-2">
         <CardItemTwo

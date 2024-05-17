@@ -1,6 +1,6 @@
 import requests from './httpService';
 
-const ProductServices = {
+const WishlistServices = {
   getAllProducts: async ({ page, limit, category, title, price }) => {
     const searchCategory = category !== null ? category : '';
     const searchTitle = title !== null ? title : '';
@@ -11,9 +11,13 @@ const ProductServices = {
     );
   },
 
-  getAllDiamonds: async () => {
+  getUserWishList: async () => {
     // console.log(body, 'getalldiamond');
-    return requests.get(`/diamondsproducts/getDiamonds`);
+    return requests.get(`/wishlistroutes`);
+  },
+
+  addUserWishlistProduct: async (body) => {
+    return requests.post('/wishlistroutes/addwishlist', body);
   },
   getSupplierDiamonds: async (body) => {
     // console.log(body, 'getalldiamond');
@@ -51,4 +55,4 @@ const ProductServices = {
   },
 };
 
-export default ProductServices;
+export default WishlistServices;

@@ -9,9 +9,12 @@ import { Elements } from '@stripe/react-stripe-js';
 import useRazorpay from 'react-razorpay';
 import CheckoutForm from './CheckoutForm';
 import CheckoutCart from './CheckoutCart';
+import FinalCart from '@/components/product/FInalCart';
+import ReactDOM from 'react-dom';
 
+import { PaymentElement, ElementsConsumer } from '@stripe/react-stripe-js';
 const stripePromise = loadStripe(
-  'pk_test_51OKwUNAPllPw9NOLoxslegfFfAtL0RkaTKFW9calo1bMECfdiHF0ZTp6SL4F3rGXDlDctoqcPwAKEBULj4UGNaf600nBgHO2Nf'
+  'pk_test_51JFgIlSAv442c1sqZ9klPRaQHsn1HtL388nyZDgWM034PXiPQdln9f9O6WuvQPVFMMBPk5VgjkwyYjMBbKOMNlVz009hSsejBm'
 );
 
 const Cart = () => {
@@ -71,6 +74,23 @@ const Cart = () => {
     );
   };
 
+  async function handleCheckout() {
+    const stripe = await stripePromise;
+    const { error } = await stripe.redirectToCheckout({
+      lineItems: [
+        {
+          price: 'price_1PH9DTSAv442c1sqUDHikIbO',
+          quantity: 1,
+        },
+      ],
+      mode: 'payment',
+      successUrl: `http://localhost:4100/success`,
+      cancelUrl: `http://localhost:4100/cancel`,
+      customerEmail: 'customer@email.com',
+    });
+    console.warn(error.message);
+  }
+
   const handlePayment = async () => {
     const options = {
       key: 'rzp_test_L5y8lHz3j6cXBY', // Enter the Key ID generated from the Dashboard
@@ -121,111 +141,11 @@ const Cart = () => {
               <h1 class="font-semibold text-2xl">Shopping Cart</h1>
               <h2 class="font-semibold text-2xl">3 Items</h2>
             </div>
-            <div class="md:flex items-strech py-8 md:py-10 lg:py-8 border-t border-gray-50">
-              <div class="md:w-4/12 2xl:w-1/4 w-full">
-                <img
-                  src="https://i.ibb.co/6gzWwSq/Rectangle-20-1.png"
-                  alt="Black Leather Purse"
-                  class="h-full object-center object-cover md:block hidden"
-                />
-                <img
-                  src="https://i.ibb.co/TTnzMTf/Rectangle-21.png"
-                  alt="Black Leather Purse"
-                  class="md:hidden w-full h-full object-center object-cover"
-                />
-              </div>
-              <div class="md:pl-3 md:w-8/12 2xl:w-3/4 flex flex-col justify-center">
-                <p class="text-xs leading-3 text-gray-800 md:pt-0 pt-4">
-                  RF293
-                </p>
-                <div class="flex items-center justify-between w-full">
-                  <p class="text-base font-black leading-none text-gray-800">
-                    Luxe card holder
-                  </p>
-                  <select
-                    aria-label="Select quantity"
-                    class="py-2 px-1 border border-gray-200 mr-6 focus:outline-none"
-                  >
-                    <option>01</option>
-                    <option>02</option>
-                    <option>03</option>
-                  </select>
-                </div>
-                <p class="text-xs leading-3 text-gray-600 pt-2">
-                  Height: 10 inches
-                </p>
-                <p class="text-xs leading-3 text-gray-600 py-4">Color: Black</p>
-                <p class="w-96 text-xs leading-3 text-gray-600">
-                  Composition: 100% calf leather
-                </p>
-                <div class="flex items-center justify-between pt-5">
-                  <div class="flex itemms-center">
-                    <p class="text-xs leading-3 underline text-gray-800 cursor-pointer">
-                      Add to favorites
-                    </p>
-                    <p class="text-xs leading-3 underline text-red-500 pl-5 cursor-pointer">
-                      Remove
-                    </p>
-                  </div>
-                  <p class="text-base font-black leading-none text-gray-800">
-                    ,000
-                  </p>
-                </div>
-              </div>
-            </div>
 
-            <div class="md:flex items-strech py-8 md:py-10 lg:py-8 border-t border-gray-50">
-              <div class="md:w-4/12 2xl:w-1/4 w-full">
-                <img
-                  src="https://i.ibb.co/6gzWwSq/Rectangle-20-1.png"
-                  alt="Black Leather Purse"
-                  class="h-full object-center object-cover md:block hidden"
-                />
-                <img
-                  src="https://i.ibb.co/TTnzMTf/Rectangle-21.png"
-                  alt="Black Leather Purse"
-                  class="md:hidden w-full h-full object-center object-cover"
-                />
-              </div>
-              <div class="md:pl-3 md:w-8/12 2xl:w-3/4 flex flex-col justify-center">
-                <p class="text-xs leading-3 text-gray-800 md:pt-0 pt-4">
-                  RF293
-                </p>
-                <div class="flex items-center justify-between w-full">
-                  <p class="text-base font-black leading-none text-gray-800">
-                    Luxe card holder
-                  </p>
-                  <select
-                    aria-label="Select quantity"
-                    class="py-2 px-1 border border-gray-200 mr-6 focus:outline-none"
-                  >
-                    <option>01</option>
-                    <option>02</option>
-                    <option>03</option>
-                  </select>
-                </div>
-                <p class="text-xs leading-3 text-gray-600 pt-2">
-                  Height: 10 inches
-                </p>
-                <p class="text-xs leading-3 text-gray-600 py-4">Color: Black</p>
-                <p class="w-96 text-xs leading-3 text-gray-600">
-                  Composition: 100% calf leather
-                </p>
-                <div class="flex items-center justify-between pt-5">
-                  <div class="flex itemms-center">
-                    <p class="text-xs leading-3 underline text-gray-800 cursor-pointer">
-                      Add to favorites
-                    </p>
-                    <p class="text-xs leading-3 underline text-red-500 pl-5 cursor-pointer">
-                      Remove
-                    </p>
-                  </div>
-                  <p class="text-base font-black leading-none text-gray-800">
-                    ,000
-                  </p>
-                </div>
-              </div>
-            </div>
+            {cart.map((cartItem) => (
+              <FinalCart key={cartItem?.productId} item={cartItem} />
+            ))}
+
             <a
               href="#"
               class="flex font-semibold text-indigo-600 text-sm mt-10"
@@ -278,7 +198,10 @@ const Cart = () => {
                 <span>Total cost</span>
                 <span>$600</span>
               </div>
-              <button class="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full">
+              <button
+                onClick={handleCheckout}
+                class="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full"
+              >
                 Checkout
               </button>
             </div>

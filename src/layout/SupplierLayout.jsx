@@ -3,8 +3,7 @@ import { Switch, Route, Redirect, useLocation } from 'react-router-dom';
 
 //internal import
 import Main from '@/layout/Main';
-import routes from '@/routes/index';
-import supplierroutes from '@/routes/supplierroutes';
+import routes from '@/routes/loginRoutes';
 import Header from '@/components/header/Header';
 import Sidebar from '@/components/sidebar/Sidebar';
 import { SidebarContext } from '@/context/SidebarContext';
@@ -13,17 +12,19 @@ import ThemeSuspense from '@/components/theme/ThemeSuspense';
 import Preview from '@/pages/Preview';
 const Page404 = lazy(() => import('@/pages/404'));
 
-const Layout = () => {
+const SupplierLayout = () => {
   const { isSidebarOpen, closeSidebar, navBar } = useContext(SidebarContext);
-  const {
-    state: { adminInfo },
-  } = useContext(AdminContext);
-
   let location = useLocation();
 
   const isOnline = navigator.onLine;
 
+  // console.log('routes', routes);
+
   useEffect(() => {
+    // const {
+    //   state: { adminInfo },
+    // } = useContext(AdminContext);
+    // console.log(adminInfo,"SupplierLayout screen.js");
     closeSidebar();
   }, [location]);
 
@@ -56,7 +57,6 @@ const Layout = () => {
                     />
                   ) : null;
                 })}
-
                 <Redirect exact from="/" to="/dashboard" />
 
                 <Route component={Page404} />
@@ -69,4 +69,4 @@ const Layout = () => {
   );
 };
 
-export default Layout;
+export default SupplierLayout;

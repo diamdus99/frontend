@@ -176,7 +176,9 @@ const Search = () => {
           <div>
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="mt-4">
-                <Button
+                <button
+                  type="button"
+                  color="blue-950"
                   onClick={() => {
                     setisNaturalDiamond(true);
 
@@ -185,12 +187,12 @@ const Search = () => {
                   className={`${
                     isNaturalDiamond
                       ? 'bg-blue-950 text-white '
-                      : 'bg-white  text-blue-950'
-                  } rounded-e-none`}
+                      : 'bg-white  text-black'
+                  } rounded-e-none font-medium rounded-lg text-sm px-5 py-2.5  `}
                 >
                   Natural Diamonds
-                </Button>
-                <Button
+                </button>
+                <button
                   onClick={() => {
                     setisNaturalDiamond(false);
                   }}
@@ -198,10 +200,10 @@ const Search = () => {
                     isNaturalDiamond
                       ? 'bg-white  text-blue-950 border-gray-950 border hover:text-white'
                       : 'bg-blue-950 text-white'
-                  } rounded-s-none text-black`}
+                  } rounded-s-none font-medium rounded-lg text-sm px-5 py-2.5`}
                 >
                   Lab Grown Diamond
-                </Button>
+                </button>
               </div>
               <p className="mt-4 mb-4 font-semibold text-gray-600 dark:text-gray-300">
                 Shape

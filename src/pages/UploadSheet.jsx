@@ -13,6 +13,8 @@ import {
   Pagination,
 } from '@windmill/react-ui';
 //internal import
+import { FiPlus } from 'react-icons/fi';
+import React, { useContext } from 'react';
 
 import Error from '@/components/form/others/Error';
 import spinnerLoadingImage from '@/assets/img/spinner.gif';
@@ -24,11 +26,17 @@ import useAsync from '@/hooks/useAsync';
 import TableLoading from '@/components/preloader/TableLoading';
 import CheckBox from '@/components/form/others/CheckBox';
 import DiamondsProductTable from '@/components/product/DiamondsProductTable';
+import { AdminContext } from '@/context/AdminContext';
+
 const UploadSheet = () => {
   const { t } = useTranslation();
-  const [isOpen, setisOpen] = useState(true);
+  const [isOpen, setisOpen] = useState(false);
+  const [test, settest] = useState({});
+  const {
+    state: { adminInfo },
+  } = useContext(AdminContext);
   const { data, loading, error } = useAsync(() =>
-    ProductServices.getAllDiamonds({})
+    ProductServices.getSupplierDiamonds({ userid: adminInfo._id })
   );
 
   const onClose = () => {
@@ -37,8 +45,11 @@ const UploadSheet = () => {
   };
 
   const onSubmit = (data, file) => {
-    console.log('onSubmit', data, file);
-    ProductServices.addDiamondProduct(data);
+    const sdata = data;
+    sdata['_id'] = adminInfo._id;
+    // settest(sdata);
+    // console.log('onSubmit', data);
+    ProductServices.addDiamondProduct(sdata);
   };
 
   const fields = [
@@ -67,15 +78,7 @@ const UploadSheet = () => {
         },
       ],
     },
-    {
-      label: 'STONENO.',
-      key: 'stoneno',
-      alternateMatches: ['STONENO.', 'STONENO.'],
-      fieldType: {
-        type: 'input',
-      },
-      example: 'ED165-281C',
-    },
+
     {
       label: 'STONENO.',
       key: 'stoneno',
@@ -385,9 +388,29 @@ const UploadSheet = () => {
       example: 'SURAT',
     },
   ];
+
+  const handleOpenModal = () => {
+    setisOpen(true);
+  };
   return (
     <>
       <PageTitle>Upload File</PageTitle>
+      {JSON.stringify(test)}
+      <Card className="min-w-0 shadow-xs overflow-hidden bg-white dark:bg-gray-800 mb-5">
+        <CardBody className="">
+          <div className="flex-grow-0 md:flex-grow lg:flex-grow xl:flex-grow">
+            <Button
+              onClick={handleOpenModal}
+              className="w-full rounded-md h-12"
+            >
+              <span className="mr-2">
+                <FiPlus />
+              </span>
+              Upload Sheet
+            </Button>
+          </div>
+        </CardBody>
+      </Card>
       <div className="sm:container md:p-6 p-4 w-full mx-auto bg-white  dark:bg-gray-800 dark:text-gray-200 rounded-lg">
         <ReactSpreadsheetImport
           isOpen={isOpen}

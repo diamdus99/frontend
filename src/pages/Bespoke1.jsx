@@ -35,6 +35,8 @@ import BulkActionDrawer from '@/components/drawer/BulkActionDrawer';
 import TableLoading from '@/components/preloader/TableLoading';
 import SelectCategory from '@/components/form/selectOption/SelectCategory';
 import BeSpoke1Drawer from '@/components/drawer/BeSpoke1Drawer';
+import BespokeServices from '@/services/BespokeServices';
+import BespokeTable from '@/components/besoke/BespokeTable';
 
 const Bespoke1 = () => {
   const { title, allId, serviceId, handleDeleteMany, handleUpdateMany } =
@@ -55,46 +57,19 @@ const Bespoke1 = () => {
     setSortedField,
     limitData,
   } = useContext(SidebarContext);
-
   const { data, loading, error } = useAsync(() =>
-    ProductServices.getAllProducts({
-      page: currentPage,
-      limit: limitData,
-      category: category,
-      title: searchText,
-      price: sortedField,
-    })
+    BespokeServices.getAllBespoke({})
   );
-
-  // console.log("product page", data);
 
   // react hooks
   const [isCheckAll, setIsCheckAll] = useState(false);
   const [isCheck, setIsCheck] = useState([]);
 
-  const handleSelectAll = () => {
-    setIsCheckAll(!isCheckAll);
-    setIsCheck(data?.products.map((li) => li._id));
-    if (isCheckAll) {
-      setIsCheck([]);
-    }
-  };
-  // handle reset field
   const handleResetField = () => {
     setCategory('');
     setSortedField('');
     searchRef.current.value = '';
   };
-
-  // console.log('productss',products)
-  const {
-    serviceData,
-    filename,
-    isDisabled,
-    handleSelectFile,
-    handleUploadMultiple,
-    handleRemoveSelectFile,
-  } = useProductFilter(data?.products);
 
   return (
     <>
@@ -111,7 +86,7 @@ const Bespoke1 = () => {
             className="py-3 md:pb-0 grid gap-4 lg:gap-6 xl:gap-6 xl:flex"
           >
             <div className="flex-grow-0 sm:flex-grow md:flex-grow lg:flex-grow xl:flex-grow">
-              <UploadManyTwo
+              {/* <UploadManyTwo
                 title="Products"
                 filename={filename}
                 isDisabled={isDisabled}
@@ -119,11 +94,11 @@ const Bespoke1 = () => {
                 handleSelectFile={handleSelectFile}
                 handleUploadMultiple={handleUploadMultiple}
                 handleRemoveSelectFile={handleRemoveSelectFile}
-              />
+              /> */}
             </div>
             <div className="flex flex-col sm:flex-row gap-4">
               <div className="flex-grow-0 md:flex-grow lg:flex-grow xl:flex-grow">
-                <Button
+                {/* <Button
                   disabled={isCheck.length < 1}
                   onClick={() => handleUpdateMany(isCheck)}
                   className="w-full rounded-md h-12 btn-gray text-gray-600"
@@ -132,7 +107,7 @@ const Bespoke1 = () => {
                     <FiEdit />
                   </span>
                   {t('BulkAction')}
-                </Button>
+                </Button> */}
               </div>
               <div className="flex-grow-0 md:flex-grow lg:flex-grow xl:flex-grow">
                 <Button
@@ -163,13 +138,13 @@ const Bespoke1 = () => {
         </CardBody>
       </Card>
 
-      <Card className="min-w-0 shadow-xs overflow-hidden bg-white dark:bg-gray-800 rounded-t-lg rounded-0 mb-4">
+      {/* <Card className="min-w-0 shadow-xs overflow-hidden bg-white dark:bg-gray-800 rounded-t-lg rounded-0 mb-4">
         <CardBody>
           <form
             onSubmit={handleSubmitForAll}
             className="py-3 grid gap-4 lg:gap-6 xl:gap-6 md:flex xl:flex"
-          >
-            <div className="flex-grow-0 md:flex-grow lg:flex-grow xl:flex-grow">
+          > */}
+      {/* <div className="flex-grow-0 md:flex-grow lg:flex-grow xl:flex-grow">
               <Input
                 ref={searchRef}
                 type="search"
@@ -184,9 +159,9 @@ const Bespoke1 = () => {
 
             <div className="flex-grow-0 md:flex-grow lg:flex-grow xl:flex-grow">
               <SelectCategory setCategory={setCategory} lang={lang} />
-            </div>
+            </div> */}
 
-            <div className="flex-grow-0 md:flex-grow lg:flex-grow xl:flex-grow">
+      {/* <div className="flex-grow-0 md:flex-grow lg:flex-grow xl:flex-grow">
               <Select onChange={(e) => setSortedField(e.target.value)}>
                 <option value="All" defaultValue hidden>
                   {t('Price')}
@@ -204,8 +179,8 @@ const Bespoke1 = () => {
                   {t('DateUpdatedDesc')}
                 </option>
               </Select>
-            </div>
-            <div className="flex items-center gap-2 flex-grow-0 md:flex-grow lg:flex-grow xl:flex-grow">
+            </div> */}
+      {/* <div className="flex items-center gap-2 flex-grow-0 md:flex-grow lg:flex-grow xl:flex-grow">
               <div className="w-full mx-1">
                 <Button type="submit" className="h-12 w-full bg-blue-700">
                   Filter
@@ -222,11 +197,44 @@ const Bespoke1 = () => {
                   <span className="text-black dark:text-gray-200">Reset</span>
                 </Button>
               </div>
-            </div>
-          </form>
+            </div> */}
+      {/* </form>
         </CardBody>
-      </Card>
+      </Card> */}
+      {/* <div>{error ? JSON.stringify(error) + 'error' : 'not error'} </div>
 
+      <div>{loading ? 'loading' : JSON.stringify(data)}</div> */}
+      <TableContainer className="mb-8 rounded-b-lg">
+        <Table>
+          <TableHeader>
+            <tr>
+              <TableCell>Date</TableCell>
+              <TableCell>Reference</TableCell>
+              <TableCell>Category</TableCell>
+              <TableCell>metalPurity</TableCell>
+              <TableCell>fingerSize</TableCell>
+              <TableCell className="text-center">designType</TableCell>
+              <TableCell className="text-center">ringProfile</TableCell>
+              <TableCell className="text-right">instructions</TableCell>
+              <TableCell className="text-right">Job Type</TableCell>
+            </tr>
+          </TableHeader>
+          <BespokeTable
+            // lang={lang}
+            // isCheck={isCheck}
+            products={data}
+            // setIsCheck={setIsCheck}
+          />
+        </Table>
+        <TableFooter>
+          {/* <Pagination
+              totalResults={data?.totalDoc}
+              resultsPerPage={limitData}
+              onChange={handleChangePage}
+              label="Product Page Navigation"
+            /> */}
+        </TableFooter>
+      </TableContainer>
       {/* {loading ? (
         <TableLoading row={12} col={7} width={160} height={20} />
       ) : error ? (

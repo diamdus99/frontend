@@ -10,6 +10,7 @@ const initialState = {
 };
 
 function reducer(state, action) {
+  // console.log(action.payload.role, 'state in admincontext');
   switch (action.type) {
     case 'USER_LOGIN':
       return { ...state, adminInfo: action.payload };

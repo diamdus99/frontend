@@ -33,6 +33,7 @@ const UploadSheet = lazy(() => import('@/pages/UploadSheet'));
 const SubmitTicket = lazy(() => import('@/pages/SubmitTicket'));
 const SearchProducts = lazy(() => import('@/pages/SearchProducts'));
 const ProductDisplays = lazy(() => import('@/pages/ProductDisplays'));
+const Wishlist = lazy(() => import('@/pages/Wishlist'));
 /*
 //  * ⚠ These are internal routes!
 //  * They will be rendered inside the app, using the default `containers/Layout`.
@@ -167,6 +168,10 @@ const routes = [
   {
     path: '/product-display/:id',
     component: ProductDisplays,
+  },
+  {
+    path: '/wishlist',
+    component: Wishlist,
   },
 ];
 

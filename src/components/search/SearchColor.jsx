@@ -21,16 +21,16 @@ const SearchColor = (props) => {
     props.selected(onSelect, props.name);
   };
   return (
-    <Button
+    <button
       onClick={onClick}
       className={`${
         onSelect
           ? 'bg-blue-950 text-white'
           : 'bg-gray-100  forced-colors:text-blue-950'
-      } mr-2`}
+      } mr-2  font-medium rounded-lg text-sm px-5 py-2.5`}
     >
       {props.name}{' '}
-    </Button>
+    </button>
   );
 };
 

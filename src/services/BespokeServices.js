@@ -2,13 +2,15 @@ import requests from './httpService';
 
 const BespokeServices = {
   getAllBespoke: async () => {
+    console.log('getAllBespoke called');
     return requests.get('/bespoke');
   },
 
   addBespoke: async (body) => {
-    console.log(body, 'body body');
+    // console.log(body, 'body body');
     return requests.post('/bespoke/addbespoke', body);
   },
+
   // getAllProducts: async ({ page, limit, category, title, price }) => {
   //   const searchCategory = category !== null ? category : "";
   //   const searchTitle = title !== null ? title : "";
