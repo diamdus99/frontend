@@ -229,8 +229,15 @@ const LandingPage = () => {
         </div>
       </nav>
 
-      <section className="bg-center bg-no-repeat bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/conference.jpg')] bg-gray-700 bg-blend-multiply">
-        <div className="px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-56">
+      <section className="flex bg-center bg-no-repeat bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/conference.jpg')] bg-gray-700 bg-blend-multiply">
+        <video
+          className="p-0 m-0 object-fill"
+          src="https://hicharge.in/wp-content/uploads/2024/05/Untitled-design-1.mp4"
+          autoPlay
+          muted
+          loop
+        />
+        <div className="absolute px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-56">
           <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">
             We are world’s potential Diamond Marketplace
           </h1>
@@ -293,9 +300,24 @@ const LandingPage = () => {
                 We Make Our customers happy by giving Best services.
               </h2>
               <p class="uo">
-                It is a long established fact that a reader will be distracted
-                by the readable content of a page when looking at its layout.
-                The point of using Lorem Ipsum.
+                <b>Buyer</b> -The smartest way to buy diamonds.Online Retailers
+                Obtain the best diamonds at the right price using DIAMDUS.
+                <br />
+                <br />
+                <b>Industry</b>-leading market data. Give your clients greater
+                choice, benefit from our expert services, and enjoy fast
+                delivery and liabilities cover at no extra charge.
+                <br />
+                <br />
+                <b> Sellers</b> The smartest way to sell diamonds. Reach new
+                customers, effortlessly Supply and demand analysis A marketplace
+                of ready buyers Solution- Everything you need to grow your
+                business .
+                <br />
+                <br />
+                <b>Professional Services at your service</b> We take care of the
+                back office and logistics, saving you time and money.
+                Super-fast, free delivery
               </p>
 
               <a
