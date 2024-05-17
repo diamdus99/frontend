@@ -9,7 +9,7 @@ import { Elements } from '@stripe/react-stripe-js';
 import useRazorpay from 'react-razorpay';
 import CheckoutForm from './CheckoutForm';
 import CheckoutCart from './CheckoutCart';
-import FinalCart from '@/components/product/FInalCart';
+import FinalCart from '@/components/product/FinalCart';
 import ReactDOM from 'react-dom';
 
 import { PaymentElement, ElementsConsumer } from '@stripe/react-stripe-js';
